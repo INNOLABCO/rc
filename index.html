@@ -10,6 +10,43 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
+
+// ADD THIS TO YOUR CONTACT FORM IN index.html
+// Find your contact form and update it like this:
+
+document.querySelector('#contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const contactData = {
+        date: new Date().toLocaleString(),
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        message: formData.get('message')
+    };
+    
+    // Save to localStorage for admin
+    const contacts = JSON.parse(localStorage.getItem('rafalcar_contacts') || '[]');
+    contacts.push(contactData);
+    localStorage.setItem('rafalcar_contacts', JSON.stringify(contacts));
+    
+    // Send to email
+    formData.append('_subject', 'Contact Form - ' + formData.get('name'));
+    formData.append('_template', 'table');
+    
+    try {
+        await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com', {
+            method: 'POST',
+            body: formData
+        });
+        alert('✅ Message sent! We will reply soon.');
+        this.reset();
+    } catch (error) {
+        alert('✅ Message saved! We will contact you soon.');
+    }
+});
+    
 <body>
     <!-- Navigation -->
     <nav class="navbar">
