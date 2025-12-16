@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafal Car - Premium Car Rental in Morocco | 2024 Fleet</title>
+    <meta name="description" content="Rent premium 2024 cars across Morocco. Best prices, 24/7 service, unlimited mileage. 16 vehicles from economy to luxury. Book today!">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>    
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="Rafal_car_logo.png" alt="Rafal Car" style="height: 60px; width: auto;">
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <a href="#home" class="nav-link active" data-i18n="nav_home">Home</a>
+                    <a href="#vehicles" class="nav-link" data-i18n="nav_vehicles">Vehicles</a>
+                    <a href="#how-it-works" class="nav-link" data-i18n="nav_how">How it Works</a>
+                    <a href="#why-choose-us" class="nav-link" data-i18n="nav_why">Why Choose Us</a>
+                    <a href="#testimonials" class="nav-link" data-i18n="nav_reviews">Reviews</a>
+                    <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+                </div>
+
+                <div class="nav-actions">
+                    <button class="btn-secondary" id="langBtn" onclick="toggleLanguage()">
+                        <span class="badge" id="currentLang">EN</span> 🌐
+                    </button>
+                    <button class="btn-primary" onclick="window.location.href='#vehicles'" data-i18n="btn_start">Get Started</button>
+                    <button class="mobile-menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge" data-i18n="hero_badge">🚗 Available 24/7 Across Morocco</span>
+                    <h1 class="hero-title"><span data-i18n="hero_title">Find Your Perfect</span><br><span class="gradient-text" data-i18n="hero_rental">Rental Car</span></h1>
+                    <p class="hero-description" data-i18n="hero_desc">Experience the freedom of the road with our premium 2024 fleet. From economy to luxury, we have the perfect car for every journey across Morocco.</p>
+                    
+                    <!-- Search Box -->
+                    <div class="search-box">
+                        <div class="search-field">
+                            <label data-i18n="search_location">📍 Pickup Location</label>
+                            <select id="pickupLocation">
+                                <option>Casablanca</option>
+                                <option>Marrakech</option>
+                                <option>Rabat</option>
+                                <option>Fes</option>
+                                <option>Tangier</option>
+                                <option>Agadir</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <label data-i18n="search_pickup">📅 Pickup Date</label>
+                            <input type="date" id="pickupDate">
+                        </div>
+                        <div class="search-field">
+                            <label data-i18n="search_return">📅 Return Date</label>
+                            <input type="date" id="returnDate">
+                        </div>
+                        <button class="btn-search" onclick="searchCars()" data-i18n="search_btn">Search Cars</button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3 data-i18n="stat1_num">200+</h3>
+                            <p data-i18n="stat1_text">Happy Clients</p>
+                        </div>
+                        <div class="stat">
+                            <h3>16</h3>
+                            <p data-i18n="stat2_text">2024 Cars</p>
+                        </div>
+                        <div class="stat">
+                            <h3 data-i18n="stat3_num">6000+</h3>
+                            <p data-i18n="stat3_text">Completed Trips</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&q=80" alt="Luxury Car">
+                    <div class="hero-card floating">
+                        <div class="card-icon">⚡</div>
+                        <div>
+                            <h4 data-i18n="instant_booking">Instant Booking</h4>
+                            <p data-i18n="book_mins">Book in 2 minutes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 data-i18n="feat1_title">100% Secure</h3>
+                    <p data-i18n="feat1_desc">Your data is protected with industry-standard encryption</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 data-i18n="feat2_title">Best Price</h3>
+                    <p data-i18n="feat2_desc">Guaranteed lowest prices with no hidden fees</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3 data-i18n="feat3_title">2024 Fleet</h3>
+                    <p data-i18n="feat3_desc">Choose from 16 brand new 2024 vehicles</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <h3 data-i18n="feat4_title">24/7 Support</h3>
+                    <p data-i18n="feat4_desc">Our team is always here to help you</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section class="vehicles" id="vehicles">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-i18n="fleet_badge">Our 2024 Fleet</span>
+                <h2 class="section-title"><span data-i18n="popular">Popular</span> <span class="gradient-text" data-i18n="rental_cars">Rental Cars</span></h2>
+                <p class="section-description" data-i18n="fleet_desc">All vehicles are 2024 models - brand new and fully equipped</p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-filter="all" data-i18n="filter_all">All Cars</button>
+                <button class="tab-btn" data-filter="economy" data-i18n="filter_economy">Economy</button>
+                <button class="tab-btn" data-filter="suv" data-i18n="filter_suv">SUV</button>
+                <button class="tab-btn" data-filter="luxury" data-i18n="filter_luxury">Luxury</button>
+            </div>
+
+            <div class="vehicles-grid" id="vehiclesGrid"></div>
+
+            <div class="section-footer">
+                <a href="economy-cars.html" class="btn-secondary-large" data-i18n="view_economy">View Economy Cars →</a>
+                <a href="luxury-cars.html" class="btn-secondary-large" data-i18n="view_luxury">View Luxury Cars →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-i18n="process_badge">Process</span>
+                <h2 class="section-title"><span data-i18n="how_it">How It</span> <span class="gradient-text" data-i18n="works">Works</span></h2>
+                <p class="section-description" data-i18n="simple_steps">Rent a car in 3 simple steps</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">🔍</div>
+                    <h3 data-i18n="step1_title">Choose Location</h3>
+                    <p data-i18n="step1_desc">Select your pickup and drop-off locations from our network across Morocco</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">🚗</div>
+                    <h3 data-i18n="step2_title">Pick Your Car</h3>
+                    <p data-i18n="step2_desc">Browse our 2024 fleet and select the perfect vehicle for your journey</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">✅</div>
+                    <h3 data-i18n="step3_title">Book & Drive</h3>
+                    <p data-i18n="step3_desc">Complete your booking and hit the road. It's that simple!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us" id="why-choose-us">
+        <div class="container">
+            <div class="why-content">
+                <div class="why-image">
+                    <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80" alt="Happy Customer">
+                </div>
+                <div class="why-text">
+                    <span class="section-badge" data-i18n="why_badge">Why Rafal Car</span>
+                    <h2 class="section-title"><span data-i18n="why_choose">Why Choose</span> <span class="gradient-text" data-i18n="us">Us</span></h2>
+                    <p class="section-description" data-i18n="why_desc">We're committed to providing you with the best car rental experience in Morocco</p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div>
+                                <h4 data-i18n="benefit1_title">All 2024 Models</h4>
+                                <p data-i18n="benefit1_desc">Brand new vehicles with latest features and technology</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div>
+                                <h4 data-i18n="benefit2_title">Unlimited Mileage</h4>
+                                <p data-i18n="benefit2_desc">Drive as far as you want with no extra charges</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div>
+                                <h4 data-i18n="benefit3_title">Full Insurance</h4>
+                                <p data-i18n="benefit3_desc">Comprehensive coverage included with every rental</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div>
+                                <h4 data-i18n="benefit4_title">Free Cancellation</h4>
+                                <p data-i18n="benefit4_desc">Cancel up to 24 hours before pickup at no cost</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div>
+                                <h4 data-i18n="benefit5_title">Airport Delivery</h4>
+                                <p data-i18n="benefit5_desc">We deliver and pick up from major airports</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div>
+                                <h4 data-i18n="benefit6_title">24/7 Roadside Assistance</h4>
+                                <p data-i18n="benefit6_desc">Help is just a phone call away, anytime</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-i18n="reviews_badge">Reviews</span>
+                <h2 class="section-title"><span data-i18n="what_customers">What Our</span> <span class="gradient-text" data-i18n="customers_say">Customers Say</span></h2>
+                <p class="section-description" data-i18n="dont_take">Don't just take our word for it</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Excellent service! The 2024 Mercedes was in perfect condition and the pickup process was super smooth. Highly recommend Rafal Car for anyone visiting Morocco."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div>
+                            <h4>John Doe</h4>
+                            <p>Tourist from USA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Great prices and fantastic customer service. I've rented from them multiple times for my business trips. Always brand new cars and professional service."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SA</div>
+                        <div>
+                            <h4>Sarah Ahmed</h4>
+                            <p>Business Traveler</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"The booking process was so easy and the staff was incredibly helpful. The 2024 Hyundai Tucson was clean, comfortable, and perfect for our family vacation."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MB</div>
+                        <div>
+                            <h4>Mohamed Bennis</h4>
+                            <p>Local Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 data-i18n="cta_title">Ready to Hit the Road?</h2>
+                <p data-i18n="cta_desc">Book your perfect 2024 car today and experience the freedom of travel</p>
+                <div class="cta-buttons">
+                    <button class="btn-primary-large" onclick="window.location.href='#vehicles'" data-i18n="book_now">Book Now</button>
+                    <a href="#contact" class="btn-secondary-large" data-i18n="contact_us">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 data-i18n="get_touch">Get in Touch</h2>
+                    <p data-i18n="have_questions">Have questions? We're here to help!</p>
+                    
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h4 data-i18n="phone">Phone</h4>
+                                <p>+212 662 186 949</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h4 data-i18n="email">Email</h4>
+                                <p>rafal.carmed5@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h4 data-i18n="location">Location</h4>
+                                <p>Casablanca, Morocco</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div>
+                                <h4 data-i18n="hours">Working Hours</h4>
+                                <p data-i18n="available">24/7 Available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" name="name" data-i18n-placeholder="your_name" placeholder="Your Name" required>
+                        <input type="email" name="email" data-i18n-placeholder="your_email" placeholder="Your Email" required>
+                        <input type="tel" name="phone" data-i18n-placeholder="phone_number" placeholder="Phone Number" required>
+                        <textarea name="message" data-i18n-placeholder="your_message" placeholder="Your Message" rows="4" required></textarea>
+                        <button type="submit" class="btn-primary" data-i18n="send_message">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>RAFAL CAR</h3>
+                    <p data-i18n="footer_desc">Your trusted partner for 2024 car rentals across Morocco. Experience premium service and competitive prices with our brand new fleet.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-i18n="quick_links">Quick Links</h4>
+                    <a href="#home" data-i18n="nav_home">Home</a>
+                    <a href="#vehicles" data-i18n="nav_vehicles">Vehicles</a>
+                    <a href="economy-cars.html" data-i18n="economy_cars">Economy Cars</a>
+                    <a href="luxury-cars.html" data-i18n="luxury_cars">Luxury Cars</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-i18n="services">Services</h4>
+                    <a href="#" data-i18n="car_rental">Car Rental</a>
+                    <a href="#" data-i18n="airport_transfer">Airport Transfer</a>
+                    <a href="#" data-i18n="long_term">Long Term Rental</a>
+                    <a href="#" data-i18n="chauffeur">Chauffeur Service</a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-i18n="legal">Legal</h4>
+                    <a href="terms.html" data-i18n="terms">Terms & Conditions</a>
+                    <a href="privacy.html" data-i18n="privacy">Privacy Policy</a>
+                    <a href="rental-agreement.html" data-i18n="rental_agreement">Rental Agreement</a>
+                    <a href="#" data-i18n="faq">FAQ</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rafal Car. <span data-i18n="all_rights">All rights reserved</span>.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="https://wa.me/212662186949" aria-label="WhatsApp">💬</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // TRANSLATIONS DATABASE
+        const translations = {
+            en: {
+                nav_home:"Home",nav_vehicles:"Vehicles",nav_how:"How it Works",nav_why:"Why Choose Us",nav_reviews:"Reviews",nav_contact:"Contact",btn_start:"Get Started",
+                hero_badge:"🚗 Available 24/7 Across Morocco",hero_title:"Find Your Perfect",hero_rental:"Rental Car",hero_desc:"Experience the freedom of the road with our premium 2024 fleet. From economy to luxury, we have the perfect car for every journey across Morocco.",
+                search_location:"📍 Pickup Location",search_pickup:"📅 Pickup Date",search_return:"📅 Return Date",search_btn:"Search Cars",
+                stat1_num:"200+",stat1_text:"Happy Clients",stat2_text:"2024 Cars",stat3_num:"6000+",stat3_text:"Completed Trips",
+                instant_booking:"Instant Booking",book_mins:"Book in 2 minutes",
+                feat1_title:"100% Secure",feat1_desc:"Your data is protected with industry-standard encryption",
+                feat2_title:"Best Price",feat2_desc:"Guaranteed lowest prices with no hidden fees",
+                feat3_title:"2024 Fleet",feat3_desc:"Choose from 16 brand new 2024 vehicles",
+                feat4_title:"24/7 Support",feat4_desc:"Our team is always here to help you",
+                fleet_badge:"Our 2024 Fleet",popular:"Popular",rental_cars:"Rental Cars",fleet_desc:"All vehicles are 2024 models - brand new and fully equipped",
+                filter_all:"All Cars",filter_economy:"Economy",filter_suv:"SUV",filter_luxury:"Luxury",
+                view_economy:"View Economy Cars →",view_luxury:"View Luxury Cars →",
+                process_badge:"Process",how_it:"How It",works:"Works",simple_steps:"Rent a car in 3 simple steps",
+                step1_title:"Choose Location",step1_desc:"Select your pickup and drop-off locations from our network across Morocco",
+                step2_title:"Pick Your Car",step2_desc:"Browse our 2024 fleet and select the perfect vehicle for your journey",
+                step3_title:"Book & Drive",step3_desc:"Complete your booking and hit the road. It's that simple!",
+                why_badge:"Why Rafal Car",why_choose:"Why Choose",us:"Us",why_desc:"We're committed to providing you with the best car rental experience in Morocco",
+                benefit1_title:"All 2024 Models",benefit1_desc:"Brand new vehicles with latest features and technology",
+                benefit2_title:"Unlimited Mileage",benefit2_desc:"Drive as far as you want with no extra charges",
+                benefit3_title:"Full Insurance",benefit3_desc:"Comprehensive coverage included with every rental",
+                benefit4_title:"Free Cancellation",benefit4_desc:"Cancel up to 24 hours before pickup at no cost",
+                benefit5_title:"Airport Delivery",benefit5_desc:"We deliver and pick up from major airports",
+                benefit6_title:"24/7 Roadside Assistance",benefit6_desc:"Help is just a phone call away, anytime",
+                reviews_badge:"Reviews",what_customers:"What Our",customers_say:"Customers Say",dont_take:"Don't just take our word for it",
+                cta_title:"Ready to Hit the Road?",cta_desc:"Book your perfect 2024 car today and experience the freedom of travel",
+                book_now:"Book Now",contact_us:"Contact Us",
+                get_touch:"Get in Touch",have_questions:"Have questions? We're here to help!",
+                phone:"Phone",email:"Email",location:"Location",hours:"Working Hours",available:"24/7 Available",
+                your_name:"Your Name",your_email:"Your Email",phone_number:"Phone Number",your_message:"Your Message",send_message:"Send Message",
+                footer_desc:"Your trusted partner for 2024 car rentals across Morocco. Experience premium service and competitive prices with our brand new fleet.",
+                quick_links:"Quick Links",economy_cars:"Economy Cars",luxury_cars:"Luxury Cars",
+                services:"Services",car_rental:"Car Rental",airport_transfer:"Airport Transfer",long_term:"Long Term Rental",chauffeur:"Chauffeur Service",
+                legal:"Legal",terms:"Terms & Conditions",privacy:"Privacy Policy",rental_agreement:"Rental Agreement",faq:"FAQ",all_rights:"All rights reserved"
+            },
+            fr: {
+                nav_home:"Accueil",nav_vehicles:"Véhicules",nav_how:"Comment ça marche",nav_why:"Pourquoi nous",nav_reviews:"Avis",nav_contact:"Contact",btn_start:"Commencer",
+                hero_badge:"🚗 Disponible 24/7 au Maroc",hero_title:"Trouvez Votre",hero_rental:"Voiture de Location",hero_desc:"Découvrez la liberté de la route avec notre flotte premium 2024. De l'économique au luxe, nous avons la voiture parfaite pour chaque voyage au Maroc.",
+                search_location:"📍 Lieu de prise en charge",search_pickup:"📅 Date de prise",search_return:"📅 Date de retour",search_btn:"Rechercher",
+                stat1_num:"200+",stat1_text:"Clients Satisfaits",stat2_text:"Voitures 2024",stat3_num:"6000+",stat3_text:"Voyages Complétés",
+                instant_booking:"Réservation Instantanée",book_mins:"Réserver en 2 minutes",
+                feat1_title:"100% Sécurisé",feat1_desc:"Vos données sont protégées par un cryptage standard",
+                feat2_title:"Meilleur Prix",feat2_desc:"Prix les plus bas garantis sans frais cachés",
+                feat3_title:"Flotte 2024",feat3_desc:"Choisissez parmi 16 véhicules neufs 2024",
+                feat4_title:"Support 24/7",feat4_desc:"Notre équipe est toujours là pour vous aider",
+                fleet_badge:"Notre Flotte 2024",popular:"Voitures",rental_cars:"Populaires",fleet_desc:"Tous les véhicules sont des modèles 2024 - neufs et entièrement équipés",
+                filter_all:"Toutes",filter_economy:"Économique",filter_suv:"SUV",filter_luxury:"Luxe",
+                view_economy:"Voir Voitures Économiques →",view_luxury:"Voir Voitures de Luxe →",
+                process_badge:"Processus",how_it:"Comment",works:"Ça Marche",simple_steps:"Louer une voiture en 3 étapes simples",
+                step1_title:"Choisir l'Emplacement",step1_desc:"Sélectionnez vos lieux de prise en charge et de retour dans notre réseau au Maroc",
+                step2_title:"Choisir Votre Voiture",step2_desc:"Parcourez notre flotte 2024 et sélectionnez le véhicule parfait",
+                step3_title:"Réserver & Conduire",step3_desc:"Complétez votre réservation et prenez la route. C'est aussi simple!",
+                why_badge:"Pourquoi Rafal Car",why_choose:"Pourquoi",us:"Nous Choisir",why_desc:"Nous nous engageons à vous offrir la meilleure expérience de location de voiture au Maroc",
+                benefit1_title:"Modèles 2024",benefit1_desc:"Véhicules neufs avec dernières fonctionnalités",
+                benefit2_title:"Kilométrage Illimité",benefit2_desc:"Conduisez autant que vous voulez sans frais",
+                benefit3_title:"Assurance Complète",benefit3_desc:"Couverture complète incluse",
+                benefit4_title:"Annulation Gratuite",benefit4_desc:"Annuler jusqu'à 24h avant sans frais",
+                benefit5_title:"Livraison Aéroport",benefit5_desc:"Livraison et ramassage aux aéroports",
+                benefit6_title:"Assistance 24/7",benefit6_desc:"Aide disponible à tout moment",
+                reviews_badge:"Avis",what_customers:"Ce Que Nos",customers_say:"Clients Disent",dont_take:"Ne nous croyez pas sur parole",
+                cta_title:"Prêt à Prendre la Route?",cta_desc:"Réservez votre voiture 2024 parfaite aujourd'hui",
+                book_now:"Réserver",contact_us:"Contactez-nous",
+                get_touch:"Contactez-nous",have_questions:"Des questions? Nous sommes là!",
+                phone:"Téléphone",email:"Email",location:"Emplacement",hours:"Heures",available:"24/7 Disponible",
+                your_name:"Votre Nom",your_email:"Votre Email",phone_number:"Téléphone",your_message:"Message",send_message:"Envoyer",
+                footer_desc:"Votre partenaire de confiance pour locations de voitures 2024 au Maroc.",
+                quick_links:"Liens Rapides",economy_cars:"Voitures Économiques",luxury_cars:"Voitures de Luxe",
+                services:"Services",car_rental:"Location de Voiture",airport_transfer:"Transfert Aéroport",long_term:"Location Long Terme",chauffeur:"Service Chauffeur",
+                legal:"Légal",terms:"Conditions",privacy:"Confidentialité",rental_agreement:"Contrat de Location",faq:"FAQ",all_rights:"Tous droits réservés"
+            },
+            ar: {
+                nav_home:"الرئيسية",nav_vehicles:"السيارات",nav_how:"كيف يعمل",nav_why:"لماذا نحن",nav_reviews:"التقييمات",nav_contact:"اتصل",btn_start:"ابدأ الآن",
+                hero_badge:"🚗 متاح 24/7 في المغرب",hero_title:"اعثر على",hero_rental:"سيارتك المثالية",hero_desc:"استمتع بحرية الطريق مع أسطولنا المتميز 2024. من الاقتصادية إلى الفاخرة، لدينا السيارة المثالية لكل رحلة في المغرب.",
+                search_location:"📍 موقع الاستلام",search_pickup:"📅 تاريخ الاستلام",search_return:"📅 تاريخ الإرجاع",search_btn:"بحث",
+                stat1_num:"200+",stat1_text:"عميل سعيد",stat2_text:"سيارات 2024",stat3_num:"6000+",stat3_text:"رحلة مكتملة",
+                instant_booking:"حجز فوري",book_mins:"احجز في دقيقتين",
+                feat1_title:"آمن 100%",feat1_desc:"بياناتك محمية بتشفير قياسي",
+                feat2_title:"أفضل سعر",feat2_desc:"أسعار منخفضة مضمونة بدون رسوم خفية",
+                feat3_title:"أسطول 2024",feat3_desc:"اختر من 16 مركبة جديدة 2024",
+                feat4_title:"دعم 24/7",feat4_desc:"فريقنا دائماً هنا لمساعدتك",
+                fleet_badge:"أسطولنا 2024",popular:"سيارات",rental_cars:"شعبية للإيجار",fleet_desc:"جميع المركبات موديلات 2024 - جديدة ومجهزة بالكامل",
+                filter_all:"الكل",filter_economy:"اقتصادية",filter_suv:"SUV",filter_luxury:"فاخرة",
+                view_economy:"عرض السيارات الاقتصادية ←",view_luxury:"عرض السيارات الفاخرة ←",
+                process_badge:"العملية",how_it:"كيف",works:"يعمل",simple_steps:"استأجر سيارة في 3 خطوات بسيطة",
+                step1_title:"اختر الموقع",step1_desc:"حدد مواقع الاستلام والتسليم من شبكتنا في المغرب",
+                step2_title:"اختر سيارتك",step2_desc:"تصفح أسطولنا 2024 واختر المركبة المثالية",
+                step3_title:"احجز وقُد",step3_desc:"أكمل حجزك وانطلق في الطريق. إنه بهذه البساطة!",
+                why_badge:"لماذا رفال كار",why_choose:"لماذا",us:"تختارنا",why_desc:"نلتزم بتزويدك بأفضل تجربة تأجير سيارات في المغرب",
+                benefit1_title:"موديلات 2024",benefit1_desc:"مركبات جديدة بأحدث الميزات",
+                benefit2_title:"مسافة غير محدودة",benefit2_desc:"قُد كما تشاء بدون رسوم إضافية",
+                benefit3_title:"تأمين كامل",benefit3_desc:"تغطية شاملة مع كل إيجار",
+                benefit4_title:"إلغاء مجاني",benefit4_desc:"ألغِ حتى 24 ساعة قبل الاستلام بدون تكلفة",
+                benefit5_title:"توصيل للمطار",benefit5_desc:"نوصل ونستلم من المطارات الرئيسية",
+                benefit6_title:"مساعدة 24/7",benefit6_desc:"المساعدة على بُعد مكالمة",
+                reviews_badge:"التقييمات",what_customers:"ماذا يقول",customers_say:"عملاؤنا",dont_take:"لا تأخذ كلامنا فقط",
+                cta_title:"مستعد للانطلاق؟",cta_desc:"احجز سيارتك المثالية 2024 اليوم",
+                book_now:"احجز الآن",contact_us:"اتصل بنا",
+                get_touch:"تواصل معنا",have_questions:"لديك أسئلة؟ نحن هنا!",
+                phone:"هاتف",email:"البريد",location:"الموقع",hours:"ساعات العمل",available:"متاح 24/7",
+                your_name:"اسمك",your_email:"بريدك",phone_number:"رقم الهاتف",your_message:"رسالتك",send_message:"إرسال",
+                footer_desc:"شريكك الموثوق لتأجير السيارات 2024 في المغرب.",
+                quick_links:"روابط سريعة",economy_cars:"سيارات اقتصادية",luxury_cars:"سيارات فاخرة",
+                services:"الخدمات",car_rental:"تأجير سيارات",airport_transfer:"نقل مطار",long_term:"إيجار طويل الأمد",chauffeur:"خدمة سائق",
+                legal:"قانوني",terms:"الشروط",privacy:"الخصوصية",rental_agreement:"عقد الإيجار",faq:"أسئلة",all_rights:"جميع الحقوق محفوظة"
+            }
+        };
+
+        // Get current language from URL or localStorage
+        function getCurrentLang() {
+            const path = window.location.pathname;
+            if(path.includes('/fr')) return 'fr';
+            if(path.includes('/ar')) return 'ar';
+            return localStorage.getItem('rafalcar_lang') || 'en';
+        }
+
+        let currentLang = getCurrentLang();
+
+        // Apply translations
+        function applyTranslations(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            
+            // Translate placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if(translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            // Update HTML lang and direction
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update current lang badge
+            document.getElementById('currentLang').textContent = lang.toUpperCase();
+            
+            // Save to localStorage
+            localStorage.setItem('rafalcar_lang', lang);
+        }
+
+        // Toggle language
+        function toggleLanguage() {
+            const langs = ['en', 'fr', 'ar'];
+            const currentIndex = langs.indexOf(currentLang);
+            const nextIndex = (currentIndex + 1) % langs.length;
+            currentLang = langs[nextIndex];
+            
+            // Update URL
+            const newPath = currentLang === 'en' ? '/' : `/${currentLang}`;
+            window.history.pushState({}, '', newPath);
+            
+            applyTranslations(currentLang);
+            loadCars();
+        }
+
+        // CAR DATA
+        const carsData = [
+            {name:"Hyundai Tucson",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800",link:"car-hyundai-tucson.html"},
+            {name:"Dacia Logan",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800",link:"car-dacia-logan.html"},
+            {name:"Peugeot 208",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800",link:"car-peugeot-208.html"},
+            {name:"Opel Corsa",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800",link:"car-opel-corsa.html"},
+            {name:"Renault Express",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800",link:"car-renault-express.html"},
+            {name:"Skoda Karoq",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800",link:"car-skoda-karoq.html"},
+            {name:"Volkswagen Touareg",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"car-volkswagen-touareg.html"},
+            {name:"Cupra Formentor",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"car-cupra-formentor.html"},
+            {name:"Renault Clio",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800",link:"car-renault-clio.html"},
+            {name:"Hyundai Accent",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800",link:"car-hyundai-accent.html"},
+            {name:"Mercedes S-Class",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"car-mercedes-s-class.html"},
+            {name:"Mercedes CLA",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"car-mercedes-cla.html"},
+            {name:"Mercedes C-Class",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"car-mercedes-c-class.html"},
+            {name:"Range Rover Sport",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"car-range-rover-sport.html"},
+            {name:"Range Rover Velar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"car-range-rover-velar.html"},
+            {name:"Range Rover Evoque",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"car-range-rover-evoque.html"}
+        ];
+
+        // Load cars with translated button text
+        function loadCars(filter='all'){
+            const grid=document.getElementById('vehiclesGrid');
+            const filtered=filter==='all'?carsData:carsData.filter(c=>c.category===filter);
+            const bookText = currentLang === 'fr' ? 'Réserver' : currentLang === 'ar' ? 'احجز الآن' : 'Book Now';
+            
+            grid.innerHTML=filtered.map(car=>`
+                <div class="vehicle-card">
+                    <img src="${car.img}" alt="${car.name}">
+                    <div class="vehicle-info">
+                        <h3>${car.name}</h3>
+                        <p>${car.gear} • ${car.engine} • 5 ${currentLang==='fr'?'Places':currentLang==='ar'?'مقاعد':'Seats'}</p>
+                        <div class="vehicle-price">
+                            <span class="price">${car.price} MAD</span>
+                            <span class="per-day">/${currentLang==='fr'?'jour':currentLang==='ar'?'يوم':'day'}</span>
+                        </div>
+                        <p style="font-size:13px;color:#666;margin:10px 0">${currentLang==='fr'?'Dépôt':currentLang==='ar'?'الوديعة':'Deposit'}: ${car.deposit}</p>
+                        <a href="${car.link}" onclick="saveSearchData()" class="btn-primary" style="width:100%;text-align:center;display:block;text-decoration:none">${bookText}</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Save search data for booking page
+        function saveSearchData() {
+            const pickup = document.getElementById('pickupDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+            const location = document.getElementById('pickupLocation').value;
+            
+            if(pickup && returnDate) {
+                localStorage.setItem('rafalcar_search', JSON.stringify({pickup, returnDate, location}));
+            }
+        }
+
+        // Search cars with date persistence
+        function searchCars() {
+            saveSearchData();
+            window.location.href = '#vehicles';
+        }
+
+        // Filter tabs
+        document.querySelectorAll('.tab-btn').forEach(btn=>{
+            btn.addEventListener('click',function(){
+                document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+                this.classList.add('active');
+                loadCars(this.dataset.filter);
+            });
+        });
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit',async function(e){
+            e.preventDefault();
+            const formData=new FormData(this);
+            const contactData={
+                date:new Date().toLocaleString(),
+                name:formData.get('name'),
+                email:formData.get('email'),
+                phone:formData.get('phone'),
+                message:formData.get('message')
+            };
+            const contacts=JSON.parse(localStorage.getItem('rafalcar_contacts')||'[]');
+            contacts.push(contactData);
+            localStorage.setItem('rafalcar_contacts',JSON.stringify(contacts));
+            formData.append('_subject','Contact Form - '+formData.get('name'));
+            formData.append('_template','table');
+            try{
+                await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com',{method:'POST',body:formData});
+                alert('✅ Message sent!');
+                this.reset();
+            }catch(error){
+                alert('✅ Message saved!');
+                this.reset();
+            }
+        });
+
+        // Set minimum dates
+        const today=new Date().toISOString().split('T')[0];
+        document.getElementById('pickupDate').min=today;
+        document.getElementById('returnDate').min=today;
+
+        // Mobile menu
+        document.getElementById('menuToggle')?.addEventListener('click',function(){
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Initialize on page load
+        applyTranslations(currentLang);
+        loadCars();
+    </script>
+</body>
+</html>
