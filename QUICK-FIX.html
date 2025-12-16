@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafal Car - Premium Car Rental Morocco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <!-- LOGO - Add your logo here -->
+                <div class="logo">
+                    <!-- Option 1: Text logo (current) -->
+                    <h1>RAFAL CAR</h1>
+                    <span class="logo-tagline">Premium Rentals</span>
+                    
+                    <!-- Option 2: Image logo (uncomment and add your URL) -->
+                    <!-- <img src="YOUR_LOGO_URL" alt="Rafal Car" style="height: 50px;"> -->
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#vehicles" class="nav-link">Vehicles</a>
+                    <a href="#how-it-works" class="nav-link">How it Works</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+
+                <div class="nav-actions">
+                    <button class="btn-secondary" id="langBtn">🌐 En</button>
+                    <button class="btn-primary">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">🚗 Available 24/7 Across Morocco</span>
+                    <h1 class="hero-title">Find Your Perfect <br><span class="gradient-text">Rental Car</span></h1>
+                    <p class="hero-description">Experience the freedom of the road with our premium 2024 fleet. From economy to luxury, we have the perfect car for every journey across Morocco.</p>
+                    
+                    <div class="search-box">
+                        <div class="search-field">
+                            <label>📍 Pickup Location</label>
+                            <select>
+                                <option>Casablanca</option>
+                                <option>Marrakech</option>
+                                <option>Rabat</option>
+                                <option>Fes</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <label>📅 Pickup Date</label>
+                            <input type="date" id="pickupDate">
+                        </div>
+                        <div class="search-field">
+                            <label>📅 Return Date</label>
+                            <input type="date" id="returnDate">
+                        </div>
+                        <button class="btn-search">Search Cars</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vehicles" id="vehicles">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Our 2024 Fleet</span>
+                <h2 class="section-title">Popular <span class="gradient-text">Rental Cars</span></h2>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="tab-btn active" onclick="filterCars('all')">All Cars</button>
+                <button class="tab-btn" onclick="filterCars('economy')">Economy</button>
+                <button class="tab-btn" onclick="filterCars('suv')">SUV</button>
+                <button class="tab-btn" onclick="filterCars('luxury')">Luxury</button>
+            </div>
+
+            <div class="vehicles-grid" id="vehiclesGrid">
+                <!-- Cars embedded directly - NO JSON NEEDED -->
+                
+                <!-- Economy Cars -->
+                <div class="vehicle-card" data-category="economy">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800&q=80" alt="Dacia Logan">
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Dacia Logan</h3>
+                        <p class="vehicle-type">Manual • Diesel</p>
+                        <div class="vehicle-features">
+                            <span>👥 5 Seats</span>
+                            <span>🎒 3 Bags</span>
+                            <span>❄️ AC</span>
+                        </div>
+                        <div class="vehicle-footer">
+                            <div class="price">
+                                <span class="price-amount">270 MAD</span>
+                                <span class="price-period">/day</span>
+                            </div>
+                            <a href="car-dacia-logan.html" class="btn-rent">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="economy">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80" alt="Peugeot 208">
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Peugeot 208</h3>
+                        <p class="vehicle-type">Automatic / Manual • Diesel / Hybrid</p>
+                        <div class="vehicle-features">
+                            <span>👥 5 Seats</span>
+                            <span>🎒 2 Bags</span>
+                            <span>❄️ AC</span>
+                        </div>
+                        <div class="vehicle-footer">
+                            <div class="price">
+                                <span class="price-amount">300 MAD</span>
+                                <span class="price-period">/day</span>
+                            </div>
+                            <a href="car-peugeot-208.html" class="btn-rent">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="economy">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&q=80" alt="Opel Corsa">
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Opel Corsa</h3>
+                        <p class="vehicle-type">Manual • Diesel</p>
+                        <div class="vehicle-features">
+                            <span>👥 5 Seats</span>
+                            <span>🎒 2 Bags</span>
+                            <span>❄️ AC</span>
+                        </div>
+                        <div class="vehicle-footer">
+                            <div class="price">
+                                <span class="price-amount">300 MAD</span>
+                                <span class="price-period">/day</span>
+                            </div>
+                            <a href="car-opel-corsa.html" class="btn-rent">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUV Cars -->
+                <div class="vehicle-card" data-category="suv">
+                    <div class="vehicle-badge popular">Popular</div>
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&q=80" alt="Hyundai Tucson">
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Hyundai Tucson</h3>
+                        <p class="vehicle-type">Automatic • Diesel</p>
+                        <div class="vehicle-features">
+                            <span>👥 5 Seats</span>
+                            <span>🎒 4 Bags</span>
+                            <span>❄️ AC</span>
+                        </div>
+                        <div class="vehicle-footer">
+                            <div class="price">
+                                <span class="price-amount">500 MAD</span>
+                                <span class="price-period">/day</span>
+                            </div>
+                            <a href="car-hyundai-tucson.html" class="btn-rent">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="suv">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=80" alt="Skoda Karoq">
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Skoda Karoq</h3>
+                        <p class="vehicle-type">Automatic • Diesel</p>
+                        <div class="vehicle-features">
+                            <span>👥 5 Seats</span>
+                            <span>🎒 4 Bags</span>
+                            <span>❄️ AC</span>
+                        </div>
+                        <div class="vehicle-footer">
+                            <div class="price">
+                                <span class="price-amount">500 MAD</span>
+                                <span class="price-period">/day</span>
+                            </div>
+                            <a href="car-skoda-karoq.html" class="btn-rent">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Luxury Cars -->
+                <div class="vehicle-card" data-category="luxury">
+                    <div class="vehicle-badge luxury">Luxury</div>
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80" alt="Mercedes S-Class">
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Mercedes S-Class</h3>
+                        <p class="vehicle-type">Automatic • Diesel</p>
+                        <div class="vehicle-features">
+                            <span>👥 5 Seats</span>
+                            <span>🎒 3 Bags</span>
+                            <span>⭐ Premium</span>
+                        </div>
+                        <div class="vehicle-footer">
+                            <div class="price">
+                                <span class="price-amount">4000 MAD</span>
+                                <span class="price-period">/day</span>
+                            </div>
+                            <a href="car-mercedes-s-class.html" class="btn-rent">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="luxury">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&q=80" alt="Mercedes CLA">
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Mercedes CLA</h3>
+                        <p class="vehicle-type">Automatic • Diesel</p>
+                        <div class="vehicle-features">
+                            <span>👥 5 Seats</span>
+                            <span>🎒 3 Bags</span>
+                            <span>⭐ Premium</span>
+                        </div>
+                        <div class="vehicle-footer">
+                            <div class="price">
+                                <span class="price-amount">1400 MAD</span>
+                                <span class="price-period">/day</span>
+                            </div>
+                            <a href="car-mercedes-cla.html" class="btn-rent">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vehicle-card" data-category="luxury">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800&q=80" alt="Range Rover Sport">
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Range Rover Sport</h3>
+                        <p class="vehicle-type">Automatic • Diesel</p>
+                        <div class="vehicle-features">
+                            <span>👥 5 Seats</span>
+                            <span>🎒 5 Bags</span>
+                            <span>⭐ Premium</span>
+                        </div>
+                        <div class="vehicle-footer">
+                            <div class="price">
+                                <span class="price-amount">3500 MAD</span>
+                                <span class="price-period">/day</span>
+                            </div>
+                            <a href="car-range-rover-sport.html" class="btn-rent">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Contact Us</h2>
+            <div style="text-align: center;">
+                <p><strong>📞 Phone:</strong> +212 662 186 949</p>
+                <p><strong>✉️ Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f88a999e9994d69b998a959d9ccdb89f95999194d69b9795">[email&#160;protected]</a></p>
+                <p><strong>📍 Location:</strong> Casablanca, Morocco</p>
+                <br>
+                <a href="https://wa.me/212662186949" class="btn-primary-large">💬 WhatsApp Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p style="text-align: center;">&copy; 2025 Rafal Car. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Simple filter function
+        function filterCars(category) {
+            const cards = document.querySelectorAll('.vehicle-card');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Set today's date
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('pickupDate').value = today;
+        document.getElementById('pickupDate').min = today;
+        
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('returnDate

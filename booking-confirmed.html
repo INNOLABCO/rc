@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Confirmed - Rafal Car</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}.confirmation-box{background:#fff;padding:50px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-width:600px;text-align:center}.success-icon{font-size:80px;margin-bottom:20px}.confirmation-number{font-size:32px;font-weight:700;color:#667eea;margin:20px 0}.details{text-align:left;background:#f8f9fa;padding:25px;border-radius:10px;margin:30px 0}.detail-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #e0e0e0}.detail-row:last-child{border:none}.btn{display:inline-block;padding:15px 40px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;margin:10px}
+</style>
+</head>
+<body>
+<div class="confirmation-box">
+<div class="success-icon">✅</div>
+<h1 style="color:#28a745;margin-bottom:10px">Booking Confirmed!</h1>
+<p style="color:#666;margin-bottom:30px">Your reservation has been successfully submitted</p>
+<div class="confirmation-number" id="confNumber">Loading...</div>
+<div class="details" id="bookingDetails"></div>
+<p style="margin:20px 0;color:#666">Confirmation email sent to <strong>rafal.carmed5@gmail.com</strong></p>
+<a href="index.html" class="btn">Back to Home</a>
+<a href="https://wa.me/212662186949" class="btn" style="background:#25d366">Contact via WhatsApp</a>
+</div>
+<script>
+const booking=JSON.parse(localStorage.getItem('current_booking')||'{}');
+if(booking.conf){
+document.getElementById('confNumber').textContent='Confirmation #'+booking.conf;
+document.getElementById('bookingDetails').innerHTML=`
+<div class="detail-row"><span><strong>Customer:</strong></span><span>${booking.name}</span></div>
+<div class="detail-row"><span><strong>Email:</strong></span><span>${booking.email}</span></div>
+<div class="detail-row"><span><strong>Phone:</strong></span><span>${booking.phone}</span></div>
+<div class="detail-row"><span><strong>Car:</strong></span><span>${booking.car}</span></div>
+<div class="detail-row"><span><strong>Pickup:</strong></span><span>${booking.pickup}</span></div>
+<div class="detail-row"><span><strong>Return:</strong></span><span>${booking.return}</span></div>
+<div class="detail-row"><span><strong>Total:</strong></span><span style="font-size:24px;font-weight:700;color:#667eea">${booking.total} MAD</span></div>
+`}else{
+document.getElementById('confNumber').textContent='No booking found';
+document.getElementById('bookingDetails').innerHTML='<p>Please make a booking first</p>'
+}
+</script>
+</body>
+</html>

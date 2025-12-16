@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Cars - Premium 2024 Fleet | Rafal Car</title>
+    <meta name="description" content="Rent luxury cars in Morocco. Mercedes, Range Rover. All 2024 models. Premium experience from 900 MAD/day.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>RAFAL CAR</h1>
+                    <span class="logo-tagline">Premium Rentals</span>
+                </div>
+                <div class="nav-actions">
+                    <a href="index.html" class="btn-secondary">Back to Home</a>
+                    <a href="https://wa.me/212662186949" class="btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" style="padding: 120px 0 80px;">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <span class="hero-badge">⭐ Premium Experience</span>
+                <h1 class="hero-title">Luxury <span class="gradient-text">Car Collection</span></h1>
+                <p class="hero-description">Experience Morocco in style with our premium 2024 luxury fleet. Mercedes, Range Rover, and more. Professional chauffeur service available.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="vehicles">
+        <div class="container">
+            <div class="vehicles-grid" id="luxuryCarsGrid"></div>
+        </div>
+    </section>
+
+    <script>
+        fetch('cars-data.json')
+            .then(r => r.json())
+            .then(cars => {
+                const luxuryCars = cars.filter(c => c.category === 'luxury');
+                const grid = document.getElementById('luxuryCarsGrid');
+                
+                luxuryCars.forEach(car => {
+                    const card = `
+                        <div class="vehicle-card">
+                            <div class="vehicle-image">
+                                <img src="${car.image}" alt="${car.name}">
+                            </div>
+                            <div class="vehicle-info">
+                                <h3>${car.name}</h3>
+                                <p class="vehicle-type">${car.transmission} • ${car.engine}</p>
+                                <div class="vehicle-features">
+                                    <span>👥 ${car.seats} Seats</span>
+                                    <span>🎒 ${car.bags} Bags</span>
+                                    <span>⭐ Premium</span>
+                                </div>
+                                <div class="vehicle-footer">
+                                    <div class="price">
+                                        <span class="price-amount">${car.price} MAD</span>
+                                        <span class="price-period">/day</span>
+                                    </div>
+                                    <a href="car-${car.id}.html" class="btn-rent">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    grid.innerHTML += card;
+                });
+            });
+    </script>
+</body>
+</html>
