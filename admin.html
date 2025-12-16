@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Rafal Car</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center}
+        .modal.active{display:flex}
+        .modal-content{background:white;padding:40px;border-radius:20px;max-width:600px;width:90%;max-height:90vh;overflow-y:auto}
+        .modal-close{float:right;font-size:28px;cursor:pointer;color:#999}
+        .btn-group{display:flex;gap:10px;margin-top:10px}
+        .btn-paid{background:#28a745;color:white;padding:8px 16px;border:none;border-radius:6px;cursor:pointer}
+        .btn-deny{background:#dc3545;color:white;padding:8px 16px;border:none;border-radius:6px;cursor:pointer}
+        .btn-download{background:#007bff;color:white;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block}
+        .status-paid{background:#d4edda;color:#155724;padding:4px 12px;border-radius:20px;font-size:12px}
+        .status-denied{background:#f8d7da;color:#721c24;padding:4px 12px;border-radius:20px;font-size:12px}
+        .status-pending{background:#fff3cd;color:#856404;padding:4px 12px;border-radius:20px;font-size:12px}
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" style="max-width: 450px; margin: 100px auto; background: white; padding: 50px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="color: #667eea; font-size: 32px; margin-bottom: 8px;">🚗 RAFAL CAR</h1>
+            <p style="color: #666;">Admin Panel</p>
+        </div>
+        <form id="loginForm">
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">Email</label>
+                <input type="email" id="username" value="admin@rafalcar.com" required style="width: 100%; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px;">
+            </div>
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">Password</label>
+                <input type="password" id="password" required style="width: 100%; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px;">
+            </div>
+            <button type="submit" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;">Login</button>
+        </form>
+        <p style="margin-top: 20px; text-align: center; color: #999; font-size: 13px;">admin@rafalcar.com / RafalCar@admin#01</p>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" style="display: none;">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="logo"><h1>RAFAL CAR ADMIN</h1></div>
+                    <button onclick="logout()" style="padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 8px; cursor: pointer;">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" style="margin-top: 100px;">
+            <div style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;">
+                <button class="nav-btn active" onclick="showSection('dashboard')">📊 Dashboard</button>
+                <button class="nav-btn" onclick="showSection('bookings')">📋 Bookings</button>
+                <button class="nav-btn" onclick="showSection('contacts')">📬 Contact Forms</button>
+                <button class="nav-btn" onclick="showSection('cars')">🚗 Edit Cars</button>
+                <button class="nav-btn" onclick="showSection('sendform')">📤 Send Form</button>
+            </div>
+
+            <!-- Dashboard -->
+            <div id="dashboard" class="admin-section" style="display: block;">
+                <h2>Dashboard</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 30px 0;">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px;">
+                        <div style="font-size: 42px; font-weight: 900;" id="totalBookings">0</div>
+                        <div>Total Bookings</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 30px; border-radius: 15px;">
+                        <div style="font-size: 42px; font-weight: 900;" id="paidBookings">0</div>
+                        <div>Paid</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 30px; border-radius: 15px;">
+                        <div style="font-size: 42px; font-weight: 900;" id="contactForms">0</div>
+                        <div>Contact Forms</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings with Actions -->
+            <div id="bookings" class="admin-section" style="display: none;">
+                <h2>All Bookings - Mark Paid/Denied & Download Files</h2>
+                <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.08); margin-top: 20px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Conf#</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Customer</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Car</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Dates</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Total</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Status</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Files</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTable">
+                            <tr><td colspan="8" style="text-align: center; padding: 50px;">No bookings yet. Email: rafal.carmed5@gmail.com</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Contact Forms -->
+            <div id="contacts" class="admin-section" style="display: none;">
+                <h2>Contact Form Submissions</h2>
+                <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.08); margin-top: 20px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Date</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Name</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Email</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Phone</th>
+                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactsTable">
+                            <tr><td colspan="5" style="text-align: center; padding: 50px;">No contact forms yet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Edit Cars -->
+            <div id="cars" class="admin-section" style="display: none;">
+                <h2>Edit Cars - Update Images & Info</h2>
+                <div id="carsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;"></div>
+            </div>
+
+            <!-- Send Form -->
+            <div id="sendform" class="admin-section" style="display: none;">
+                <h2>📬 Send Form</h2>
+                <form id="adminForm" style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin-top: 20px;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <input type="text" name="name" placeholder="Name *" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                        <input type="email" name="email" placeholder="Email *" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                        <input type="tel" name="phone" placeholder="Phone *" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                        <select name="car" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                            <option>Hyundai Tucson - 500 MAD</option>
+                            <option>Mercedes S-Class - 4000 MAD</option>
+                        </select>
+                        <input type="date" name="pickup" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                        <input type="date" name="return" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                    </div>
+                    <textarea name="notes" placeholder="Notes" rows="3" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; margin-top: 15px;"></textarea>
+                    <button type="submit" style="padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 15px;">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Car Modal -->
+    <div id="editCarModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 id="editCarTitle">Edit Car</h2>
+            <form id="editCarForm" style="margin-top: 20px;">
+                <input type="hidden" id="editCarId">
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Car Name</label>
+                    <input type="text" id="editCarName" required style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Price (MAD/day)</label>
+                    <input type="number" id="editCarPrice" required style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Image URL</label>
+                    <input type="url" id="editCarImage" required style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                    <small>Get images from Unsplash.com or paste any image URL</small>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Transmission</label>
+                    <select id="editCarTransmission" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                        <option>Automatic</option>
+                        <option>Manual</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Seats</label>
+                    <input type="number" id="editCarSeats" min="2" max="9" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
+                </div>
+                <button type="submit" style="padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer;">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        const ADMIN_EMAIL='admin@rafalcar.com';
+        const ADMIN_PASSWORD='RafalCar@admin#01';
+
+        let carsData=[
+            {id:'hyundai-tucson',name:'Hyundai Tucson',price:500,image:'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800',transmission:'Automatic',seats:5},
+            {id:'dacia-logan',name:'Dacia Logan',price:270,image:'https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800',transmission:'Manual',seats:5},
+            {id:'mercedes-s-class',name:'Mercedes S-Class',price:4000,image:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800',transmission:'Automatic',seats:5}
+        ];
+
+        window.addEventListener('DOMContentLoaded',()=>{
+            if(localStorage.getItem('rafalcar_admin_logged_in')==='true'){
+                showAdmin()
+            }
+            loadCarsData()
+        });
+
+        document.getElementById('loginForm').addEventListener('submit',(e)=>{
+            e.preventDefault();
+            if(document.getElementById('username').value===ADMIN_EMAIL&&document.getElementById('password').value===ADMIN_PASSWORD){
+                localStorage.setItem('rafalcar_admin_logged_in','true');
+                showAdmin()
+            }else{alert('❌ Invalid credentials')}
+        });
+
+        function showAdmin(){
+            document.getElementById('loginScreen').style.display='none';
+            document.getElementById('adminPanel').style.display='block';
+            loadDashboard()
+        }
+
+        function logout(){
+            localStorage.removeItem('rafalcar_admin_logged_in');
+            location.reload()
+        }
+
+        function showSection(section){
+            document.querySelectorAll('.admin-section').forEach(s=>s.style.display='none');
+            document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+            document.getElementById(section).style.display='block';
+            event.target.classList.add('active')
+        }
+
+        function loadDashboard(){
+            const bookings=JSON.parse(localStorage.getItem('rafalcar_bookings')||'[]');
+            const contacts=JSON.parse(localStorage.getItem('rafalcar_contacts')||'[]');
+            document.getElementById('totalBookings').textContent=bookings.length;
+            document.getElementById('paidBookings').textContent=bookings.filter(b=>b.status==='paid').length;
+            document.getElementById('contactForms').textContent=contacts.length;
+            loadBookings();
+            loadContacts();
+            loadCarsGrid()
+        }
+
+        function loadBookings(){
+            const bookings=JSON.parse(localStorage.getItem('rafalcar_bookings')||'[]');
+            const tbody=document.getElementById('bookingsTable');
+            if(bookings.length>0){
+                tbody.innerHTML=bookings.map((b,idx)=>`
+                    <tr>
+                        <td style="padding:15px"><strong>${b.conf}</strong></td>
+                        <td style="padding:15px">${b.name}<br><small>${b.email}</small><br><small>${b.phone}</small></td>
+                        <td style="padding:15px">${b.car}</td>
+                        <td style="padding:15px">${b.pickup} to ${b.return}</td>
+                        <td style="padding:15px"><strong>${b.total} MAD</strong></td>
+                        <td style="padding:15px"><span class="status-${b.status||'pending'}">${(b.status||'pending').toUpperCase()}</span></td>
+                        <td style="padding:15px">
+                            ${b.hasID?'<a href="#" onclick="alert(\'Files are sent to email rafal.carmed5@gmail.com\')" class="btn-download">📄 ID</a>':''}
+                            ${b.hasLicense?'<a href="#" onclick="alert(\'Files are sent to email rafal.carmed5@gmail.com\')" class="btn-download">📄 License</a>':''}
+                        </td>
+                        <td style="padding:15px">
+                            <div class="btn-group">
+                                <button class="btn-paid" onclick="updateStatus(${idx},'paid')">✅ Paid</button>
+                                <button class="btn-deny" onclick="updateStatus(${idx},'denied')">❌ Deny</button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('')
+            }
+        }
+
+        function updateStatus(idx,status){
+            const bookings=JSON.parse(localStorage.getItem('rafalcar_bookings')||'[]');
+            bookings[idx].status=status;
+            localStorage.setItem('rafalcar_bookings',JSON.stringify(bookings));
+            loadDashboard();
+            alert(`✅ Booking ${bookings[idx].conf} marked as ${status}`)
+        }
+
+        function loadContacts(){
+            const contacts=JSON.parse(localStorage.getItem('rafalcar_contacts')||'[]');
+            const tbody=document.getElementById('contactsTable');
+            if(contacts.length>0){
+                tbody.innerHTML=contacts.map(c=>`
+                    <tr>
+                        <td style="padding:15px">${c.date}</td>
+                        <td style="padding:15px">${c.name}</td>
+                        <td style="padding:15px">${c.email}</td>
+                        <td style="padding:15px">${c.phone}</td>
+                        <td style="padding:15px">${c.message}</td>
+                    </tr>
+                `).join('')
+            }
+        }
+
+        function loadCarsData(){
+            const saved=localStorage.getItem('rafalcar_cars_edited');
+            if(saved){
+                carsData=JSON.parse(saved)
+            }
+        }
+
+        function loadCarsGrid(){
+            const grid=document.getElementById('carsGrid');
+            grid.innerHTML=carsData.map(car=>`
+                <div style="background:white;border-radius:15px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,0.1)">
+                    <img src="${car.image}" style="width:100%;height:200px;object-fit:cover">
+                    <div style="padding:20px">
+                        <h3>${car.name}</h3>
+                        <p>${car.price} MAD/day</p>
+                        <p>${car.transmission} • ${car.seats} Seats</p>
+                        <button onclick='editCar(${JSON.stringify(car)})' style="padding:10px 20px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer;width:100%;margin-top:10px">✏️ Edit</button>
+                    </div>
+                </div>
+            `).join('')
+        }
+
+        function editCar(car){
+            document.getElementById('editCarId').value=car.id;
+            document.getElementById('editCarName').value=car.name;
+            document.getElementById('editCarPrice').value=car.price;
+            document.getElementById('editCarImage').value=car.image;
+            document.getElementById('editCarTransmission').value=car.transmission;
+            document.getElementById('editCarSeats').value=car.seats;
+            document.getElementById('editCarModal').classList.add('active')
+        }
+
+        function closeModal(){
+            document.getElementById('editCarModal').classList.remove('active')
+        }
+
+        document.getElementById('editCarForm').addEventListener('submit',(e)=>{
+            e.preventDefault();
+            const carId=document.getElementById('editCarId').value;
+            const idx=carsData.findIndex(c=>c.id===carId);
+            if(idx>=0){
+                carsData[idx]={
+                    ...carsData[idx],
+                    name:document.getElementById('editCarName').value,
+                    price:parseInt(document.getElementById('editCarPrice').value),
+                    image:document.getElementById('editCarImage').value,
+                    transmission:document.getElementById('editCarTransmission').value,
+                    seats:parseInt(document.getElementById('editCarSeats').value)
+                };
+                localStorage.setItem('rafalcar_cars_edited',JSON.stringify(carsData));
+                loadCarsGrid();
+                closeModal();
+                alert('✅ Car updated! NOTE: This only updates the admin view. To update the actual car pages, you need to manually update each car-*.html file or regenerate them.')
+            }
+        });
+
+        document.getElementById('adminForm').addEventListener('submit',async(e)=>{
+            e.preventDefault();
+            const formData=new FormData(e.target);
+            formData.append('_subject','Admin Booking - '+formData.get('name'));
+            formData.append('_template','table');
+            try{
+                await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com',{method:'POST',body:formData});
+                alert('✅ Sent');
+                e.target.reset()
+            }catch(error){alert('❌ Error')}
+        });
+    </script>
+</body>
+</html>
