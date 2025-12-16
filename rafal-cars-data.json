@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Hyundai Tucson",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 500,
+    "deposit": "10000 MAD",
+    "category": "suv"
+  },
+  {
+    "name": "Dacia Logan",
+    "gear": "Manual",
+    "engine": "Diesel",
+    "price": 270,
+    "deposit": "5000 MAD",
+    "category": "economy"
+  },
+  {
+    "name": "Peugeot 208",
+    "gear": "Automatic/Manual",
+    "engine": "Diesel/Hybrid",
+    "price": 300,
+    "deposit": "5000 MAD",
+    "category": "economy"
+  },
+  {
+    "name": "Opel Corsa",
+    "gear": "Manual",
+    "engine": "Diesel",
+    "price": 300,
+    "deposit": "5000 MAD",
+    "category": "economy"
+  },
+  {
+    "name": "Renault Express",
+    "gear": "Manual",
+    "engine": "Diesel",
+    "price": 340,
+    "deposit": "5000 MAD",
+    "category": "economy"
+  },
+  {
+    "name": "Skoda Karoq",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 500,
+    "deposit": "5000 MAD",
+    "category": "suv"
+  },
+  {
+    "name": "Volkswagen Touareg",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 900,
+    "deposit": "5000 MAD",
+    "category": "suv"
+  },
+  {
+    "name": "Cupra Formentor",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 500,
+    "deposit": "5000 MAD",
+    "category": "suv"
+  },
+  {
+    "name": "Renault Clio",
+    "gear": "Manual",
+    "engine": "Diesel",
+    "price": 300,
+    "deposit": "5000 MAD",
+    "category": "economy"
+  },
+  {
+    "name": "Hyundai Accent",
+    "gear": "Automatic",
+    "engine": "Diesel/Benzin",
+    "price": 300,
+    "deposit": "5000 MAD",
+    "category": "economy"
+  },
+  {
+    "name": "Mercedes S-Class",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 4000,
+    "deposit": "20000-30000 MAD",
+    "category": "luxury"
+  },
+  {
+    "name": "Mercedes CLA",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 1400,
+    "deposit": "20000-30000 MAD",
+    "category": "luxury"
+  },
+  {
+    "name": "Mercedes C-Class",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 1500,
+    "deposit": "20000-30000 MAD",
+    "category": "luxury"
+  },
+  {
+    "name": "Range Rover Sport",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 3500,
+    "deposit": "20000-30000 MAD",
+    "category": "luxury"
+  },
+  {
+    "name": "Range Rover Velar",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 1500,
+    "deposit": "20000-30000 MAD",
+    "category": "luxury"
+  },
+  {
+    "name": "Range Rover Evoque",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 1200,
+    "deposit": "20000-30000 MAD",
+    "category": "luxury"
+  }
+]

@@ -1,0 +1,73 @@
+RAFAL CAR - COMPLETE IMPLEMENTATION GUIDE
+==========================================
+
+WHAT YOU'RE GETTING:
+1. ✅ Logo integrated in index.html
+2. ✅ 16 cars with data from Excel file
+3. ✅ Policy pages from PDF (Mester changed to Rafal)
+4. ✅ Return buttons on all booking pages
+5. ✅ Return buttons on car detail pages
+6. ✅ Updated admin panel
+
+FILES TO UPLOAD TO GITHUB:
+1. index.html (with logo)
+2. Rafal_car_logo.png
+3. terms.html (from PDF - Mester→Rafal)
+4. privacy.html (from PDF - Mester→Rafal)  
+5. rental-agreement.html (from PDF - Mester→Rafal)
+6. admin.html (updated)
+7. rafal-cars-data.json (16 cars from Excel)
+
+STEP-BY-STEP DEPLOYMENT:
+1. Download the ZIP file
+2. Extract all files
+3. Go to your GitHub repository
+4. Upload ALL files (replace existing ones)
+5. Wait 60 seconds for Vercel to deploy
+6. Visit: https://rc-gules-ten.vercel.app/
+7. Test the logo, cars, policy pages, and return buttons
+
+WHAT'S IMPLEMENTED:
+
+✅ LOGO:
+- Rafal Car logo displayed in navbar
+- Logo file: Rafal_car_logo.png (47 KB)
+- Replaces text logo
+
+✅ CAR DATA FROM EXCEL:
+All 16 cars with correct info:
+- Hyundai Tucson: 500 MAD/day, Automatic, Diesel, Deposit: 10000 MAD
+- Dacia Logan: 270 MAD/day, Manual, Diesel, Deposit: 5000 MAD
+- Peugeot 208: 300 MAD/day, Auto/Manual, Diesel/Hybrid, Deposit: 5000 MAD
+- Opel Corsa: 300 MAD/day, Manual, Diesel, Deposit: 5000 MAD
+- Renault Express: 340 MAD/day, Manual, Diesel, Deposit: 5000 MAD
+- Skoda Karoq: 500 MAD/day, Automatic, Diesel, Deposit: 5000 MAD
+- Volkswagen Touareg: 900 MAD/day, Automatic, Diesel, Deposit: 5000 MAD
+- Cupra Formentor: 500 MAD/day, Automatic, Diesel, Deposit: 5000 MAD
+- Renault Clio: 300 MAD/day, Manual, Diesel, Deposit: 5000 MAD
+- Hyundai Accent: 300 MAD/day, Automatic, Diesel/Benzin, Deposit: 5000 MAD
+- Mercedes S-Class: 4000 MAD/day, Automatic, Diesel, Deposit: 20000-30000 MAD
+- Mercedes CLA: 1400 MAD/day, Automatic, Diesel, Deposit: 20000-30000 MAD
+- Mercedes C-Class: 1500 MAD/day, Automatic, Diesel, Deposit: 20000-30000 MAD
+- Range Rover Sport: 3500 MAD/day, Automatic, Diesel, Deposit: 20000-30000 MAD
+- Range Rover Velar: 1500 MAD/day, Automatic, Diesel, Deposit: 20000-30000 MAD
+- Range Rover Evoque: 1200 MAD/day, Automatic, Diesel, Deposit: 20000-30000 MAD
+
+✅ POLICY PAGES (FROM PDF):
+All "Mester Car" changed to "Rafal Car"
+- terms.html: Complete terms from PDF
+- privacy.html: Privacy policy
+- rental-agreement.html: Rental agreement
+
+✅ RETURN BUTTONS:
+Added to:
+- All car booking pages (← Back to Home)
+- Booking confirmation page (← Back to Home)
+- Car detail modals (X close button)
+
+CONTACT:
+Email: rafal.carmed5@gmail.com
+Phone: +212 662 186 949
+WhatsApp: https://wa.me/212662186949
+
+EVERYTHING READY TO DEPLOY!

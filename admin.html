@@ -38,7 +38,7 @@
             </div>
             <button type="submit" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;">Login</button>
         </form>
-        <p style="margin-top: 20px; text-align: center; color: #999; font-size: 13px;">admin@rafalcar.com / RafalCar@admin#01</p>
+        <p style="margin-top: 20px; text-align: center; color: #999; font-size: 13px;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="94f5f0f9fdfad4e6f5f2f5f8f7f5e6baf7fbf9">[email&#160;protected]</a> / RafalCar@admin#01</p>
     </div>
 
     <!-- Admin Panel -->
@@ -98,7 +98,7 @@
                             </tr>
                         </thead>
                         <tbody id="bookingsTable">
-                            <tr><td colspan="8" style="text-align: center; padding: 50px;">No bookings yet. Email: rafal.carmed5@gmail.com</td></tr>
+                            <tr><td colspan="8" style="text-align: center; padding: 50px;">No bookings yet. Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1839097909ddf9290839c9495c4b1969c90989ddf929e9c">[email&#160;protected]</a></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -189,7 +189,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
         const ADMIN_EMAIL='admin@rafalcar.com';
         const ADMIN_PASSWORD='RafalCar@admin#01';
@@ -354,14 +354,4 @@
         document.getElementById('adminForm').addEventListener('submit',async(e)=>{
             e.preventDefault();
             const formData=new FormData(e.target);
-            formData.append('_subject','Admin Booking - '+formData.get('name'));
-            formData.append('_template','table');
-            try{
-                await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com',{method:'POST',body:formData});
-                alert('✅ Sent');
-                e.target.reset()
-            }catch(error){alert('❌ Error')}
-        });
-    </script>
-</body>
-</html>
+            formData.append('_subject','Admin Booking - '+form

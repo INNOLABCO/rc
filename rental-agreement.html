@@ -5,255 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rental Agreement - Rafal Car</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        .legal-container {
-            max-width: 900px;
-            margin: 100px auto 50px;
-            padding: 50px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        .legal-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 3px solid #667eea;
-        }
-        .agreement-box {
-            border: 2px solid #e0e0e0;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            background: #f8f9fa;
-        }
-        .signature-section {
-            margin-top: 40px;
-            padding: 30px;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-        }
-        .signature-line {
-            border-bottom: 2px solid #333;
-            margin: 20px 0;
-            padding: 10px 0;
-        }
-        .back-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-        @media print {
-            .back-btn, .navbar, .footer { display: none; }
-        }
+        body{font-family:Arial,sans-serif;padding:20px;max-width:1000px;margin:0 auto}
+        .back-btn{display:inline-block;padding:10px 20px;background:#667eea;color:white;text-decoration:none;border-radius:5px;margin-bottom:20px}
+        h1{color:#667eea}
+        .agreement{border:2px solid #667eea;padding:30px;margin:20px 0;background:#f9f9f9}
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <div class="logo">
-                    <h1>RAFAL CAR</h1>
-                    <span class="logo-tagline">Premium Rentals</span>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="legal-container">
-        <a href="index.html" class="back-btn">← Back to Home</a>
-        <button onclick="window.print()" class="back-btn" style="background: #28a745; margin-left: 10px;">🖨️ Print Agreement</button>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+    
+    <h1>Rafal Car - Rental Agreement</h1>
+    
+    <div class="agreement">
+        <h2>CAR RENTAL AGREEMENT</h2>
         
-        <div class="legal-header">
-            <h1>Vehicle Rental Agreement</h1>
-            <p>Rafal Car - Premium Rentals</p>
-        </div>
-
-        <div class="agreement-box">
-            <h3 style="color: #667eea; margin-bottom: 15px;">Agreement Number: _________________</h3>
-            <p><strong>Date:</strong> _________________</p>
-        </div>
-
-        <div style="margin: 30px 0;">
-            <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">PARTIES TO THIS AGREEMENT</h2>
-            
-            <div class="agreement-box">
-                <h3 style="margin-bottom: 15px;">RENTAL COMPANY (Lessor):</h3>
-                <p><strong>Company Name:</strong> Rafal Car</p>
-                <p><strong>Address:</strong> Casablanca, Morocco</p>
-                <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1466757275783a77756679717021547379757d783a777b79">[email&#160;protected]</a></p>
-                <p><strong>Phone:</strong> +212 662 186 949</p>
-            </div>
-
-            <div class="agreement-box">
-                <h3 style="margin-bottom: 15px;">RENTER (Lessee):</h3>
-                <p><strong>Full Name:</strong> ________________________________</p>
-                <p><strong>Date of Birth:</strong> ________________________________</p>
-                <p><strong>Address:</strong> ________________________________</p>
-                <p><strong>City/Country:</strong> ________________________________</p>
-                <p><strong>Email:</strong> ________________________________</p>
-                <p><strong>Phone:</strong> ________________________________</p>
-                <p><strong>Driver's License #:</strong> ________________________________</p>
-                <p><strong>License Issued:</strong> ________________________________</p>
-                <p><strong>Passport/ID #:</strong> ________________________________</p>
-            </div>
-        </div>
-
-        <div style="margin: 30px 0;">
-            <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">VEHICLE DETAILS</h2>
-            
-            <div class="agreement-box">
-                <p><strong>Make/Model:</strong> ________________________________</p>
-                <p><strong>Year:</strong> ________________________________</p>
-                <p><strong>Color:</strong> ________________________________</p>
-                <p><strong>License Plate:</strong> ________________________________</p>
-                <p><strong>VIN:</strong> ________________________________</p>
-                <p><strong>Odometer Reading (Start):</strong> ________________ km</p>
-                <p><strong>Fuel Level (Start):</strong> ☐ Full ☐ 3/4 ☐ 1/2 ☐ 1/4 ☐ Empty</p>
-            </div>
-        </div>
-
-        <div style="margin: 30px 0;">
-            <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">RENTAL PERIOD</h2>
-            
-            <div class="agreement-box">
-                <p><strong>Pickup Date & Time:</strong> ________________________________</p>
-                <p><strong>Pickup Location:</strong> ________________________________</p>
-                <p><strong>Return Date & Time:</strong> ________________________________</p>
-                <p><strong>Return Location:</strong> ________________________________</p>
-                <p><strong>Total Rental Days:</strong> ________________ days</p>
-            </div>
-        </div>
-
-        <div style="margin: 30px 0;">
-            <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">RENTAL CHARGES</h2>
-            
-            <div class="agreement-box">
-                <p><strong>Daily Rate:</strong> ________________ MAD per day</p>
-                <p><strong>Number of Days:</strong> ________________ days</p>
-                <p><strong>Subtotal:</strong> ________________ MAD</p>
-                <p><strong>Additional Driver (if any):</strong> ________________ MAD</p>
-                <p><strong>GPS/Child Seat/Extras:</strong> ________________ MAD</p>
-                <p><strong>Insurance (CDW/PAI):</strong> ________________ MAD</p>
-                <p><strong>TOTAL RENTAL COST:</strong> <span style="font-size: 20px; color: #667eea;">________________ MAD</span></p>
-                <p><strong>Security Deposit:</strong> <span style="font-size: 20px; color: #764ba2;">________________ MAD</span></p>
-            </div>
-        </div>
-
-        <div style="margin: 30px 0;">
-            <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">PAYMENT METHOD</h2>
-            
-            <div class="agreement-box">
-                <p>☐ Cash</p>
-                <p>☐ Credit Card: ________________ (Last 4 digits)</p>
-                <p>☐ Debit Card: ________________ (Last 4 digits)</p>
-                <p>☐ Bank Transfer</p>
-            </div>
-        </div>
-
-        <div style="margin: 30px 0;">
-            <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">INSURANCE COVERAGE</h2>
-            
-            <div class="agreement-box">
-                <p>☐ <strong>Basic TPL (Third Party Liability)</strong> - Included</p>
-                <p>☐ <strong>CDW (Collision Damage Waiver)</strong> - Optional (+ _____ MAD/day)</p>
-                <p>☐ <strong>Super CDW</strong> - Optional (+ _____ MAD/day)</p>
-                <p>☐ <strong>PAI (Personal Accident Insurance)</strong> - Optional (+ _____ MAD/day)</p>
-                <p>☐ <strong>Theft Protection</strong> - Optional (+ _____ MAD/day)</p>
-            </div>
-        </div>
-
-        <div style="margin: 30px 0;">
-            <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">VEHICLE CONDITION</h2>
-            
-            <div class="agreement-box">
-                <h3 style="margin-bottom: 15px;">Pre-Rental Inspection:</h3>
-                <p>☐ Body Damage: ________________________________</p>
-                <p>☐ Interior Condition: ☐ Excellent ☐ Good ☐ Fair</p>
-                <p>☐ Tires: ☐ Excellent ☐ Good ☐ Needs Attention</p>
-                <p>☐ Spare Tire & Tools: ☐ Present ☐ Missing</p>
-                <p>☐ Lights (all working): ☐ Yes ☐ No</p>
-                <p>☐ Registration & Insurance: ☐ Valid ☐ In Vehicle</p>
-                <p><strong>Additional Notes:</strong> ________________________________</p>
-            </div>
-        </div>
-
-        <div style="margin: 30px 0;">
-            <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">TERMS AND CONDITIONS</h2>
-            
-            <div style="padding: 20px; background: #f8f9fa; border-radius: 10px;">
-                <p style="line-height: 1.8; color: #666; margin-bottom: 10px;">
-                    By signing this agreement, the Renter acknowledges that they have read, understood, and agree to abide by the complete <a href="terms.html" target="_blank" style="color: #667eea; text-decoration: underline;">Terms and Conditions</a> and <a href="privacy.html" target="_blank" style="color: #667eea; text-decoration: underline;">Privacy Policy</a> of Rafal Car.
-                </p>
-                
-                <h3 style="margin: 20px 0 10px; color: #333;">Key Points:</h3>
-                <ul style="line-height: 1.8; color: #666;">
-                    <li>The Renter must be at least 21 years old (25 for luxury vehicles)</li>
-                    <li>Valid driver's license held for minimum 2 years required</li>
-                    <li>The vehicle must be returned with the same fuel level</li>
-                    <li>Late return fee: 100 MAD per hour</li>
-                    <li>The Renter is responsible for all traffic violations and fines</li>
-                    <li>Smoking in the vehicle is prohibited (200 MAD cleaning fee)</li>
-                    <li>The vehicle may not be taken outside Morocco without written permission</li>
-                    <li>The Renter is liable for all damage unless Super CDW is purchased</li>
-                    <li>In case of accident, police report is mandatory</li>
-                    <li>Contact Rafal Car immediately: +212 662 186 949</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="signature-section">
-            <h2 style="color: #333; font-size: 24px; margin-bottom: 30px; text-align: center;">SIGNATURES</h2>
-            
-            <div style="margin: 40px 0;">
-                <h3 style="margin-bottom: 20px;">RENTER (Lessee):</h3>
-                <div class="signature-line">
-                    <p style="margin: 0; color: #999; font-size: 14px;">Signature</p>
-                </div>
-                <p><strong>Print Name:</strong> ________________________________</p>
-                <p><strong>Date:</strong> ________________________________</p>
-            </div>
-
-            <div style="margin: 40px 0;">
-                <h3 style="margin-bottom: 20px;">RAFAL CAR (Lessor):</h3>
-                <div class="signature-line">
-                    <p style="margin: 0; color: #999; font-size: 14px;">Authorized Signature</p>
-                </div>
-                <p><strong>Print Name:</strong> ________________________________</p>
-                <p><strong>Date:</strong> ________________________________</p>
-                <p><strong>Position:</strong> ________________________________</p>
-            </div>
-        </div>
-
-        <div style="margin: 40px 0; padding: 25px; background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px;">
-            <h3 style="color: #856404; margin-bottom: 15px;">⚠️ IMPORTANT REMINDERS</h3>
-            <ul style="line-height: 1.8; color: #856404;">
-                <li>Keep this agreement with you during the rental period</li>
-                <li>Report any accidents or damage immediately to +212 662 186 949</li>
-                <li>Vehicle must be returned clean and in same condition</li>
-                <li>Security deposit will be refunded within 7-14 business days</li>
-                <li>Contact us 24/7 for emergency assistance</li>
-            </ul>
-        </div>
-
-        <div style="margin: 40px 0; padding: 25px; background: #d4edda; border: 2px solid #28a745; border-radius: 10px;">
-            <h3 style="color: #155724; margin-bottom: 15px;">📞 EMERGENCY CONTACTS</h3>
-            <p style="margin: 5px 0; color: #155724;"><strong>Rafal Car 24/7:</strong> +212 662 186 949</p>
-            <p style="margin: 5px 0; color: #155724;"><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="82f0e3e4e3eeace1e3f0efe7e6b7c2e5efe3ebeeace1edef">[email&#160;protected]</a></p>
-            <p style="margin: 5px 0; color: #155724;"><strong>WhatsApp:</strong> +212 662 186 949</p>
-            <p style="margin: 5px 0; color: #155724;"><strong>Police (Morocco):</strong> 19</p>
-            <p style="margin: 5px 0; color: #155724;"><strong>Highway Patrol:</strong> 177</p>
-        </div>
-
-        <div style="text-align: center; margin-top: 40px;">
-            <p style="color: #999; font-size: 13px; margin-bottom: 20px;">
-                This agreement is valid only when signed by both parties. A copy will be provided to the Renter.
-            </p>
-            <a href="index.html" class="back-btn">← Back to Home</a>
-            <button onclick="window.print()" class="back-btn" style="background: #28a745; margin-left: 10px;">🖨️ Print Agreement</butto
+        <p><strong>This Agreement is made between:</strong></p>
+        <p><strong>Rafal Car</strong> (Lessor)<br>
+        Email: rafal.carmed5@gmail.com<br>
+        Phone: +212 662 186 949<br>
+        Location: Casablanca, Morocco</p>
+        
+        <p><strong>AND</strong></p>
+        
+        <p><strong>The Renter</strong> (Lessee)<br>
+        Name: ___________________________<br>
+        Email: ___________________________<br>
+        Phone: ___________________________<br>
+        License#: ___________________________</p>
+        
+        <h3>VEHICLE DETAILS:</h3>
+        <p>Make/Model: ___________________________<br>
+        Year: 2023/2024<br>
+        Registration: ___________________________<br>
+        Condition: Good / Excellent</p>
+        
+        <h3>RENTAL PERIOD:</h3>
+        <p>Pickup Date: ___________________________<br>
+        Return Date: ___________________________<br>
+        Pickup Location: ___________________________<br>
+        Return Location: ___________________________</p>
+        
+        <h3>CHARGES:</h3>
+        <p>Daily Rate: _________ MAD<br>
+        Number of Days: _________<br>
+        Total Rental: _________ MAD<br>
+        Security Deposit: _________ MAD<br>
+        <strong>TOTAL DUE: _________ MAD</strong></p>
+        
+        <h3>TERMS & CONDITIONS:</h3>
+        <p>By signing this agreement, the Renter agrees to:</p>
+        <ul>
+            <li>All terms specified in Rafal Car General Terms & Conditions</li>
+            <li>Return vehicle in same condition as received</li>
+            <li>Report any accidents within 24 hours</li>
+            <li>Not leave Moroccan territory without written permission</li>
+            <li>Pay all fines, tolls, and parking fees</li>
+            <li>Provide valid driving license and identification</li>
+            <li>Comply with all Moroccan traffic laws</li>
+        </ul>
+        
+        <h3>INSURANCE:</h3>
+        <p>Vehicle includes basic insurance. Additional coverage available upon request.</p>
+        
+        <h3>SIGNATURES:</h3>
+        <p>Renter Signature: ___________________________ Date: ___________</p>
+        <p>Rafal Car Rep: ___________________________ Date: ___________</p>
+        
+        <p style="margin-top:30px;font-size:12px;color:#666;">
+        For questions or concerns, contact Rafal Car at rafal.carmed5@gmail.com or +212 662 186 949
+        </p>
+    </div>
+    
+    <a href="index.html" class="back-btn">← Back to Home</a>
+</body>
+</html>
