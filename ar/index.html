@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رفال كار - تأجير سيارات فاخرة في المغرب | أسطول 2024</title>
-    <meta name="description" content="استأجر سيارات فاخرة 2024 في المغرب. أفضل الأسعار، خدمة 24/7، مسافة غير محدودة. 16 مركبة من الاقتصادية إلى الفاخرة. احجز اليوم!">
+    <meta name="description" content="استأجر سيارات فاخرة 2024 في المغرب. أفضل الأسعار، خدمة 24/7، مسافة غير محدودة. من الاقتصادية إلى الفاخرة. احجز اليوم!">
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
-    <!-- Hreflang tags -->
     <link rel="alternate" hreflang="en" href="https://yoursite.com/" />
     <link rel="alternate" hreflang="fr" href="https://yoursite.com/fr/" />
     <link rel="alternate" hreflang="ar" href="https://yoursite.com/ar/" />
     <link rel="canonical" href="https://yoursite.com/ar/" />
     
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -102,7 +100,7 @@
                             <p>عميل سعيد</p>
                         </div>
                         <div class="stat">
-                            <h3>16</h3>
+                            <h3 id="totalCarsCount">16</h3>
                             <p>سيارات 2024</p>
                         </div>
                         <div class="stat">
@@ -142,7 +140,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">🚗</div>
                     <h3>أسطول 2024</h3>
-                    <p>اختر من 16 مركبة جديدة 2024</p>
+                    <p>اختر من مركبات جديدة 2024</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📞</div>
@@ -253,29 +251,50 @@
 
     <script src="../script.js"></script>
     <script>
-        const carsData = [
-            {name:"هيونداي توسان أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:500,deposit:"10000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800",link:"../car-hyundai-tucson.html"},
-            {name:"داتشيا لوغان أو ما شابه",gear:"يدوي",engine:"ديزل",price:270,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800",link:"../car-dacia-logan.html"},
-            {name:"بيجو 208 أو ما شابه",gear:"أوتوماتيك/يدوي",engine:"ديزل/هجين",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800",link:"../car-peugeot-208.html"},
-            {name:"أوبل كورسا أو ما شابه",gear:"يدوي",engine:"ديزل",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800",link:"../car-opel-corsa.html"},
-            {name:"رينو إكسبريس أو ما شابه",gear:"يدوي",engine:"ديزل",price:340,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800",link:"../car-renault-express.html"},
-            {name:"سكودا كاروك أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:500,deposit:"5000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800",link:"../car-skoda-karoq.html"},
-            {name:"فولكس واجن طوارق أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:900,deposit:"5000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-volkswagen-touareg.html"},
-            {name:"كوبرا فورمنتور أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:500,deposit:"5000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"../car-cupra-formentor.html"},
-            {name:"رينو كليو أو ما شابه",gear:"يدوي",engine:"ديزل",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800",link:"../car-renault-clio.html"},
-            {name:"هيونداي أكسنت أو ما شابه",gear:"أوتوماتيك",engine:"ديزل/بنزين",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800",link:"../car-hyundai-accent.html"},
-            {name:"مرسيدس S-Class أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:4000,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"../car-mercedes-s-class.html"},
-            {name:"مرسيدس CLA أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1400,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"../car-mercedes-cla.html"},
-            {name:"مرسيدس C-Class أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1500,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"../car-mercedes-c-class.html"},
-            {name:"رينج روفر سبورت أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:3500,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-sport.html"},
-            {name:"رينج روفر فيلار أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1500,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-velar.html"},
-            {name:"رينج روفر إيفوك أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1200,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-evoque.html"}
+        // DEFAULT CAR DATA (fallback)
+        const defaultCarsData = [
+            {name:"هيونداي توسان أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:500,deposit:"10000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800"},
+            {name:"داتشيا لوغان أو ما شابه",gear:"يدوي",engine:"ديزل",price:270,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800"},
+            {name:"بيجو 208 أو ما شابه",gear:"أوتوماتيك/يدوي",engine:"ديزل/هجين",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800"},
+            {name:"أوبل كورسا أو ما شابه",gear:"يدوي",engine:"ديزل",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800"},
+            {name:"رينو إكسبريس أو ما شابه",gear:"يدوي",engine:"ديزل",price:340,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800"},
+            {name:"سكودا كاروك أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:500,deposit:"5000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800"},
+            {name:"فولكس واجن طوارق أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:900,deposit:"5000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"كوبرا فورمنتور أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:500,deposit:"5000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
+            {name:"رينو كليو أو ما شابه",gear:"يدوي",engine:"ديزل",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800"},
+            {name:"هيونداي أكسنت أو ما شابه",gear:"أوتوماتيك",engine:"ديزل/بنزين",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800"},
+            {name:"مرسيدس S-Class أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:4000,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
+            {name:"مرسيدس CLA أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1400,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
+            {name:"مرسيدس C-Class أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1500,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
+            {name:"رينج روفر سبورت أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:3500,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"رينج روفر فيلار أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1500,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"رينج روفر إيفوك أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1200,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"}
         ];
 
+        // GET CARS FROM ADMIN - SYNCED!
+        function getCarsData() {
+            const adminCars = localStorage.getItem('rafalcar_cars');
+            if (adminCars) {
+                const cars = JSON.parse(adminCars);
+                // Translate to Arabic
+                return cars.map(car => ({
+                    ...car,
+                    name: car.name.replace(' or similar', ' أو ما شابه'),
+                    gear: car.gear.replace('Automatic', 'أوتوماتيك').replace('Manual', 'يدوي'),
+                    deposit: car.deposit.replace('MAD', 'درهم')
+                }));
+            }
+            return defaultCarsData;
+        }
+
         function loadCars(filter='all'){
-            const grid=document.getElementById('vehiclesGrid');
-            const filtered=filter==='all'?carsData:carsData.filter(c=>c.category===filter);
-            grid.innerHTML=filtered.map(car=>`
+            const carsData = getCarsData();
+            const grid = document.getElementById('vehiclesGrid');
+            const filtered = filter === 'all' ? carsData : carsData.filter(c => c.category === filter);
+            
+            document.getElementById('totalCarsCount').textContent = carsData.length;
+            
+            grid.innerHTML = filtered.map(car => `
                 <div class="vehicle-card">
                     <img src="${car.img}" alt="${car.name}">
                     <div class="vehicle-info">
@@ -286,7 +305,7 @@
                             <span class="per-day">/يوم</span>
                         </div>
                         <p style="font-size:13px;color:#666;margin:10px 0">الوديعة: ${car.deposit}</p>
-                        <a href="${car.link}" onclick="saveSearchData()" class="btn-primary" style="width:100%;text-align:center;display:block;text-decoration:none">احجز الآن</a>
+                        <a href="${car.link || '../booking.html'}" onclick="saveSearchData()" class="btn-primary" style="width:100%;text-align:center;display:block;text-decoration:none">احجز الآن</a>
                     </div>
                 </div>
             `).join('');
