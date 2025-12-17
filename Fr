@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafal Car - Location de Voiture Premium au Maroc | Flotte 2024</title>
+    <meta name="description" content="Louez des voitures premium 2024 au Maroc. Meilleurs prix, service 24/7, kilométrage illimité. 16 véhicules de l'économique au luxe. Réservez aujourd'hui!">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Hreflang tags -->
+    <link rel="alternate" hreflang="en" href="https://yoursite.com/" />
+    <link rel="alternate" hreflang="fr" href="https://yoursite.com/fr/" />
+    <link rel="alternate" hreflang="ar" href="https://yoursite.com/ar/" />
+    <link rel="canonical" href="https://yoursite.com/fr/" />
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>    
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html"><img src="../Rafal_car_logo.png" alt="Rafal Car" style="height: 60px;"></a>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <a href="#home" class="nav-link active">Accueil</a>
+                    <a href="#vehicles" class="nav-link">Véhicules</a>
+                    <a href="#how-it-works" class="nav-link">Comment ça marche</a>
+                    <a href="#why-choose-us" class="nav-link">Pourquoi nous</a>
+                    <a href="#testimonials" class="nav-link">Avis</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+
+                <div class="nav-actions">
+                    <div class="language-switcher">
+                        <button onclick="window.location.href='../index.html'" class="lang-btn">EN</button>
+                        <button class="lang-btn active">FR</button>
+                        <button onclick="window.location.href='../ar/index.html'" class="lang-btn">AR</button>
+                    </div>
+                    <button class="btn-primary" onclick="window.location.href='#vehicles'">Commencer</button>
+                    <button class="mobile-menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">🚗 Disponible 24/7 au Maroc</span>
+                    <h1 class="hero-title">Trouvez Votre<br><span class="gradient-text">Voiture de Location</span></h1>
+                    <p class="hero-description">Découvrez la liberté de la route avec notre flotte premium 2024. De l'économique au luxe, nous avons la voiture parfaite pour chaque voyage au Maroc.</p>
+                    
+                    <div class="search-box">
+                        <div class="search-field">
+                            <label>📍 Lieu de prise en charge</label>
+                            <select id="pickupLocation">
+                                <option>Casablanca</option>
+                                <option>Marrakech</option>
+                                <option>Rabat</option>
+                                <option>Fès</option>
+                                <option>Tanger</option>
+                                <option>Agadir</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <label>📅 Date de prise</label>
+                            <input type="date" id="pickupDate">
+                        </div>
+                        <div class="search-field">
+                            <label>📅 Date de retour</label>
+                            <input type="date" id="returnDate">
+                        </div>
+                        <button class="btn-search" onclick="searchCars()">Rechercher</button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>200+</h3>
+                            <p>Clients Satisfaits</p>
+                        </div>
+                        <div class="stat">
+                            <h3>16</h3>
+                            <p>Voitures 2024</p>
+                        </div>
+                        <div class="stat">
+                            <h3>6000+</h3>
+                            <p>Voyages Complétés</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&q=80" alt="Voiture de Luxe">
+                    <div class="hero-card floating">
+                        <div class="card-icon">⚡</div>
+                        <div>
+                            <h4>Réservation Instantanée</h4>
+                            <p>Réserver en 2 minutes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% Sécurisé</h3>
+                    <p>Vos données sont protégées par un cryptage standard</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Meilleur Prix</h3>
+                    <p>Prix les plus bas garantis sans frais cachés</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Flotte 2024</h3>
+                    <p>Choisissez parmi 16 véhicules neufs 2024</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <h3>Support 24/7</h3>
+                    <p>Notre équipe est toujours là pour vous aider</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vehicles" id="vehicles">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Notre Flotte 2024</span>
+                <h2 class="section-title">Voitures <span class="gradient-text">Populaires</span></h2>
+                <p class="section-description">Tous les véhicules sont des modèles 2024 - neufs et entièrement équipés</p>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-filter="all">Toutes</button>
+                <button class="tab-btn" data-filter="economy">Économique</button>
+                <button class="tab-btn" data-filter="suv">SUV</button>
+                <button class="tab-btn" data-filter="luxury">Luxe</button>
+            </div>
+
+            <div class="vehicles-grid" id="vehiclesGrid"></div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Processus</span>
+                <h2 class="section-title">Comment <span class="gradient-text">Ça Marche</span></h2>
+                <p class="section-description">Louer une voiture en 3 étapes simples</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">🔍</div>
+                    <h3>Choisir l'Emplacement</h3>
+                    <p>Sélectionnez vos lieux de prise en charge et de retour</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">🚗</div>
+                    <h3>Choisir Votre Voiture</h3>
+                    <p>Parcourez notre flotte 2024 et sélectionnez le véhicule parfait</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">✅</div>
+                    <h3>Réserver & Conduire</h3>
+                    <p>Complétez votre réservation et prenez la route!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Contactez-nous</h2>
+                    <p>Des questions? Nous sommes là!</p>
+                    
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h4>Téléphone</h4>
+                                <p>+212 662 186 949</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>rafal.carmed5@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" name="name" placeholder="Votre Nom" required>
+                        <input type="email" name="email" placeholder="Votre Email" required>
+                        <input type="tel" name="phone" placeholder="Téléphone" required>
+                        <textarea name="message" placeholder="Message" rows="4" required></textarea>
+                        <button type="submit" class="btn-primary">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rafal Car. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        const carsData = [
+            {name:"Hyundai Tucson ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800",link:"../car-hyundai-tucson.html"},
+            {name:"Dacia Logan ou similaire",gear:"Manuel",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800",link:"../car-dacia-logan.html"},
+            {name:"Peugeot 208 ou similaire",gear:"Automatique/Manuel",engine:"Diesel/Hybride",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800",link:"../car-peugeot-208.html"},
+            {name:"Opel Corsa ou similaire",gear:"Manuel",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800",link:"../car-opel-corsa.html"},
+            {name:"Renault Express ou similaire",gear:"Manuel",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800",link:"../car-renault-express.html"},
+            {name:"Skoda Karoq ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800",link:"../car-skoda-karoq.html"},
+            {name:"Volkswagen Touareg ou similaire",gear:"Automatique",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-volkswagen-touareg.html"},
+            {name:"Cupra Formentor ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"../car-cupra-formentor.html"},
+            {name:"Renault Clio ou similaire",gear:"Manuel",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800",link:"../car-renault-clio.html"},
+            {name:"Hyundai Accent ou similaire",gear:"Automatique",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800",link:"../car-hyundai-accent.html"},
+            {name:"Mercedes S-Class ou similaire",gear:"Automatique",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"../car-mercedes-s-class.html"},
+            {name:"Mercedes CLA ou similaire",gear:"Automatique",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"../car-mercedes-cla.html"},
+            {name:"Mercedes C-Class ou similaire",gear:"Automatique",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"../car-mercedes-c-class.html"},
+            {name:"Range Rover Sport ou similaire",gear:"Automatique",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-sport.html"},
+            {name:"Range Rover Velar ou similaire",gear:"Automatique",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-velar.html"},
+            {name:"Range Rover Evoque ou similaire",gear:"Automatique",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-evoque.html"}
+        ];
+
+        function loadCars(filter='all'){
+            const grid=document.getElementById('vehiclesGrid');
+            const filtered=filter==='all'?carsData:carsData.filter(c=>c.category===filter);
+            grid.innerHTML=filtered.map(car=>`
+                <div class="vehicle-card">
+                    <img src="${car.img}" alt="${car.name}">
+                    <div class="vehicle-info">
+                        <h3>${car.name}</h3>
+                        <p>${car.gear} • ${car.engine} • 5 Places</p>
+                        <div class="vehicle-price">
+                            <span class="price">${car.price} MAD</span>
+                            <span class="per-day">/jour</span>
+                        </div>
+                        <p style="font-size:13px;color:#666;margin:10px 0">Dépôt: ${car.deposit}</p>
+                        <a href="${car.link}" onclick="saveSearchData()" class="btn-primary" style="width:100%;text-align:center;display:block;text-decoration:none">Réserver</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function saveSearchData() {
+            const pickup = document.getElementById('pickupDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+            const location = document.getElementById('pickupLocation').value;
+            if(pickup && returnDate) {
+                localStorage.setItem('rafalcar_search', JSON.stringify({pickup, returnDate, location}));
+            }
+        }
+
+        function searchCars() {
+            saveSearchData();
+            window.location.href = '#vehicles';
+        }
+
+        document.querySelectorAll('.tab-btn').forEach(btn=>{
+            btn.addEventListener('click',function(){
+                document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+                this.classList.add('active');
+                loadCars(this.dataset.filter);
+            });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit',async function(e){
+            e.preventDefault();
+            const formData=new FormData(this);
+            formData.append('_subject','Contact Form FR - '+formData.get('name'));
+            formData.append('_template','table');
+            try{
+                await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com',{method:'POST',body:formData});
+                alert('✅ Message envoyé!');
+                this.reset();
+            }catch(error){
+                alert('✅ Message enregistré!');
+                this.reset();
+            }
+        });
+
+        const today=new Date().toISOString().split('T')[0];
+        document.getElementById('pickupDate').min=today;
+        document.getElementById('returnDate').min=today;
+
+        document.getElementById('menuToggle')?.addEventListener('click',function(){
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        loadCars();
+    </script>
+    
+    <style>
+    .language-switcher{display:flex;gap:5px;margin-right:15px}
+    .lang-btn{padding:8px 15px;background:#f0f0f0;border:none;border-radius:6px;cursor:pointer;font-weight:600;transition:all 0.3s}
+    .lang-btn:hover{background:#667eea;color:white}
+    .lang-btn.active{background:#667eea;color:white}
+    </style>
+</body>
+</html>
