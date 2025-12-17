@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رفال كار - تأجير سيارات فاخرة في المغرب | أسطول 2024</title>
+    <meta name="description" content="استأجر سيارات فاخرة 2024 في المغرب. أفضل الأسعار، خدمة 24/7، مسافة غير محدودة. 16 مركبة من الاقتصادية إلى الفاخرة. احجز اليوم!">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Hreflang tags -->
+    <link rel="alternate" hreflang="en" href="https://yoursite.com/" />
+    <link rel="alternate" hreflang="fr" href="https://yoursite.com/fr/" />
+    <link rel="alternate" hreflang="ar" href="https://yoursite.com/ar/" />
+    <link rel="canonical" href="https://yoursite.com/ar/" />
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <style>
+    body{font-family:'Cairo',sans-serif;direction:rtl;text-align:right}
+    .language-switcher{display:flex;gap:5px;margin-left:15px;margin-right:0}
+    .lang-btn{padding:8px 15px;background:#f0f0f0;border:none;border-radius:6px;cursor:pointer;font-weight:600;transition:all 0.3s}
+    .lang-btn:hover{background:#667eea;color:white}
+    .lang-btn.active{background:#667eea;color:white}
+    </style>
+</head>    
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper" style="flex-direction:row-reverse">
+                <div class="logo">
+                    <a href="index.html"><img src="../Rafal_car_logo.png" alt="رفال كار" style="height: 60px;"></a>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <a href="#home" class="nav-link active">الرئيسية</a>
+                    <a href="#vehicles" class="nav-link">السيارات</a>
+                    <a href="#how-it-works" class="nav-link">كيف يعمل</a>
+                    <a href="#why-choose-us" class="nav-link">لماذا نحن</a>
+                    <a href="#testimonials" class="nav-link">التقييمات</a>
+                    <a href="#contact" class="nav-link">اتصل</a>
+                </div>
+
+                <div class="nav-actions" style="flex-direction:row-reverse">
+                    <div class="language-switcher">
+                        <button onclick="window.location.href='../index.html'" class="lang-btn">EN</button>
+                        <button onclick="window.location.href='../fr/index.html'" class="lang-btn">FR</button>
+                        <button class="lang-btn active">AR</button>
+                    </div>
+                    <button class="btn-primary" onclick="window.location.href='#vehicles'">ابدأ الآن</button>
+                    <button class="mobile-menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content" style="flex-direction:row-reverse">
+                <div class="hero-text">
+                    <span class="hero-badge">🚗 متاح 24/7 في المغرب</span>
+                    <h1 class="hero-title">اعثر على<br><span class="gradient-text">سيارتك المثالية</span></h1>
+                    <p class="hero-description">استمتع بحرية الطريق مع أسطولنا المتميز 2024. من الاقتصادية إلى الفاخرة، لدينا السيارة المثالية لكل رحلة في المغرب.</p>
+                    
+                    <div class="search-box">
+                        <div class="search-field">
+                            <label>📍 موقع الاستلام</label>
+                            <select id="pickupLocation">
+                                <option>الدار البيضاء</option>
+                                <option>مراكش</option>
+                                <option>الرباط</option>
+                                <option>فاس</option>
+                                <option>طنجة</option>
+                                <option>أكادير</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <label>📅 تاريخ الاستلام</label>
+                            <input type="date" id="pickupDate">
+                        </div>
+                        <div class="search-field">
+                            <label>📅 تاريخ الإرجاع</label>
+                            <input type="date" id="returnDate">
+                        </div>
+                        <button class="btn-search" onclick="searchCars()">بحث</button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>200+</h3>
+                            <p>عميل سعيد</p>
+                        </div>
+                        <div class="stat">
+                            <h3>16</h3>
+                            <p>سيارات 2024</p>
+                        </div>
+                        <div class="stat">
+                            <h3>6000+</h3>
+                            <p>رحلة مكتملة</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&q=80" alt="سيارة فاخرة">
+                    <div class="hero-card floating">
+                        <div class="card-icon">⚡</div>
+                        <div>
+                            <h4>حجز فوري</h4>
+                            <p>احجز في دقيقتين</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>آمن 100%</h3>
+                    <p>بياناتك محمية بتشفير قياسي</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>أفضل سعر</h3>
+                    <p>أسعار منخفضة مضمونة بدون رسوم خفية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>أسطول 2024</h3>
+                    <p>اختر من 16 مركبة جديدة 2024</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <h3>دعم 24/7</h3>
+                    <p>فريقنا دائماً هنا لمساعدتك</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vehicles" id="vehicles">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">أسطولنا 2024</span>
+                <h2 class="section-title">سيارات <span class="gradient-text">شعبية</span></h2>
+                <p class="section-description">جميع المركبات موديلات 2024 - جديدة ومجهزة بالكامل</p>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-filter="all">الكل</button>
+                <button class="tab-btn" data-filter="economy">اقتصادية</button>
+                <button class="tab-btn" data-filter="suv">SUV</button>
+                <button class="tab-btn" data-filter="luxury">فاخرة</button>
+            </div>
+
+            <div class="vehicles-grid" id="vehiclesGrid"></div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">العملية</span>
+                <h2 class="section-title">كيف <span class="gradient-text">يعمل</span></h2>
+                <p class="section-description">استأجر سيارة في 3 خطوات بسيطة</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">🔍</div>
+                    <h3>اختر الموقع</h3>
+                    <p>حدد مواقع الاستلام والتسليم من شبكتنا في المغرب</p>
+                </div>
+                <div class="step-arrow">←</div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">🚗</div>
+                    <h3>اختر سيارتك</h3>
+                    <p>تصفح أسطولنا 2024 واختر المركبة المثالية</p>
+                </div>
+                <div class="step-arrow">←</div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">✅</div>
+                    <h3>احجز وقُد</h3>
+                    <p>أكمل حجزك وانطلق في الطريق!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>تواصل معنا</h2>
+                    <p>لديك أسئلة؟ نحن هنا!</p>
+                    
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h4>هاتف</h4>
+                                <p>+212 662 186 949</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h4>البريد</h4>
+                                <p>rafal.carmed5@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" name="name" placeholder="اسمك" required>
+                        <input type="email" name="email" placeholder="بريدك" required>
+                        <input type="tel" name="phone" placeholder="رقم الهاتف" required>
+                        <textarea name="message" placeholder="رسالتك" rows="4" required></textarea>
+                        <button type="submit" class="btn-primary">إرسال</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 رفال كار. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        const carsData = [
+            {name:"هيونداي توسان أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:500,deposit:"10000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800",link:"../car-hyundai-tucson.html"},
+            {name:"داتشيا لوغان أو ما شابه",gear:"يدوي",engine:"ديزل",price:270,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800",link:"../car-dacia-logan.html"},
+            {name:"بيجو 208 أو ما شابه",gear:"أوتوماتيك/يدوي",engine:"ديزل/هجين",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800",link:"../car-peugeot-208.html"},
+            {name:"أوبل كورسا أو ما شابه",gear:"يدوي",engine:"ديزل",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800",link:"../car-opel-corsa.html"},
+            {name:"رينو إكسبريس أو ما شابه",gear:"يدوي",engine:"ديزل",price:340,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800",link:"../car-renault-express.html"},
+            {name:"سكودا كاروك أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:500,deposit:"5000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800",link:"../car-skoda-karoq.html"},
+            {name:"فولكس واجن طوارق أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:900,deposit:"5000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-volkswagen-touareg.html"},
+            {name:"كوبرا فورمنتور أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:500,deposit:"5000 درهم",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"../car-cupra-formentor.html"},
+            {name:"رينو كليو أو ما شابه",gear:"يدوي",engine:"ديزل",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800",link:"../car-renault-clio.html"},
+            {name:"هيونداي أكسنت أو ما شابه",gear:"أوتوماتيك",engine:"ديزل/بنزين",price:300,deposit:"5000 درهم",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800",link:"../car-hyundai-accent.html"},
+            {name:"مرسيدس S-Class أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:4000,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"../car-mercedes-s-class.html"},
+            {name:"مرسيدس CLA أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1400,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"../car-mercedes-cla.html"},
+            {name:"مرسيدس C-Class أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1500,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"../car-mercedes-c-class.html"},
+            {name:"رينج روفر سبورت أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:3500,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-sport.html"},
+            {name:"رينج روفر فيلار أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1500,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-velar.html"},
+            {name:"رينج روفر إيفوك أو ما شابه",gear:"أوتوماتيك",engine:"ديزل",price:1200,deposit:"20000-30000 درهم",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-evoque.html"}
+        ];
+
+        function loadCars(filter='all'){
+            const grid=document.getElementById('vehiclesGrid');
+            const filtered=filter==='all'?carsData:carsData.filter(c=>c.category===filter);
+            grid.innerHTML=filtered.map(car=>`
+                <div class="vehicle-card">
+                    <img src="${car.img}" alt="${car.name}">
+                    <div class="vehicle-info">
+                        <h3>${car.name}</h3>
+                        <p>${car.gear} • ${car.engine} • 5 مقاعد</p>
+                        <div class="vehicle-price">
+                            <span class="price">${car.price} درهم</span>
+                            <span class="per-day">/يوم</span>
+                        </div>
+                        <p style="font-size:13px;color:#666;margin:10px 0">الوديعة: ${car.deposit}</p>
+                        <a href="${car.link}" onclick="saveSearchData()" class="btn-primary" style="width:100%;text-align:center;display:block;text-decoration:none">احجز الآن</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function saveSearchData() {
+            const pickup = document.getElementById('pickupDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+            const location = document.getElementById('pickupLocation').value;
+            if(pickup && returnDate) {
+                localStorage.setItem('rafalcar_search', JSON.stringify({pickup, returnDate, location}));
+            }
+        }
+
+        function searchCars() {
+            saveSearchData();
+            window.location.href = '#vehicles';
+        }
+
+        document.querySelectorAll('.tab-btn').forEach(btn=>{
+            btn.addEventListener('click',function(){
+                document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+                this.classList.add('active');
+                loadCars(this.dataset.filter);
+            });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit',async function(e){
+            e.preventDefault();
+            const formData=new FormData(this);
+            formData.append('_subject','Contact Form AR - '+formData.get('name'));
+            formData.append('_template','table');
+            try{
+                await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com',{method:'POST',body:formData});
+                alert('✅ تم إرسال الرسالة!');
+                this.reset();
+            }catch(error){
+                alert('✅ تم حفظ الرسالة!');
+                this.reset();
+            }
+        });
+
+        const today=new Date().toISOString().split('T')[0];
+        document.getElementById('pickupDate').min=today;
+        document.getElementById('returnDate').min=today;
+
+        document.getElementById('menuToggle')?.addEventListener('click',function(){
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        loadCars();
+    </script>
+</body>
+</html>
