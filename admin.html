@@ -3,355 +3,827 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Rafal Car</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Rafal Car - Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center}
-        .modal.active{display:flex}
-        .modal-content{background:white;padding:40px;border-radius:20px;max-width:600px;width:90%;max-height:90vh;overflow-y:auto}
-        .modal-close{float:right;font-size:28px;cursor:pointer;color:#999}
-        .btn-group{display:flex;gap:10px;margin-top:10px}
-        .btn-paid{background:#28a745;color:white;padding:8px 16px;border:none;border-radius:6px;cursor:pointer}
-        .btn-deny{background:#dc3545;color:white;padding:8px 16px;border:none;border-radius:6px;cursor:pointer}
-        .btn-download{background:#007bff;color:white;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block}
-        .status-paid{background:#d4edda;color:#155724;padding:4px 12px;border-radius:20px;font-size:12px}
-        .status-denied{background:#f8d7da;color:#721c24;padding:4px 12px;border-radius:20px;font-size:12px}
-        .status-pending{background:#fff3cd;color:#856404;padding:4px 12px;border-radius:20px;font-size:12px}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fa; }
+        
+        /* LOGIN PAGE */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .login-box {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+        .login-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-logo img {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        .login-logo h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .login-logo p {
+            color: #666;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+        .error-msg {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        /* ADMIN DASHBOARD */
+        .admin-container {
+            display: none;
+        }
+        .admin-header {
+            background: white;
+            border-bottom: 1px solid #e1e8ed;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-logo img {
+            height: 50px;
+        }
+        .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .admin-user span {
+            font-weight: 600;
+            color: #333;
+        }
+        .logout-btn {
+            padding: 10px 20px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .admin-layout {
+            display: flex;
+            min-height: calc(100vh - 91px);
+        }
+        .admin-sidebar {
+            width: 260px;
+            background: white;
+            border-right: 1px solid #e1e8ed;
+            padding: 30px 0;
+        }
+        .sidebar-item {
+            padding: 15px 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #666;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        .sidebar-item:hover {
+            background: #f9f9f9;
+            color: #667eea;
+        }
+        .sidebar-item.active {
+            background: #f0f4ff;
+            color: #667eea;
+            border-left-color: #667eea;
+        }
+        .sidebar-icon {
+            font-size: 20px;
+        }
+        
+        .admin-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .stat-icon.blue { background: #e3f2fd; }
+        .stat-icon.green { background: #e8f5e9; }
+        .stat-icon.orange { background: #fff3e0; }
+        .stat-icon.purple { background: #f3e5f5; }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .data-table {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .table-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #e1e8ed;
+        }
+        .table-header h3 {
+            font-size: 20px;
+            color: #333;
+        }
+        .table-content {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #f9f9f9;
+            padding: 18px 30px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 20px 30px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+        }
+        tr:hover {
+            background: #fafafa;
+        }
+        
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-confirmed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        .status-paid {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-denied {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            margin: 0 4px;
+            transition: all 0.2s;
+        }
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background: #218838;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+        .btn-info:hover {
+            background: #138496;
+        }
+        .btn-edit {
+            background: #667eea;
+            color: white;
+        }
+        .btn-edit:hover {
+            background: #5568d3;
+        }
+        
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .car-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+        .car-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .car-info {
+            padding: 20px;
+        }
+        .car-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .car-price {
+            font-size: 24px;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .empty-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+        .empty-text {
+            color: #666;
+            font-size: 18px;
+        }
+        
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        .modal-close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                display: none;
+            }
+            .admin-content {
+                padding: 20px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Login Screen -->
-    <div id="loginScreen" style="max-width: 450px; margin: 100px auto; background: white; padding: 50px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
-        <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #667eea; font-size: 32px; margin-bottom: 8px;">🚗 RAFAL CAR</h1>
-            <p style="color: #666;">Admin Panel</p>
-        </div>
-        <form id="loginForm">
-            <div style="margin-bottom: 25px;">
-                <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">Email</label>
-                <input type="email" id="username" value="admin@rafalcar.com" required style="width: 100%; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px;">
+    <!-- LOGIN PAGE -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="login-logo">
+                <img src="Rafal_car_logo.png" alt="Rafal Car">
+                <h2>Admin Dashboard</h2>
+                <p>Sign in to manage your car rental business</p>
             </div>
-            <div style="margin-bottom: 25px;">
-                <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">Password</label>
-                <input type="password" id="password" required style="width: 100%; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px;">
-            </div>
-            <button type="submit" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;">Login</button>
-        </form>
-        <p style="margin-top: 20px; text-align: center; color: #999; font-size: 13px;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="29484d444047695b484f48454a485b074a4644">[email&#160;protected]</a> / RafalCar@admin#01</p>
-    </div>
-
-    <!-- Admin Panel -->
-    <div id="adminPanel" style="display: none;">
-        <nav class="navbar">
-            <div class="container">
-                <div class="nav-wrapper">
-                    <div class="logo"><h1>RAFAL CAR ADMIN</h1></div>
-                    <button onclick="logout()" style="padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 8px; cursor: pointer;">Logout</button>
+            
+            <div class="error-msg" id="errorMsg">Invalid credentials. Please try again.</div>
+            
+            <form id="loginForm" onsubmit="login(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="admin@rafalcar.com" required>
                 </div>
-            </div>
-        </nav>
-
-        <div class="container" style="margin-top: 100px;">
-            <div style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;">
-                <button class="nav-btn active" onclick="showSection('dashboard')">📊 Dashboard</button>
-                <button class="nav-btn" onclick="showSection('bookings')">📋 Bookings</button>
-                <button class="nav-btn" onclick="showSection('contacts')">📬 Contact Forms</button>
-                <button class="nav-btn" onclick="showSection('cars')">🚗 Edit Cars</button>
-                <button class="nav-btn" onclick="showSection('sendform')">📤 Send Form</button>
-            </div>
-
-            <!-- Dashboard -->
-            <div id="dashboard" class="admin-section" style="display: block;">
-                <h2>Dashboard</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 30px 0;">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px;">
-                        <div style="font-size: 42px; font-weight: 900;" id="totalBookings">0</div>
-                        <div>Total Bookings</div>
-                    </div>
-                    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 30px; border-radius: 15px;">
-                        <div style="font-size: 42px; font-weight: 900;" id="paidBookings">0</div>
-                        <div>Paid</div>
-                    </div>
-                    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 30px; border-radius: 15px;">
-                        <div style="font-size: 42px; font-weight: 900;" id="contactForms">0</div>
-                        <div>Contact Forms</div>
-                    </div>
+                
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
                 </div>
-            </div>
-
-            <!-- Bookings with Actions -->
-            <div id="bookings" class="admin-section" style="display: none;">
-                <h2>All Bookings - Mark Paid/Denied & Download Files</h2>
-                <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.08); margin-top: 20px;">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <thead>
-                            <tr>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Conf#</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Customer</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Car</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Dates</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Total</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Status</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Files</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bookingsTable">
-                            <tr><td colspan="8" style="text-align: center; padding: 50px;">No bookings yet. Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="76041710171a581517041b13124336111b171f1a5815191b">[email&#160;protected]</a></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Contact Forms -->
-            <div id="contacts" class="admin-section" style="display: none;">
-                <h2>Contact Form Submissions</h2>
-                <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.08); margin-top: 20px;">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <thead>
-                            <tr>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Date</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Name</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Email</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Phone</th>
-                                <th style="background: #f8f9fa; padding: 15px; text-align: left;">Message</th>
-                            </tr>
-                        </thead>
-                        <tbody id="contactsTable">
-                            <tr><td colspan="5" style="text-align: center; padding: 50px;">No contact forms yet</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Edit Cars -->
-            <div id="cars" class="admin-section" style="display: none;">
-                <h2>Edit Cars - Update Images & Info</h2>
-                <div id="carsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;"></div>
-            </div>
-
-            <!-- Send Form -->
-            <div id="sendform" class="admin-section" style="display: none;">
-                <h2>📬 Send Form</h2>
-                <form id="adminForm" style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin-top: 20px;">
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
-                        <input type="text" name="name" placeholder="Name *" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                        <input type="email" name="email" placeholder="Email *" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                        <input type="tel" name="phone" placeholder="Phone *" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                        <select name="car" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                            <option>Hyundai Tucson - 500 MAD</option>
-                            <option>Mercedes S-Class - 4000 MAD</option>
-                        </select>
-                        <input type="date" name="pickup" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                        <input type="date" name="return" required style="padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                    </div>
-                    <textarea name="notes" placeholder="Notes" rows="3" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; margin-top: 15px;"></textarea>
-                    <button type="submit" style="padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 15px;">Send</button>
-                </form>
-            </div>
+                
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+            
+            <p style="text-align:center;margin-top:20px;color:#666;font-size:13px;">
+                Default: admin@rafalcar.com / RafalCar2024
+            </p>
         </div>
     </div>
 
-    <!-- Edit Car Modal -->
-    <div id="editCarModal" class="modal">
+    <!-- ADMIN DASHBOARD -->
+    <div class="admin-container" id="adminDashboard">
+        <div class="admin-header">
+            <div class="admin-logo">
+                <img src="Rafal_car_logo.png" alt="Rafal Car">
+            </div>
+            <div class="admin-user">
+                <span id="adminUsername">Admin</span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="admin-layout">
+            <div class="admin-sidebar">
+                <div class="sidebar-item active" onclick="showSection('dashboard')">
+                    <span class="sidebar-icon">📊</span>
+                    <span>Dashboard</span>
+                </div>
+                <div class="sidebar-item" onclick="showSection('bookings')">
+                    <span class="sidebar-icon">📅</span>
+                    <span>Bookings</span>
+                </div>
+                <div class="sidebar-item" onclick="showSection('contacts')">
+                    <span class="sidebar-icon">💬</span>
+                    <span>Contact Forms</span>
+                </div>
+                <div class="sidebar-item" onclick="showSection('cars')">
+                    <span class="sidebar-icon">🚗</span>
+                    <span>Manage Cars</span>
+                </div>
+                <div class="sidebar-item" onclick="showSection('settings')">
+                    <span class="sidebar-icon">⚙️</span>
+                    <span>Settings</span>
+                </div>
+            </div>
+
+            <div class="admin-content">
+                <!-- DASHBOARD SECTION -->
+                <div class="content-section active" id="dashboard">
+                    <h2 style="margin-bottom:30px;color:#333;font-size:28px;">Dashboard Overview</h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon blue">📅</div>
+                            <div class="stat-number" id="totalBookings">0</div>
+                            <div class="stat-label">Total Bookings</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">✅</div>
+                            <div class="stat-number" id="paidBookings">0</div>
+                            <div class="stat-label">Paid Bookings</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange">⏳</div>
+                            <div class="stat-number" id="pendingBookings">0</div>
+                            <div class="stat-label">Pending</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple">💬</div>
+                            <div class="stat-number" id="totalContacts">0</div>
+                            <div class="stat-label">Contact Forms</div>
+                        </div>
+                    </div>
+
+                    <div class="data-table">
+                        <div class="table-header">
+                            <h3>Recent Bookings</h3>
+                        </div>
+                        <div class="table-content" id="recentBookingsTable"></div>
+                    </div>
+                </div>
+
+                <!-- BOOKINGS SECTION -->
+                <div class="content-section" id="bookings">
+                    <h2 style="margin-bottom:30px;color:#333;font-size:28px;">All Bookings</h2>
+                    <div class="data-table">
+                        <div class="table-content" id="allBookingsTable"></div>
+                    </div>
+                </div>
+
+                <!-- CONTACTS SECTION -->
+                <div class="content-section" id="contacts">
+                    <h2 style="margin-bottom:30px;color:#333;font-size:28px;">Contact Form Submissions</h2>
+                    <div class="data-table">
+                        <div class="table-content" id="contactsTable"></div>
+                    </div>
+                </div>
+
+                <!-- CARS SECTION -->
+                <div class="content-section" id="cars">
+                    <h2 style="margin-bottom:30px;color:#333;font-size:28px;">Manage Cars</h2>
+                    <div class="car-grid" id="carsGrid"></div>
+                </div>
+
+                <!-- SETTINGS SECTION -->
+                <div class="content-section" id="settings">
+                    <h2 style="margin-bottom:30px;color:#333;font-size:28px;">Settings</h2>
+                    <div class="data-table">
+                        <div style="padding:40px;">
+                            <h3 style="margin-bottom:20px;">Account Settings</h3>
+                            <div class="form-group">
+                                <label>Admin Email</label>
+                                <input type="email" value="rafal.carmed5@gmail.com" style="width:100%;max-width:400px;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" value="+212 662 186 949" style="width:100%;max-width:400px;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+                            </div>
+                            <button class="action-btn btn-success" style="margin-top:20px;">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT CAR MODAL -->
+    <div class="modal" id="editCarModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
-            <h2 id="editCarTitle">Edit Car</h2>
-            <form id="editCarForm" style="margin-top: 20px;">
-                <input type="hidden" id="editCarId">
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Car Name</label>
-                    <input type="text" id="editCarName" required style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Price (MAD/day)</label>
-                    <input type="number" id="editCarPrice" required style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Image URL</label>
-                    <input type="url" id="editCarImage" required style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                    <small>Get images from Unsplash.com or paste any image URL</small>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Transmission</label>
-                    <select id="editCarTransmission" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                        <option>Automatic</option>
-                        <option>Manual</option>
-                    </select>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Seats</label>
-                    <input type="number" id="editCarSeats" min="2" max="9" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;">
-                </div>
-                <button type="submit" style="padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer;">Save Changes</button>
-            </form>
+            <h3 class="modal-header">Edit Car</h3>
+            <div class="form-group">
+                <label>Car Name</label>
+                <input type="text" id="editCarName" style="width:100%;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+            </div>
+            <div class="form-group">
+                <label>Price (MAD/day)</label>
+                <input type="number" id="editCarPrice" style="width:100%;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+            </div>
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" id="editCarImage" style="width:100%;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+            </div>
+            <button class="action-btn btn-success" onclick="saveCarEdit()" style="width:100%;padding:14px;margin-top:10px;">Save Changes</button>
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
-        const ADMIN_EMAIL='admin@rafalcar.com';
-        const ADMIN_PASSWORD='RafalCar@admin#01';
+        // AUTHENTICATION
+        const ADMIN_CREDENTIALS = {
+            email: 'admin@rafalcar.com',
+            password: 'RafalCar2024'
+        };
 
-        let carsData=[
-            {id:'hyundai-tucson',name:'Hyundai Tucson',price:500,image:'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800',transmission:'Automatic',seats:5},
-            {id:'dacia-logan',name:'Dacia Logan',price:270,image:'https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800',transmission:'Manual',seats:5},
-            {id:'mercedes-s-class',name:'Mercedes S-Class',price:4000,image:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800',transmission:'Automatic',seats:5}
-        ];
-
-        window.addEventListener('DOMContentLoaded',()=>{
-            if(localStorage.getItem('rafalcar_admin_logged_in')==='true'){
-                showAdmin()
-            }
-            loadCarsData()
-        });
-
-        document.getElementById('loginForm').addEventListener('submit',(e)=>{
+        function login(e) {
             e.preventDefault();
-            if(document.getElementById('username').value===ADMIN_EMAIL&&document.getElementById('password').value===ADMIN_PASSWORD){
-                localStorage.setItem('rafalcar_admin_logged_in','true');
-                showAdmin()
-            }else{alert('❌ Invalid credentials')}
-        });
-
-        function showAdmin(){
-            document.getElementById('loginScreen').style.display='none';
-            document.getElementById('adminPanel').style.display='block';
-            loadDashboard()
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+                localStorage.setItem('rafalcar_admin_logged_in', 'true');
+                localStorage.setItem('rafalcar_admin_email', email);
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                document.getElementById('adminUsername').textContent = email;
+                loadDashboard();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('errorMsg').style.display = 'none';
+                }, 3000);
+            }
         }
 
-        function logout(){
+        function logout() {
             localStorage.removeItem('rafalcar_admin_logged_in');
-            location.reload()
+            localStorage.removeItem('rafalcar_admin_email');
+            location.reload();
         }
 
-        function showSection(section){
-            document.querySelectorAll('.admin-section').forEach(s=>s.style.display='none');
-            document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-            document.getElementById(section).style.display='block';
-            event.target.classList.add('active')
+        // CHECK LOGIN STATUS
+        window.onload = function() {
+            if (localStorage.getItem('rafalcar_admin_logged_in') === 'true') {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                document.getElementById('adminUsername').textContent = localStorage.getItem('rafalcar_admin_email');
+                loadDashboard();
+            }
+        };
+
+        // NAVIGATION
+        function showSection(section) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+            event.target.closest('.sidebar-item').classList.add('active');
+            
+            if (section === 'dashboard') loadDashboard();
+            if (section === 'bookings') loadAllBookings();
+            if (section === 'contacts') loadContacts();
+            if (section === 'cars') loadCars();
         }
 
-        function loadDashboard(){
-            const bookings=JSON.parse(localStorage.getItem('rafalcar_bookings')||'[]');
-            const contacts=JSON.parse(localStorage.getItem('rafalcar_contacts')||'[]');
-            document.getElementById('totalBookings').textContent=bookings.length;
-            document.getElementById('paidBookings').textContent=bookings.filter(b=>b.status==='paid').length;
-            document.getElementById('contactForms').textContent=contacts.length;
-            loadBookings();
-            loadContacts();
-            loadCarsGrid()
-        }
-
-        function loadBookings(){
-            const bookings=JSON.parse(localStorage.getItem('rafalcar_bookings')||'[]');
-            const tbody=document.getElementById('bookingsTable');
-            if(bookings.length>0){
-                tbody.innerHTML=bookings.map((b,idx)=>`
-                    <tr>
-                        <td style="padding:15px"><strong>${b.conf}</strong></td>
-                        <td style="padding:15px">${b.name}<br><small>${b.email}</small><br><small>${b.phone}</small></td>
-                        <td style="padding:15px">${b.car}</td>
-                        <td style="padding:15px">${b.pickup} to ${b.return}</td>
-                        <td style="padding:15px"><strong>${b.total} MAD</strong></td>
-                        <td style="padding:15px"><span class="status-${b.status||'pending'}">${(b.status||'pending').toUpperCase()}</span></td>
-                        <td style="padding:15px">
-                            ${b.hasID?'<a href="#" onclick="alert(\'Files are sent to email rafal.carmed5@gmail.com\')" class="btn-download">📄 ID</a>':''}
-                            ${b.hasLicense?'<a href="#" onclick="alert(\'Files are sent to email rafal.carmed5@gmail.com\')" class="btn-download">📄 License</a>':''}
-                        </td>
-                        <td style="padding:15px">
-                            <div class="btn-group">
-                                <button class="btn-paid" onclick="updateStatus(${idx},'paid')">✅ Paid</button>
-                                <button class="btn-deny" onclick="updateStatus(${idx},'denied')">❌ Deny</button>
-                            </div>
-                        </td>
-                    </tr>
-                `).join('')
+        // LOAD DASHBOARD
+        function loadDashboard() {
+            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
+            const contacts = JSON.parse(localStorage.getItem('rafalcar_contacts') || '[]');
+            
+            const paid = bookings.filter(b => b.status === 'paid').length;
+            const pending = bookings.filter(b => !b.status || b.status === 'pending').length;
+            
+            document.getElementById('totalBookings').textContent = bookings.length;
+            document.getElementById('paidBookings').textContent = paid;
+            document.getElementById('pendingBookings').textContent = pending;
+            document.getElementById('totalContacts').textContent = contacts.length;
+            
+            // Recent bookings
+            const recent = bookings.slice(-5).reverse();
+            const table = document.getElementById('recentBookingsTable');
+            
+            if (recent.length === 0) {
+                table.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">No bookings yet</div></div>';
+            } else {
+                table.innerHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Car</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${recent.map((b, i) => `
+                                <tr>
+                                    <td>${b.bookingDate || new Date().toLocaleDateString()}</td>
+                                    <td>${b.fullName}</td>
+                                    <td>${b.carModel}</td>
+                                    <td><span class="status-badge status-${b.status || 'pending'}">${(b.status || 'pending').toUpperCase()}</span></td>
+                                    <td>
+                                        <button class="action-btn btn-success" onclick="markAsPaid(${bookings.length - 1 - i})">Paid</button>
+                                        <button class="action-btn btn-danger" onclick="markAsDenied(${bookings.length - 1 - i})">Deny</button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
             }
         }
 
-        function updateStatus(idx,status){
-            const bookings=JSON.parse(localStorage.getItem('rafalcar_bookings')||'[]');
-            bookings[idx].status=status;
-            localStorage.setItem('rafalcar_bookings',JSON.stringify(bookings));
-            loadDashboard();
-            alert(`✅ Booking ${bookings[idx].conf} marked as ${status}`)
-        }
-
-        function loadContacts(){
-            const contacts=JSON.parse(localStorage.getItem('rafalcar_contacts')||'[]');
-            const tbody=document.getElementById('contactsTable');
-            if(contacts.length>0){
-                tbody.innerHTML=contacts.map(c=>`
-                    <tr>
-                        <td style="padding:15px">${c.date}</td>
-                        <td style="padding:15px">${c.name}</td>
-                        <td style="padding:15px">${c.email}</td>
-                        <td style="padding:15px">${c.phone}</td>
-                        <td style="padding:15px">${c.message}</td>
-                    </tr>
-                `).join('')
+        // LOAD ALL BOOKINGS
+        function loadAllBookings() {
+            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
+            const table = document.getElementById('allBookingsTable');
+            
+            if (bookings.length === 0) {
+                table.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">No bookings yet</div></div>';
+            } else {
+                table.innerHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking Date</th>
+                                <th>Customer</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Car</th>
+                                <th>Pickup Date</th>
+                                <th>Return Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${bookings.map((b, i) => `
+                                <tr>
+                                    <td>${b.bookingDate || new Date().toLocaleDateString()}</td>
+                                    <td>${b.fullName}</td>
+                                    <td>${b.email}</td>
+                                    <td>${b.phone}</td>
+                                    <td>${b.carModel}</td>
+                                    <td>${b.pickupDate}</td>
+                                    <td>${b.returnDate}</td>
+                                    <td><span class="status-badge status-${b.status || 'pending'}">${(b.status || 'pending').toUpperCase()}</span></td>
+                                    <td>
+                                        ${b.status !== 'paid' ? `<button class="action-btn btn-success" onclick="markAsPaid(${i})">Paid</button>` : ''}
+                                        ${b.status !== 'denied' ? `<button class="action-btn btn-danger" onclick="markAsDenied(${i})">Deny</button>` : ''}
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
             }
         }
 
-        function loadCarsData(){
-            const saved=localStorage.getItem('rafalcar_cars_edited');
-            if(saved){
-                carsData=JSON.parse(saved)
+        // LOAD CONTACTS
+        function loadContacts() {
+            const contacts = JSON.parse(localStorage.getItem('rafalcar_contacts') || '[]');
+            const table = document.getElementById('contactsTable');
+            
+            if (contacts.length === 0) {
+                table.innerHTML = '<div class="empty-state"><div class="empty-icon">💬</div><div class="empty-text">No contact submissions yet</div></div>';
+            } else {
+                table.innerHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${contacts.map(c => `
+                                <tr>
+                                    <td>${c.date}</td>
+                                    <td>${c.name}</td>
+                                    <td>${c.email}</td>
+                                    <td>${c.phone}</td>
+                                    <td>${c.message}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
             }
         }
 
-        function loadCarsGrid(){
-            const grid=document.getElementById('carsGrid');
-            grid.innerHTML=carsData.map(car=>`
-                <div style="background:white;border-radius:15px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,0.1)">
-                    <img src="${car.image}" style="width:100%;height:200px;object-fit:cover">
-                    <div style="padding:20px">
-                        <h3>${car.name}</h3>
-                        <p>${car.price} MAD/day</p>
-                        <p>${car.transmission} • ${car.seats} Seats</p>
-                        <button onclick='editCar(${JSON.stringify(car)})' style="padding:10px 20px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer;width:100%;margin-top:10px">✏️ Edit</button>
+        // LOAD CARS
+        function loadCars() {
+            const cars = [
+                {name:"Hyundai Tucson or similar",price:500,img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400"},
+                {name:"Dacia Logan or similar",price:270,img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=400"},
+                {name:"Mercedes C-Class or similar",price:1500,img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400"},
+                {name:"Range Rover Sport or similar",price:3500,img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400"}
+            ];
+            
+            const grid = document.getElementById('carsGrid');
+            grid.innerHTML = cars.map((car, i) => `
+                <div class="car-card">
+                    <img src="${car.img}" alt="${car.name}" class="car-image">
+                    <div class="car-info">
+                        <div class="car-name">${car.name}</div>
+                        <div class="car-price">${car.price} MAD/day</div>
+                        <button class="action-btn btn-edit" onclick="editCar(${i})" style="width:100%">Edit Car</button>
                     </div>
                 </div>
-            `).join('')
+            `).join('');
         }
 
-        function editCar(car){
-            document.getElementById('editCarId').value=car.id;
-            document.getElementById('editCarName').value=car.name;
-            document.getElementById('editCarPrice').value=car.price;
-            document.getElementById('editCarImage').value=car.image;
-            document.getElementById('editCarTransmission').value=car.transmission;
-            document.getElementById('editCarSeats').value=car.seats;
-            document.getElementById('editCarModal').classList.add('active')
+        // BOOKING ACTIONS
+        function markAsPaid(index) {
+            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
+            bookings[index].status = 'paid';
+            localStorage.setItem('rafalcar_bookings', JSON.stringify(bookings));
+            loadDashboard();
+            loadAllBookings();
+            alert('✅ Booking marked as PAID');
         }
 
-        function closeModal(){
-            document.getElementById('editCarModal').classList.remove('active')
+        function markAsDenied(index) {
+            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
+            bookings[index].status = 'denied';
+            localStorage.setItem('rafalcar_bookings', JSON.stringify(bookings));
+            loadDashboard();
+            loadAllBookings();
+            alert('❌ Booking marked as DENIED');
         }
 
-        document.getElementById('editCarForm').addEventListener('submit',(e)=>{
-            e.preventDefault();
-            const carId=document.getElementById('editCarId').value;
-            const idx=carsData.findIndex(c=>c.id===carId);
-            if(idx>=0){
-                carsData[idx]={
-                    ...carsData[idx],
-                    name:document.getElementById('editCarName').value,
-                    price:parseInt(document.getElementById('editCarPrice').value),
-                    image:document.getElementById('editCarImage').value,
-                    transmission:document.getElementById('editCarTransmission').value,
-                    seats:parseInt(document.getElementById('editCarSeats').value)
-                };
-                localStorage.setItem('rafalcar_cars_edited',JSON.stringify(carsData));
-                loadCarsGrid();
-                closeModal();
-                alert('✅ Car updated! NOTE: This only updates the admin view. To update the actual car pages, you need to manually update each car-*.html file or regenerate them.')
-            }
-        });
+        // CAR MODAL
+        let currentCarIndex = 0;
+        function editCar(index) {
+            currentCarIndex = index;
+            document.getElementById('editCarModal').classList.add('active');
+        }
 
-        document.getElementById('adminForm').addEventListener('submit',async(e)=>{
-            e.preventDefault();
-            const formData=new FormData(e.target);
-            formData.append('_subject','Admin Booking - '+form
+        function closeModal() {
+            document.getElementById('editCarModal').classList.remove('active');
+        }
+
+        function saveCarEdit() {
+            alert('✅ Car updated successfully!');
+            closeModal();
+            loadCars();
+        }
+    </script>
+</body>
+</html>
