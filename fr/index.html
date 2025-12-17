@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafal Car - Location de Voiture Premium au Maroc | Flotte 2024</title>
-    <meta name="description" content="Louez des voitures premium 2024 au Maroc. Meilleurs prix, service 24/7, kilométrage illimité. 16 véhicules de l'économique au luxe. Réservez aujourd'hui!">
+    <meta name="description" content="Louez des voitures premium 2024 au Maroc. Meilleurs prix, service 24/7, kilométrage illimité. Véhicules de l'économique au luxe. Réservez aujourd'hui!">
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Hreflang tags -->
     <link rel="alternate" hreflang="en" href="https://yoursite.com/" />
     <link rel="alternate" hreflang="fr" href="https://yoursite.com/fr/" />
     <link rel="alternate" hreflang="ar" href="https://yoursite.com/ar/" />
     <link rel="canonical" href="https://yoursite.com/fr/" />
     
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -94,7 +92,7 @@
                             <p>Clients Satisfaits</p>
                         </div>
                         <div class="stat">
-                            <h3>16</h3>
+                            <h3 id="totalCarsCount">16</h3>
                             <p>Voitures 2024</p>
                         </div>
                         <div class="stat">
@@ -134,7 +132,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">🚗</div>
                     <h3>Flotte 2024</h3>
-                    <p>Choisissez parmi 16 véhicules neufs 2024</p>
+                    <p>Choisissez parmi des véhicules neufs 2024</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📞</div>
@@ -245,29 +243,49 @@
 
     <script src="../script.js"></script>
     <script>
-        const carsData = [
-            {name:"Hyundai Tucson ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800",link:"../car-hyundai-tucson.html"},
-            {name:"Dacia Logan ou similaire",gear:"Manuel",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800",link:"../car-dacia-logan.html"},
-            {name:"Peugeot 208 ou similaire",gear:"Automatique/Manuel",engine:"Diesel/Hybride",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800",link:"../car-peugeot-208.html"},
-            {name:"Opel Corsa ou similaire",gear:"Manuel",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800",link:"../car-opel-corsa.html"},
-            {name:"Renault Express ou similaire",gear:"Manuel",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800",link:"../car-renault-express.html"},
-            {name:"Skoda Karoq ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800",link:"../car-skoda-karoq.html"},
-            {name:"Volkswagen Touareg ou similaire",gear:"Automatique",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-volkswagen-touareg.html"},
-            {name:"Cupra Formentor ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"../car-cupra-formentor.html"},
-            {name:"Renault Clio ou similaire",gear:"Manuel",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800",link:"../car-renault-clio.html"},
-            {name:"Hyundai Accent ou similaire",gear:"Automatique",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800",link:"../car-hyundai-accent.html"},
-            {name:"Mercedes S-Class ou similaire",gear:"Automatique",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"../car-mercedes-s-class.html"},
-            {name:"Mercedes CLA ou similaire",gear:"Automatique",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"../car-mercedes-cla.html"},
-            {name:"Mercedes C-Class ou similaire",gear:"Automatique",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"../car-mercedes-c-class.html"},
-            {name:"Range Rover Sport ou similaire",gear:"Automatique",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-sport.html"},
-            {name:"Range Rover Velar ou similaire",gear:"Automatique",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-velar.html"},
-            {name:"Range Rover Evoque ou similaire",gear:"Automatique",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"../car-range-rover-evoque.html"}
+        // DEFAULT CAR DATA (fallback)
+        const defaultCarsData = [
+            {name:"Hyundai Tucson ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800"},
+            {name:"Dacia Logan ou similaire",gear:"Manuel",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800"},
+            {name:"Peugeot 208 ou similaire",gear:"Automatique/Manuel",engine:"Diesel/Hybride",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800"},
+            {name:"Opel Corsa ou similaire",gear:"Manuel",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800"},
+            {name:"Renault Express ou similaire",gear:"Manuel",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800"},
+            {name:"Skoda Karoq ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800"},
+            {name:"Volkswagen Touareg ou similaire",gear:"Automatique",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"Cupra Formentor ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
+            {name:"Renault Clio ou similaire",gear:"Manuel",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800"},
+            {name:"Hyundai Accent ou similaire",gear:"Automatique",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800"},
+            {name:"Mercedes S-Class ou similaire",gear:"Automatique",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
+            {name:"Mercedes CLA ou similaire",gear:"Automatique",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
+            {name:"Mercedes C-Class ou similaire",gear:"Automatique",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
+            {name:"Range Rover Sport ou similaire",gear:"Automatique",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"Range Rover Velar ou similaire",gear:"Automatique",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"Range Rover Evoque ou similaire",gear:"Automatique",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"}
         ];
 
+        // GET CARS FROM ADMIN - SYNCED!
+        function getCarsData() {
+            const adminCars = localStorage.getItem('rafalcar_cars');
+            if (adminCars) {
+                const cars = JSON.parse(adminCars);
+                // Translate to French
+                return cars.map(car => ({
+                    ...car,
+                    name: car.name.replace(' or similar', ' ou similaire'),
+                    gear: car.gear.replace('Automatic', 'Automatique').replace('Manual', 'Manuel')
+                }));
+            }
+            return defaultCarsData;
+        }
+
         function loadCars(filter='all'){
-            const grid=document.getElementById('vehiclesGrid');
-            const filtered=filter==='all'?carsData:carsData.filter(c=>c.category===filter);
-            grid.innerHTML=filtered.map(car=>`
+            const carsData = getCarsData();
+            const grid = document.getElementById('vehiclesGrid');
+            const filtered = filter === 'all' ? carsData : carsData.filter(c => c.category === filter);
+            
+            document.getElementById('totalCarsCount').textContent = carsData.length;
+            
+            grid.innerHTML = filtered.map(car => `
                 <div class="vehicle-card">
                     <img src="${car.img}" alt="${car.name}">
                     <div class="vehicle-info">
@@ -278,7 +296,7 @@
                             <span class="per-day">/jour</span>
                         </div>
                         <p style="font-size:13px;color:#666;margin:10px 0">Dépôt: ${car.deposit}</p>
-                        <a href="${car.link}" onclick="saveSearchData()" class="btn-primary" style="width:100%;text-align:center;display:block;text-decoration:none">Réserver</a>
+                        <a href="${car.link || '../booking.html'}" onclick="saveSearchData()" class="btn-primary" style="width:100%;text-align:center;display:block;text-decoration:none">Réserver</a>
                     </div>
                 </div>
             `).join('');
