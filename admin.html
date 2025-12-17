@@ -53,15 +53,16 @@
             font-weight: 600;
             font-size: 14px;
         }
-        .form-group input {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 15px;
             border: 2px solid #e1e8ed;
             border-radius: 10px;
             font-size: 15px;
             transition: all 0.3s;
+            font-family: inherit;
         }
-        .form-group input:focus {
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
             outline: none;
             border-color: #667eea;
         }
@@ -216,6 +217,9 @@
         .table-header {
             padding: 25px 30px;
             border-bottom: 1px solid #e1e8ed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .table-header h3 {
             font-size: 20px;
@@ -309,10 +313,17 @@
         .btn-edit:hover {
             background: #5568d3;
         }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+        }
         
         .car-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
@@ -328,7 +339,7 @@
         }
         .car-image {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
         }
         .car-info {
@@ -338,6 +349,11 @@
             font-size: 18px;
             font-weight: 600;
             color: #333;
+            margin-bottom: 10px;
+        }
+        .car-details {
+            font-size: 14px;
+            color: #666;
             margin-bottom: 10px;
         }
         .car-price {
@@ -373,6 +389,8 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            overflow-y: auto;
+            padding: 20px;
         }
         .modal.active {
             display: flex;
@@ -381,8 +399,8 @@
             background: white;
             border-radius: 15px;
             padding: 40px;
-            max-width: 600px;
-            width: 90%;
+            max-width: 700px;
+            width: 100%;
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -397,6 +415,75 @@
             cursor: pointer;
             color: #999;
         }
+        .modal-close:hover {
+            color: #333;
+        }
+        
+        .file-upload {
+            border: 2px dashed #e1e8ed;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .file-upload:hover {
+            border-color: #667eea;
+            background: #f9f9ff;
+        }
+        .file-upload input {
+            display: none;
+        }
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .image-preview {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .booking-details {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+        }
+        .detail-value {
+            color: #666;
+        }
+        
+        .file-download {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 5px;
+            font-weight: 600;
+        }
+        .file-download:hover {
+            background: #5568d3;
+        }
         
         @media (max-width: 768px) {
             .admin-sidebar {
@@ -406,6 +493,9 @@
                 padding: 20px;
             }
             .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .car-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -533,7 +623,10 @@
 
                 <!-- CARS SECTION -->
                 <div class="content-section" id="cars">
-                    <h2 style="margin-bottom:30px;color:#333;font-size:28px;">Manage Cars</h2>
+                    <div class="table-header" style="margin-bottom:30px;">
+                        <h2 style="color:#333;font-size:28px;">Manage Cars</h2>
+                        <button class="action-btn btn-primary" onclick="addNewCar()">+ Add New Car</button>
+                    </div>
                     <div class="car-grid" id="carsGrid"></div>
                 </div>
 
@@ -545,11 +638,11 @@
                             <h3 style="margin-bottom:20px;">Account Settings</h3>
                             <div class="form-group">
                                 <label>Admin Email</label>
-                                <input type="email" value="rafal.carmed5@gmail.com" style="width:100%;max-width:400px;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+                                <input type="email" value="rafal.carmed5@gmail.com" style="max-width:400px;">
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="tel" value="+212 662 186 949" style="width:100%;max-width:400px;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+                                <input type="tel" value="+212 662 186 949" style="max-width:400px;">
                             </div>
                             <button class="action-btn btn-success" style="margin-top:20px;">Save Changes</button>
                         </div>
@@ -559,28 +652,100 @@
         </div>
     </div>
 
+    <!-- BOOKING DETAILS MODAL -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('bookingModal')">&times;</span>
+            <h3 class="modal-header">Booking Details</h3>
+            <div id="bookingDetailsContent"></div>
+        </div>
+    </div>
+
     <!-- EDIT CAR MODAL -->
     <div class="modal" id="editCarModal">
         <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <h3 class="modal-header">Edit Car</h3>
+            <span class="modal-close" onclick="closeModal('editCarModal')">&times;</span>
+            <h3 class="modal-header" id="carModalTitle">Edit Car</h3>
+            
             <div class="form-group">
                 <label>Car Name</label>
-                <input type="text" id="editCarName" style="width:100%;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+                <input type="text" id="editCarName" placeholder="e.g., Hyundai Tucson or similar">
             </div>
+            
+            <div class="form-group">
+                <label>Category</label>
+                <select id="editCarCategory">
+                    <option value="economy">Economy</option>
+                    <option value="suv">SUV</option>
+                    <option value="luxury">Luxury</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Transmission</label>
+                <input type="text" id="editCarGear" placeholder="e.g., Automatic">
+            </div>
+            
+            <div class="form-group">
+                <label>Engine Type</label>
+                <input type="text" id="editCarEngine" placeholder="e.g., Diesel">
+            </div>
+            
             <div class="form-group">
                 <label>Price (MAD/day)</label>
-                <input type="number" id="editCarPrice" style="width:100%;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+                <input type="number" id="editCarPrice" placeholder="500">
             </div>
+            
             <div class="form-group">
-                <label>Image URL</label>
-                <input type="text" id="editCarImage" style="width:100%;padding:12px;border:2px solid #e1e8ed;border-radius:8px;">
+                <label>Deposit (MAD)</label>
+                <input type="text" id="editCarDeposit" placeholder="5000 MAD">
             </div>
+            
+            <div class="form-group">
+                <label>Car Image</label>
+                <div class="file-upload" onclick="document.getElementById('carImageUpload').click()">
+                    <input type="file" id="carImageUpload" accept="image/*" onchange="previewCarImage(event)">
+                    <div class="upload-icon">📷</div>
+                    <p>Click to upload image</p>
+                    <p style="font-size:12px;color:#999;margin-top:5px;">or enter image URL below</p>
+                </div>
+                <input type="text" id="editCarImage" placeholder="https://example.com/car.jpg" style="margin-top:10px;">
+                <img id="carImagePreview" class="image-preview" style="display:none;">
+            </div>
+            
             <button class="action-btn btn-success" onclick="saveCarEdit()" style="width:100%;padding:14px;margin-top:10px;">Save Changes</button>
+            <button class="action-btn btn-danger" onclick="deleteCar()" id="deleteCarBtn" style="width:100%;padding:14px;margin-top:10px;display:none;">Delete Car</button>
         </div>
     </div>
 
     <script>
+        // ALL 16 CARS DATA
+        let carsData = [
+            {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800"},
+            {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800"},
+            {name:"Peugeot 208 or similar",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800"},
+            {name:"Opel Corsa or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800"},
+            {name:"Renault Express or similar",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800"},
+            {name:"Skoda Karoq or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800"},
+            {name:"Volkswagen Touareg or similar",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"Cupra Formentor or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
+            {name:"Renault Clio or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800"},
+            {name:"Hyundai Accent or similar",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800"},
+            {name:"Mercedes S-Class or similar",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
+            {name:"Mercedes CLA or similar",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
+            {name:"Mercedes C-Class or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
+            {name:"Range Rover Sport or similar",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"Range Rover Velar or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"Range Rover Evoque or similar",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"}
+        ];
+
+        // Load cars from localStorage or use default
+        if(localStorage.getItem('rafalcar_cars')) {
+            carsData = JSON.parse(localStorage.getItem('rafalcar_cars'));
+        } else {
+            localStorage.setItem('rafalcar_cars', JSON.stringify(carsData));
+        }
+
         // AUTHENTICATION
         const ADMIN_CREDENTIALS = {
             email: 'admin@rafalcar.com',
@@ -675,6 +840,7 @@
                                     <td>${b.carModel}</td>
                                     <td><span class="status-badge status-${b.status || 'pending'}">${(b.status || 'pending').toUpperCase()}</span></td>
                                     <td>
+                                        <button class="action-btn btn-info" onclick="viewBooking(${bookings.length - 1 - i})">View</button>
                                         <button class="action-btn btn-success" onclick="markAsPaid(${bookings.length - 1 - i})">Paid</button>
                                         <button class="action-btn btn-danger" onclick="markAsDenied(${bookings.length - 1 - i})">Deny</button>
                                     </td>
@@ -700,11 +866,9 @@
                             <tr>
                                 <th>Booking Date</th>
                                 <th>Customer</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Car</th>
-                                <th>Pickup Date</th>
-                                <th>Return Date</th>
+                                <th>Pickup</th>
+                                <th>Return</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -714,13 +878,12 @@
                                 <tr>
                                     <td>${b.bookingDate || new Date().toLocaleDateString()}</td>
                                     <td>${b.fullName}</td>
-                                    <td>${b.email}</td>
-                                    <td>${b.phone}</td>
                                     <td>${b.carModel}</td>
                                     <td>${b.pickupDate}</td>
                                     <td>${b.returnDate}</td>
                                     <td><span class="status-badge status-${b.status || 'pending'}">${(b.status || 'pending').toUpperCase()}</span></td>
                                     <td>
+                                        <button class="action-btn btn-info" onclick="viewBooking(${i})">View</button>
                                         ${b.status !== 'paid' ? `<button class="action-btn btn-success" onclick="markAsPaid(${i})">Paid</button>` : ''}
                                         ${b.status !== 'denied' ? `<button class="action-btn btn-danger" onclick="markAsDenied(${i})">Deny</button>` : ''}
                                     </td>
@@ -730,6 +893,75 @@
                     </table>
                 `;
             }
+        }
+
+        // VIEW BOOKING DETAILS
+        function viewBooking(index) {
+            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
+            const booking = bookings[index];
+            
+            const content = `
+                <div class="booking-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Booking Date:</span>
+                        <span class="detail-value">${booking.bookingDate || new Date().toLocaleDateString()}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Full Name:</span>
+                        <span class="detail-value">${booking.fullName}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value">${booking.email}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Phone:</span>
+                        <span class="detail-value">${booking.phone}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">WhatsApp:</span>
+                        <span class="detail-value">${booking.whatsapp || 'N/A'}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Car Model:</span>
+                        <span class="detail-value">${booking.carModel}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Pickup Date:</span>
+                        <span class="detail-value">${booking.pickupDate}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Return Date:</span>
+                        <span class="detail-value">${booking.returnDate}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Pickup Location:</span>
+                        <span class="detail-value">${booking.pickupLocation || 'N/A'}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Return Location:</span>
+                        <span class="detail-value">${booking.returnLocation || 'N/A'}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Status:</span>
+                        <span class="status-badge status-${booking.status || 'pending'}">${(booking.status || 'pending').toUpperCase()}</span>
+                    </div>
+                </div>
+                
+                <h4 style="margin-top:25px;margin-bottom:15px;">Uploaded Documents</h4>
+                <div style="margin-bottom:20px;">
+                    ${booking.idCard ? `<a href="${booking.idCard}" class="file-download" download>📄 Download ID Card</a>` : '<p style="color:#999;">No ID Card uploaded</p>'}
+                    ${booking.drivingLicense ? `<a href="${booking.drivingLicense}" class="file-download" download>🚗 Download Driving License</a>` : '<p style="color:#999;">No Driving License uploaded</p>'}
+                </div>
+                
+                <div style="margin-top:25px;display:flex;gap:10px;">
+                    <button class="action-btn btn-success" onclick="markAsPaid(${index}); closeModal('bookingModal');" style="flex:1;padding:14px;">Mark as Paid</button>
+                    <button class="action-btn btn-danger" onclick="markAsDenied(${index}); closeModal('bookingModal');" style="flex:1;padding:14px;">Mark as Denied</button>
+                </div>
+            `;
+            
+            document.getElementById('bookingDetailsContent').innerHTML = content;
+            document.getElementById('bookingModal').classList.add('active');
         }
 
         // LOAD CONTACTS
@@ -769,19 +1001,14 @@
 
         // LOAD CARS
         function loadCars() {
-            const cars = [
-                {name:"Hyundai Tucson or similar",price:500,img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400"},
-                {name:"Dacia Logan or similar",price:270,img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=400"},
-                {name:"Mercedes C-Class or similar",price:1500,img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400"},
-                {name:"Range Rover Sport or similar",price:3500,img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400"}
-            ];
-            
             const grid = document.getElementById('carsGrid');
-            grid.innerHTML = cars.map((car, i) => `
+            grid.innerHTML = carsData.map((car, i) => `
                 <div class="car-card">
                     <img src="${car.img}" alt="${car.name}" class="car-image">
                     <div class="car-info">
                         <div class="car-name">${car.name}</div>
+                        <div class="car-details">${car.gear} • ${car.engine}</div>
+                        <div class="car-details">Deposit: ${car.deposit}</div>
                         <div class="car-price">${car.price} MAD/day</div>
                         <button class="action-btn btn-edit" onclick="editCar(${i})" style="width:100%">Edit Car</button>
                     </div>
@@ -809,20 +1036,91 @@
         }
 
         // CAR MODAL
-        let currentCarIndex = 0;
+        let currentCarIndex = -1;
+        
+        function addNewCar() {
+            currentCarIndex = -1;
+            document.getElementById('carModalTitle').textContent = 'Add New Car';
+            document.getElementById('editCarName').value = '';
+            document.getElementById('editCarCategory').value = 'economy';
+            document.getElementById('editCarGear').value = '';
+            document.getElementById('editCarEngine').value = '';
+            document.getElementById('editCarPrice').value = '';
+            document.getElementById('editCarDeposit').value = '';
+            document.getElementById('editCarImage').value = '';
+            document.getElementById('carImagePreview').style.display = 'none';
+            document.getElementById('deleteCarBtn').style.display = 'none';
+            document.getElementById('editCarModal').classList.add('active');
+        }
+        
         function editCar(index) {
             currentCarIndex = index;
+            const car = carsData[index];
+            document.getElementById('carModalTitle').textContent = 'Edit Car';
+            document.getElementById('editCarName').value = car.name;
+            document.getElementById('editCarCategory').value = car.category;
+            document.getElementById('editCarGear').value = car.gear;
+            document.getElementById('editCarEngine').value = car.engine;
+            document.getElementById('editCarPrice').value = car.price;
+            document.getElementById('editCarDeposit').value = car.deposit;
+            document.getElementById('editCarImage').value = car.img;
+            document.getElementById('carImagePreview').src = car.img;
+            document.getElementById('carImagePreview').style.display = 'block';
+            document.getElementById('deleteCarBtn').style.display = 'block';
             document.getElementById('editCarModal').classList.add('active');
         }
 
-        function closeModal() {
-            document.getElementById('editCarModal').classList.remove('active');
+        function previewCarImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('carImagePreview').src = e.target.result;
+                    document.getElementById('carImagePreview').style.display = 'block';
+                    document.getElementById('editCarImage').value = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
         }
 
         function saveCarEdit() {
-            alert('✅ Car updated successfully!');
-            closeModal();
+            const carData = {
+                name: document.getElementById('editCarName').value,
+                category: document.getElementById('editCarCategory').value,
+                gear: document.getElementById('editCarGear').value,
+                engine: document.getElementById('editCarEngine').value,
+                price: parseInt(document.getElementById('editCarPrice').value),
+                deposit: document.getElementById('editCarDeposit').value,
+                img: document.getElementById('editCarImage').value
+            };
+            
+            if (currentCarIndex === -1) {
+                // Add new car
+                carsData.push(carData);
+                alert('✅ New car added successfully!');
+            } else {
+                // Update existing car
+                carsData[currentCarIndex] = carData;
+                alert('✅ Car updated successfully!');
+            }
+            
+            localStorage.setItem('rafalcar_cars', JSON.stringify(carsData));
+            closeModal('editCarModal');
             loadCars();
+        }
+        
+        function deleteCar() {
+            if (confirm('Are you sure you want to delete this car?')) {
+                carsData.splice(currentCarIndex, 1);
+                localStorage.setItem('rafalcar_cars', JSON.stringify(carsData));
+                alert('✅ Car deleted successfully!');
+                closeModal('editCarModal');
+                loadCars();
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
         }
     </script>
 </body>
