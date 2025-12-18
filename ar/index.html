@@ -222,7 +222,7 @@
                             <div class="contact-icon">✉️</div>
                             <div>
                                 <h4>البريد</h4>
-                                <p>rafal.carmed5@gmail.com</p>
+                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="483a292e2924662b293a252d2c7d082f25292124662b2725">[email&#160;protected]</a></p>
                             </div>
                         </div>
                     </div>
@@ -249,7 +249,7 @@
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../script.js"></script>
     <script>
         // DEFAULT CAR DATA (fallback)
         const defaultCarsData = [
@@ -350,13 +350,4 @@
 
         const today=new Date().toISOString().split('T')[0];
         document.getElementById('pickupDate').min=today;
-        document.getElementById('returnDate').min=today;
-
-        document.getElementById('menuToggle')?.addEventListener('click',function(){
-            document.getElementById('navMenu').classList.toggle('active');
-        });
-
-        loadCars();
-    </script>
-</body>
-</html>
+        document.getElementById('returnDate').
