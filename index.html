@@ -4,41 +4,333 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafal Car - Premium Car Rental in Morocco | 2024 Fleet</title>
-    <meta name="description" content="Rent premium 2024 cars across Morocco. Best prices, 24/7 service, unlimited mileage. 16 vehicles from economy to luxury. Book today!">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="description" content="Rent premium 2024 cars across Morocco. Best prices, 24/7 service, unlimited mileage. Book today!">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>    
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo img {
+            height: 50px;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #667eea;
+        }
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .lang-btn {
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        .lang-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .search-field {
+            text-align: left;
+        }
+        .search-field label {
+            display: block;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .search-field input,
+        .search-field select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        .btn-search {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            grid-column: span 2;
+        }
+        
+        /* Cars Section */
+        .cars-section {
+            padding: 80px 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .car-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .car-card:hover {
+            transform: translateY(-10px);
+        }
+        .car-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .car-info {
+            padding: 20px;
+        }
+        .car-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .car-details {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .car-price {
+            font-size: 28px;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .car-price span {
+            font-size: 14px;
+            color: #999;
+        }
+        .btn-book {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 60px 20px 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+        .footer-col h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .footer-col p,
+        .footer-col a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .footer-col a:hover {
+            color: white;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            font-size: 24px;
+            margin-top: 15px;
+        }
+        .social-links a {
+            color: white;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .search-box {
+                grid-template-columns: 1fr;
+            }
+            .btn-search {
+                grid-column: span 1;
+            }
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
-                    <h1>RAFAL CAR</h1>
-                    <span class="logo-tagline">Premium Rentals</span>
+                    <img src="Rafal_car_logo.png" alt="Rafal Car">
                 </div>
                 
-                <div class="nav-menu" id="navMenu">
-                    <a href="#home" class="nav-link active" data-i18n="nav_home">Home</a>
-                    <a href="#vehicles" class="nav-link" data-i18n="nav_vehicles">Vehicles</a>
-                    <a href="#how-it-works" class="nav-link" data-i18n="nav_how">How it Works</a>
-                    <a href="#why-choose-us" class="nav-link" data-i18n="nav_why">Why Choose Us</a>
-                    <a href="#testimonials" class="nav-link" data-i18n="nav_reviews">Reviews</a>
-                    <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#vehicles" class="nav-link">Vehicles</a>
+                    <a href="#how-it-works" class="nav-link">How it Works</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </div>
 
                 <div class="nav-actions">
-                    <button class="btn-secondary" id="langBtn">
-                        <span class="badge">En</span> 🌐
-                    </button>
-                    <button class="btn-primary" data-i18n="btn_book" onclick="window.location.href='#vehicles'">Get Started</button>
-                    <button class="mobile-menu-toggle" id="menuToggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                    <div class="language-switcher">
+                        <button class="lang-btn active">EN</button>
+                        <button onclick="window.location.href='fr/index.html'" class="lang-btn">FR</button>
+                        <button onclick="window.location.href='ar/index.html'" class="lang-btn">AR</button>
+                    </div>
+                    <button class="btn-primary" onclick="window.location.href='#vehicles'">Get Started</button>
                 </div>
             </div>
         </div>
@@ -47,423 +339,184 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <span class="hero-badge" data-i18n="hero_badge">🚗 Available 24/7 Across Morocco</span>
-                    <h1 class="hero-title"><span data-i18n="hero_title">Find Your Perfect</span><br><span class="gradient-text" data-i18n="hero_title_gradient">Rental Car</span></h1>
-                    <p class="hero-description" data-i18n="hero_description">Experience the freedom of the road with our premium 2024 fleet. From economy to luxury, we have the perfect car for every journey across Morocco.</p>
-                    
-                    <!-- Search Box -->
-                    <div class="search-box">
-                        <div class="search-field">
-                            <label data-i18n="search_pickup">📍 Pickup Location</label>
-                            <select>
-                                <option>Casablanca</option>
-                                <option>Marrakech</option>
-                                <option>Rabat</option>
-                                <option>Fes</option>
-                                <option>Tangier</option>
-                                <option>Agadir</option>
-                            </select>
-                        </div>
-                        <div class="search-field">
-                            <label data-i18n="search_pickup_date">📅 Pickup Date</label>
-                            <input type="date" id="pickupDate">
-                        </div>
-                        <div class="search-field">
-                            <label data-i18n="search_return_date">📅 Return Date</label>
-                            <input type="date" id="returnDate">
-                        </div>
-                        <button class="btn-search" data-i18n="search_button" onclick="window.location.href='#vehicles'">Search Cars</button>
-                    </div>
-
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <h3 data-i18n="stat1_number">200+</h3>
-                            <p data-i18n="stat1_label">Happy Clients</p>
-                        </div>
-                        <div class="stat">
-                            <h3 data-i18n="stat2_number">16</h3>
-                            <p data-i18n="stat2_label">2024 Cars</p>
-                        </div>
-                        <div class="stat">
-                            <h3 data-i18n="stat3_number">6000+</h3>
-                            <p data-i18n="stat3_label">Completed Trips</p>
-                        </div>
-                    </div>
+            <h1>Find Your Perfect Rental Car</h1>
+            <p>Experience the freedom of the road with our premium 2024 fleet</p>
+            
+            <div class="search-box">
+                <div class="search-field">
+                    <label>📍 Pickup Location</label>
+                    <select id="pickupLocation">
+                        <option>Casablanca</option>
+                        <option>Marrakech</option>
+                        <option>Rabat</option>
+                        <option>Fes</option>
+                        <option>Tangier</option>
+                        <option>Agadir</option>
+                    </select>
                 </div>
-                
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&q=80" alt="Luxury Car">
-                    <div class="hero-card floating">
-                        <div class="card-icon">⚡</div>
-                        <div>
-                            <h4>Instant Booking</h4>
-                            <p>Book in 2 minutes</p>
-                        </div>
-                    </div>
+                <div class="search-field">
+                    <label>📅 Pickup Date</label>
+                    <input type="date" id="pickupDate">
                 </div>
+                <div class="search-field">
+                    <label>📅 Return Date</label>
+                    <input type="date" id="returnDate">
+                </div>
+                <button class="btn-search" onclick="searchCars()">Search Cars</button>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="features">
+    <!-- Cars Section -->
+    <section class="cars-section" id="vehicles">
         <div class="container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3 data-i18n="feature1_title">100% Secure</h3>
-                    <p data-i18n="feature1_desc">Your data is protected with industry-standard encryption</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3 data-i18n="feature2_title">Best Price</h3>
-                    <p data-i18n="feature2_desc">Guaranteed lowest prices with no hidden fees</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚗</div>
-                    <h3 data-i18n="feature3_title">2024 Fleet</h3>
-                    <p data-i18n="feature3_desc">Choose from 16 brand new 2024 vehicles</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📞</div>
-                    <h3 data-i18n="feature4_title">24/7 Support</h3>
-                    <p data-i18n="feature4_desc">Our team is always here to help you</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Vehicles Section -->
-    <section class="vehicles" id="vehicles">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Our 2024 Fleet</span>
-                <h2 class="section-title">Popular <span class="gradient-text">Rental Cars</span></h2>
-                <p class="section-description">All vehicles are 2024 models - brand new and fully equipped</p>
-            </div>
-
-            <!-- Filter Tabs -->
-            <div class="filter-tabs">
-                <button class="tab-btn active" data-filter="all">All Cars</button>
-                <button class="tab-btn" data-filter="economy">Economy</button>
-                <button class="tab-btn" data-filter="suv">SUV</button>
-                <button class="tab-btn" data-filter="luxury">Luxury</button>
-            </div>
-
-            <div class="vehicles-grid" id="vehiclesGrid">
-                <!-- Cars will be loaded here by JavaScript -->
-            </div>
-
-            <div class="section-footer">
-                <a href="economy-cars.html" class="btn-secondary-large">View Economy Cars →</a>
-                <a href="luxury-cars.html" class="btn-secondary-large">View Luxury Cars →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Process</span>
-                <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
-                <p class="section-description">Rent a car in 3 simple steps</p>
-            </div>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <div class="step-icon">🔍</div>
-                    <h3>Choose Location</h3>
-                    <p>Select your pickup and drop-off locations from our network across Morocco</p>
-                </div>
-
-                <div class="step-arrow">→</div>
-
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <div class="step-icon">🚗</div>
-                    <h3>Pick Your Car</h3>
-                    <p>Browse our 2024 fleet and select the perfect vehicle for your journey</p>
-                </div>
-
-                <div class="step-arrow">→</div>
-
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <div class="step-icon">✅</div>
-                    <h3>Book & Drive</h3>
-                    <p>Complete your booking and hit the road. It's that simple!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="why-choose-us" id="why-choose-us">
-        <div class="container">
-            <div class="why-content">
-                <div class="why-image">
-                    <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80" alt="Happy Customer">
-                </div>
-                <div class="why-text">
-                    <span class="section-badge">Why Rafal Car</span>
-                    <h2 class="section-title">Why Choose <span class="gradient-text">Us</span></h2>
-                    <p class="section-description">We're committed to providing you with the best car rental experience in Morocco</p>
-                    
-                    <div class="benefits-list">
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div>
-                                <h4>All 2024 Models</h4>
-                                <p>Brand new vehicles with latest features and technology</p>
-                            </div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div>
-                                <h4>Unlimited Mileage</h4>
-                                <p>Drive as far as you want with no extra charges</p>
-                            </div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div>
-                                <h4>Full Insurance</h4>
-                                <p>Comprehensive coverage included with every rental</p>
-                            </div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div>
-                                <h4>Free Cancellation</h4>
-                                <p>Cancel up to 24 hours before pickup at no cost</p>
-                            </div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div>
-                                <h4>Airport Delivery</h4>
-                                <p>We deliver and pick up from major airports</p>
-                            </div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div>
-                                <h4>24/7 Roadside Assistance</h4>
-                                <p>Help is just a phone call away, anytime</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Reviews</span>
-                <h2 class="section-title">What Our <span class="gradient-text">Customers Say</span></h2>
-                <p class="section-description">Don't just take our word for it</p>
-            </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Excellent service! The 2024 Mercedes was in perfect condition and the pickup process was super smooth. Highly recommend Rafal Car for anyone visiting Morocco."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JD</div>
-                        <div>
-                            <h4>John Doe</h4>
-                            <p>Tourist from USA</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Great prices and fantastic customer service. I've rented from them multiple times for my business trips. Always brand new cars and professional service."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SA</div>
-                        <div>
-                            <h4>Sarah Ahmed</h4>
-                            <p>Business Traveler</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"The booking process was so easy and the staff was incredibly helpful. The 2024 Hyundai Tucson was clean, comfortable, and perfect for our family vacation."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MB</div>
-                        <div>
-                            <h4>Mohamed Bennis</h4>
-                            <p>Local Customer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Hit the Road?</h2>
-                <p>Book your perfect 2024 car today and experience the freedom of travel</p>
-                <div class="cta-buttons">
-                    <button class="btn-primary-large" onclick="window.location.href='#vehicles'">Book Now</button>
-                    <a href="#contact" class="btn-secondary-large">Contact Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Get in Touch</h2>
-                    <p>Have questions? We're here to help!</p>
-                    
-                    <div class="contact-items">
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>+212 662 186 949</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">✉️</div>
-                            <div>
-                                <h4>Email</h4>
-                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9be9fafdfaf7b5f8fae9f6feffaedbfcf6faf2f7b5f8f4f6">[email&#160;protected]</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div>
-                                <h4>Location</h4>
-                                <p>Casablanca, Morocco</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">⏰</div>
-                            <div>
-                                <h4>Working Hours</h4>
-                                <p>24/7 Available</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <input type="tel" name="phone" placeholder="Phone Number" required>
-                        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-                        <button type="submit" class="btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
+            <h2 class="section-title">Our 2024 Fleet</h2>
+            <div class="cars-grid" id="carsGrid"></div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3>RAFAL CAR</h3>
-                    <p>Your trusted partner for 2024 car rentals across Morocco. Experience premium service and competitive prices with our brand new fleet.</p>
+                    <p>Your trusted partner for car rentals across Morocco. Experience premium service with our brand new 2024 fleet.</p>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Quick Links</h4>
+                    <h3>Quick Links</h3>
                     <a href="#home">Home</a>
                     <a href="#vehicles">Vehicles</a>
-                    <a href="economy-cars.html">Economy Cars</a>
-                    <a href="luxury-cars.html">Luxury Cars</a>
+                    <a href="#contact">Contact</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="privacy.html">Privacy</a>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Services</h4>
-                    <a href="#">Car Rental</a>
-                    <a href="#">Airport Transfer</a>
-                    <a href="#">Long Term Rental</a>
-                    <a href="#">Chauffeur Service</a>
+                    <h3>Contact</h3>
+                    <p>📞 +212 662 186 949</p>
+                    <p>✉️ rafal.carmed5@gmail.com</p>
+                    <p>📍 Casablanca, Morocco</p>
                 </div>
                 
                 <div class="footer-col">
-                    <h4>Legal</h4>
-                    <a href="terms.html">Terms & Conditions</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="rental-agreement.html">Rental Agreement</a>
-                    <a href="#">FAQ</a>
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://web.facebook.com/Rafalcarrent" target="_blank" aria-label="Facebook">📘</a>
+                        <a href="https://www.instagram.com/rafalcarrent/" target="_blank" aria-label="Instagram">📷</a>
+                        <a href="https://wa.me/212662186949" target="_blank" aria-label="WhatsApp">💬</a>
+                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p>&copy; 2025 Rafal Car. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook">📘</a>
-                    <a href="#" aria-label="Instagram">📷</a>
-                    <a href="#" aria-label="Twitter">🐦</a>
-                    <a href="https://wa.me/212662186949" aria-label="WhatsApp">💬</a>
-                </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
-    <script>
-        // CONTACT FORM - WORKING CODE
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            
-            // Save to admin panel
-            const contactData = {
-                date: new Date().toLocaleString(),
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                message: formData.get('message')
-            };
-            
-            const contacts = JSON.parse(localStorage.getItem('rafalcar_contacts') || '[]');
-            contacts.push(contactData);
-            localStorage.setItem('rafalcar_contacts', JSON.stringify(contacts));
-            
-            // Send to email
-            formData.append('_subject', 'Contact Form - ' + formData.get('name'));
-            formData.append('_template', 'table');
-            
-            try {
-                await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com', {
-                    method: 'POST',
-                    body: formData
-                });
-                alert('✅ Message sent! We will reply soon.');
-                this.reset();
-            } catch (error) {
-                alert('✅ Message saved! We will contact you soon.');
-                this.reset();
-            }
-        });
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/212662186949" class="whatsapp-float" target="_blank" title="Contact us on WhatsApp">
+        💬
+    </a>
 
-        // Set minimum dates for search
+    <script>
+        // Default cars data (16 cars)
+        const defaultCarsData = [
+            {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800"},
+            {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800"},
+            {name:"Peugeot 208 or similar",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800"},
+            {name:"Opel Corsa or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800"},
+            {name:"Renault Express or similar",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800"},
+            {name:"Skoda Karoq or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800"},
+            {name:"Volkswagen Touareg or similar",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"Cupra Formentor or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
+            {name:"Renault Clio or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800"},
+            {name:"Hyundai Accent or similar",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800"},
+            {name:"Mercedes S-Class or similar",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
+            {name:"Mercedes CLA or similar",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
+            {name:"Mercedes C-Class or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
+            {name:"Range Rover Sport or similar",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"Range Rover Velar or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
+            {name:"Range Rover Evoque or similar",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"}
+        ];
+
+        // Get cars data (checks admin updates first, then uses default)
+        function getCarsData() {
+            try {
+                const adminCars = localStorage.getItem('rafalcar_cars');
+                if (adminCars) {
+                    return JSON.parse(adminCars);
+                }
+            } catch(e) {
+                console.log('Using default cars');
+            }
+            return defaultCarsData;
+        }
+
+        // Display cars
+        function displayCars() {
+            const carsData = getCarsData();
+            const grid = document.getElementById('carsGrid');
+            
+            grid.innerHTML = carsData.map(car => `
+                <div class="car-card">
+                    <img src="${car.img}" alt="${car.name}" class="car-image" onerror="this.src='https://via.placeholder.com/400x200'">
+                    <div class="car-info">
+                        <div class="car-name">${car.name}</div>
+                        <div class="car-details">
+                            ${car.gear} • ${car.engine} • 5 Seats<br>
+                            Deposit: ${car.deposit}
+                        </div>
+                        <div class="car-price">
+                            ${car.price} MAD<span>/day</span>
+                        </div>
+                        <button class="btn-book" onclick="bookCar('${car.name}', ${car.price})">Book Now</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Book car
+        function bookCar(name, price) {
+            const pickupDate = document.getElementById('pickupDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+            const pickupLocation = document.getElementById('pickupLocation').value;
+            
+            localStorage.setItem('rafalcar_selected_car', JSON.stringify({name, price}));
+            localStorage.setItem('rafalcar_search', JSON.stringify({
+                pickup: pickupDate,
+                returnDate: returnDate,
+                location: pickupLocation
+            }));
+            
+            window.location.href = 'booking.html';
+        }
+
+        // Search cars
+        function searchCars() {
+            const pickupDate = document.getElementById('pickupDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+            
+            if (!pickupDate || !returnDate) {
+                alert('Please select pickup and return dates');
+                return;
+            }
+            
+            document.getElementById('vehicles').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Set min dates
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('pickupDate').min = today;
         document.getElementById('returnDate').min = today;
+
+        // Load cars on page load
+        displayCars();
+        
+        // Reload cars every 2 seconds to check for admin updates
+        setInterval(displayCars, 2000);
+    </script>
+</body>
+</html>
