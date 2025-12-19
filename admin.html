@@ -201,6 +201,8 @@
         }
         .stat-icon.blue { background: #e3f2fd; }
         .stat-icon.green { background: #e8f5e9; }
+        .stat-icon.orange { background: #fff3e0; }
+        .stat-icon.purple { background: #f3e5f5; }
         .stat-number {
             font-size: 32px;
             font-weight: 700;
@@ -210,6 +212,68 @@
         .stat-label {
             color: #666;
             font-size: 14px;
+        }
+        
+        .data-table {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .table-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #e1e8ed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .table-header h3 {
+            font-size: 20px;
+            color: #333;
+        }
+        .table-content {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #f9f9f9;
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+        }
+        tr:hover {
+            background: #fafafa;
+        }
+        
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
         }
         
         .action-btn {
@@ -228,6 +292,10 @@
         }
         .btn-danger {
             background: #dc3545;
+            color: white;
+        }
+        .btn-info {
+            background: #17a2b8;
             color: white;
         }
         .btn-edit {
@@ -328,6 +396,18 @@
             color: #333;
         }
         
+        .booking-detail {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .booking-detail strong {
+            color: #333;
+            display: inline-block;
+            min-width: 120px;
+        }
+        
         .image-preview {
             width: 100%;
             max-height: 200px;
@@ -386,12 +466,28 @@
             line-height: 1.6;
         }
         
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        .empty-state-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
         @media (max-width: 768px) {
             .admin-sidebar {
                 display: none;
             }
             .admin-content {
                 padding: 20px;
+            }
+            table {
+                font-size: 13px;
+            }
+            th, td {
+                padding: 12px 10px;
             }
         }
     </style>
@@ -443,6 +539,10 @@
                     <span class="sidebar-icon">📊</span>
                     <span>Dashboard</span>
                 </div>
+                <div class="sidebar-item" onclick="showSection('bookings')">
+                    <span class="sidebar-icon">📅</span>
+                    <span>Bookings</span>
+                </div>
                 <div class="sidebar-item" onclick="showSection('cars')">
                     <span class="sidebar-icon">🚗</span>
                     <span>Manage Cars</span>
@@ -450,6 +550,7 @@
             </div>
 
             <div class="admin-content">
+                <!-- Dashboard -->
                 <div class="content-section active" id="dashboard">
                     <h2 style="margin-bottom:30px;">Dashboard</h2>
                     
@@ -460,13 +561,40 @@
                             <div class="stat-label">Total Cars</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon green">✅</div>
-                            <div class="stat-number">Online</div>
-                            <div class="stat-label">System Status</div>
+                            <div class="stat-icon green">📅</div>
+                            <div class="stat-number" id="totalBookings">0</div>
+                            <div class="stat-label">Total Bookings</div>
                         </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange">⏳</div>
+                            <div class="stat-number" id="pendingBookings">0</div>
+                            <div class="stat-label">Pending</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple">✅</div>
+                            <div class="stat-number" id="confirmedBookings">0</div>
+                            <div class="stat-label">Confirmed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-table">
+                        <div class="table-header">
+                            <h3>Recent Bookings</h3>
+                        </div>
+                        <div class="table-content" id="recentBookingsTable"></div>
                     </div>
                 </div>
 
+                <!-- Bookings -->
+                <div class="content-section" id="bookings">
+                    <h2 style="margin-bottom:30px;">All Bookings (<span id="bookingsCount">0</span>)</h2>
+                    
+                    <div class="data-table">
+                        <div class="table-content" id="allBookingsTable"></div>
+                    </div>
+                </div>
+
+                <!-- Cars -->
                 <div class="content-section" id="cars">
                     <div class="warning-box">
                         <h4>⚠️ IMPORTANT: How to Update Cars</h4>
@@ -498,6 +626,23 @@
         </div>
     </div>
 
+    <!-- View Booking Modal -->
+    <div class="modal" id="viewBookingModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('viewBookingModal')">&times;</span>
+            <h3 class="modal-header">Booking Details</h3>
+            
+            <div id="bookingDetailsContent"></div>
+            
+            <div style="margin-top:30px;display:flex;gap:10px;">
+                <button class="action-btn btn-success" onclick="updateBookingStatus('confirmed')" style="flex:1;">✅ Confirm</button>
+                <button class="action-btn btn-danger" onclick="updateBookingStatus('cancelled')" style="flex:1;">❌ Cancel</button>
+                <button class="action-btn btn-danger" onclick="deleteBooking()" style="flex:1;">🗑️ Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Car Modal -->
     <div class="modal" id="editCarModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('editCarModal')">&times;</span>
@@ -574,7 +719,9 @@
         ];
 
         let carsData = [];
+        let bookingsData = [];
         let currentCarIndex = -1;
+        let currentBookingIndex = -1;
         
         function initializeCars() {
             const stored = localStorage.getItem('rafalcar_cars');
@@ -592,6 +739,199 @@
 
         function saveCarsData() {
             localStorage.setItem('rafalcar_cars', JSON.stringify(carsData));
+        }
+
+        function loadBookings() {
+            const stored = localStorage.getItem('rafalcar_bookings');
+            if (stored) {
+                try {
+                    bookingsData = JSON.parse(stored);
+                } catch(e) {
+                    bookingsData = [];
+                }
+            } else {
+                bookingsData = [];
+            }
+            updateBookingStats();
+            displayBookings();
+        }
+
+        function saveBookings() {
+            localStorage.setItem('rafalcar_bookings', JSON.stringify(bookingsData));
+            updateBookingStats();
+            displayBookings();
+        }
+
+        function updateBookingStats() {
+            const total = bookingsData.length;
+            const pending = bookingsData.filter(b => b.status === 'pending').length;
+            const confirmed = bookingsData.filter(b => b.status === 'confirmed').length;
+            
+            document.getElementById('totalBookings').textContent = total;
+            document.getElementById('pendingBookings').textContent = pending;
+            document.getElementById('confirmedBookings').textContent = confirmed;
+            document.getElementById('bookingsCount').textContent = total;
+        }
+
+        function displayBookings() {
+            const recentTable = document.getElementById('recentBookingsTable');
+            const allTable = document.getElementById('allBookingsTable');
+            
+            if (bookingsData.length === 0) {
+                const emptyHtml = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📅</div>
+                        <h3>No bookings yet</h3>
+                        <p>Bookings will appear here when customers book cars</p>
+                    </div>
+                `;
+                recentTable.innerHTML = emptyHtml;
+                allTable.innerHTML = emptyHtml;
+                return;
+            }
+
+            const tableHtml = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Car</th>
+                            <th>Phone</th>
+                            <th>Pickup</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${bookingsData.map((booking, i) => `
+                            <tr>
+                                <td>${new Date(booking.bookingDate).toLocaleDateString()}</td>
+                                <td><strong>${booking.fullName}</strong></td>
+                                <td>${booking.carModel}</td>
+                                <td>${booking.phone}</td>
+                                <td>${booking.pickupDate}</td>
+                                <td><span class="status-badge status-${booking.status || 'pending'}">${(booking.status || 'pending').toUpperCase()}</span></td>
+                                <td>
+                                    <button class="action-btn btn-info" onclick="viewBooking(${i})">View</button>
+                                    <button class="action-btn btn-success" onclick="quickConfirm(${i})">✓</button>
+                                    <button class="action-btn btn-danger" onclick="quickDelete(${i})">✕</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            
+            allTable.innerHTML = tableHtml;
+            
+            // Show only recent 5 in dashboard
+            const recent = bookingsData.slice(0, 5);
+            if (recent.length > 0) {
+                recentTable.innerHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Car</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${recent.map(booking => `
+                                <tr>
+                                    <td><strong>${booking.fullName}</strong></td>
+                                    <td>${booking.carModel}</td>
+                                    <td>${booking.phone}</td>
+                                    <td><span class="status-badge status-${booking.status || 'pending'}">${(booking.status || 'pending').toUpperCase()}</span></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+        }
+
+        function viewBooking(index) {
+            currentBookingIndex = index;
+            const booking = bookingsData[index];
+            
+            document.getElementById('bookingDetailsContent').innerHTML = `
+                <div class="booking-detail">
+                    <strong>Booking ID:</strong> ${booking.id || 'N/A'}
+                </div>
+                <div class="booking-detail">
+                    <strong>Date:</strong> ${new Date(booking.bookingDate).toLocaleString()}
+                </div>
+                <div class="booking-detail">
+                    <strong>Customer:</strong> ${booking.fullName}
+                </div>
+                <div class="booking-detail">
+                    <strong>Email:</strong> ${booking.email}
+                </div>
+                <div class="booking-detail">
+                    <strong>Phone:</strong> ${booking.phone}
+                </div>
+                <div class="booking-detail">
+                    <strong>WhatsApp:</strong> ${booking.whatsapp || booking.phone}
+                </div>
+                <div class="booking-detail">
+                    <strong>Car Model:</strong> ${booking.carModel}
+                </div>
+                <div class="booking-detail">
+                    <strong>Price:</strong> ${booking.totalPrice} MAD (${booking.days} days × ${booking.pricePerDay} MAD)
+                </div>
+                <div class="booking-detail">
+                    <strong>Pickup Date:</strong> ${booking.pickupDate}
+                </div>
+                <div class="booking-detail">
+                    <strong>Return Date:</strong> ${booking.returnDate}
+                </div>
+                <div class="booking-detail">
+                    <strong>Pickup Location:</strong> ${booking.location}
+                </div>
+                <div class="booking-detail">
+                    <strong>Status:</strong> <span class="status-badge status-${booking.status || 'pending'}">${(booking.status || 'pending').toUpperCase()}</span>
+                </div>
+                ${booking.notes ? `<div class="booking-detail"><strong>Notes:</strong> ${booking.notes}</div>` : ''}
+            `;
+            
+            document.getElementById('viewBookingModal').classList.add('active');
+        }
+
+        function updateBookingStatus(status) {
+            if (currentBookingIndex === -1) return;
+            
+            bookingsData[currentBookingIndex].status = status;
+            saveBookings();
+            closeModal('viewBookingModal');
+            alert(`✅ Booking ${status}!`);
+        }
+
+        function deleteBooking() {
+            if (currentBookingIndex === -1) return;
+            
+            if (confirm('Delete this booking permanently?')) {
+                bookingsData.splice(currentBookingIndex, 1);
+                saveBookings();
+                closeModal('viewBookingModal');
+                alert('✅ Booking deleted!');
+            }
+        }
+
+        function quickConfirm(index) {
+            bookingsData[index].status = 'confirmed';
+            saveBookings();
+            alert('✅ Booking confirmed!');
+        }
+
+        function quickDelete(index) {
+            if (confirm('Delete this booking?')) {
+                bookingsData.splice(index, 1);
+                saveBookings();
+                alert('✅ Booking deleted!');
+            }
         }
 
         function downloadJSON() {
@@ -615,18 +955,15 @@
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
             
-            console.log('Attempting login...', email);
-            
             if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-                console.log('Login successful!');
                 sessionStorage.setItem('rafalcar_admin_logged_in', 'true');
                 sessionStorage.setItem('rafalcar_admin_email', email);
                 showDashboard();
                 initializeCars();
                 loadCars();
+                loadBookings();
                 return false;
             } else {
-                console.log('Login failed');
                 const errorMsg = document.getElementById('errorMsg');
                 errorMsg.style.display = 'block';
                 setTimeout(() => {
@@ -654,6 +991,7 @@
                 showDashboard();
                 initializeCars();
                 loadCars();
+                loadBookings();
             }
         });
 
@@ -664,6 +1002,7 @@
             event.target.closest('.sidebar-item').classList.add('active');
             
             if (section === 'cars') loadCars();
+            if (section === 'bookings') loadBookings();
         }
 
         function loadCars() {
