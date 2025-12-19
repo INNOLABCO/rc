@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Hyundai Tucson or similar",
+    "category": "suv",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 500,
+    "deposit": "10000 MAD",
+    "img": "images/hyundai-tucson.avif"
+  },
+  {
+    "name": "Dacia Logan or similar",
+    "category": "economy",
+    "gear": "Manual",
+    "engine": "Diesel",
+    "price": 270,
+    "deposit": "5000 MAD",
+    "img": "images/dacia-logan.jpg"
+  },
+  {
+    "name": "Peugeot 208 or similar",
+    "category": "economy",
+    "gear": "Automatic/Manual",
+    "engine": "Diesel/Hybrid",
+    "price": 300,
+    "deposit": "5000 MAD",
+    "img": "images/peugeot-208.jpg"
+  },
+  {
+    "name": "Opel Corsa or similar",
+    "category": "economy",
+    "gear": "Manual",
+    "engine": "Diesel",
+    "price": 300,
+    "deposit": "5000 MAD",
+    "img": "images/opel-corsa.jpg"
+  },
+  {
+    "name": "Renault Express or similar",
+    "category": "economy",
+    "gear": "Manual",
+    "engine": "Diesel",
+    "price": 340,
+    "deposit": "5000 MAD",
+    "img": "images/renault-express.jpg"
+  },
+  {
+    "name": "Skoda Karoq or similar",
+    "category": "suv",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 500,
+    "deposit": "5000 MAD",
+    "img": "images/skoda-karoq.jpg"
+  },
+  {
+    "name": "Volkswagen Touareg or similar",
+    "category": "suv",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 900,
+    "deposit": "5000 MAD",
+    "img": "images/volkswagen-touareg-elegance-front-three-quarter-static-1.avif"
+  },
+  {
+    "name": "Cupra Formentor or similar",
+    "category": "suv",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 500,
+    "deposit": "5000 MAD",
+    "img": "images/cupra-formentor.jpg"
+  },
+  {
+    "name": "Renault Clio or similar",
+    "category": "economy",
+    "gear": "Manual",
+    "engine": "Diesel",
+    "price": 300,
+    "deposit": "5000 MAD",
+    "img": "images/clio-5.png"
+  },
+  {
+    "name": "Hyundai Accent or similar",
+    "category": "economy",
+    "gear": "Automatic",
+    "engine": "Diesel/Benzin",
+    "price": 300,
+    "deposit": "5000 MAD",
+    "img": "images/2024_hyundai_accent_00.jpg"
+  },
+  {
+    "name": "Mercedes S-Class or similar",
+    "category": "luxury",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 4000,
+    "deposit": "20000-30000 MAD",
+    "img": "images/s cless.avif"
+  },
+  {
+    "name": "Mercedes CLA or similar",
+    "category": "luxury",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 1400,
+    "deposit": "20000-30000 MAD",
+    "img": "images/Mercedes-CLA-Coupe-2023-Neuve-Maroc-06.jpg"
+  },
+  {
+    "name": "Mercedes C-Class or similar",
+    "category": "luxury",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 1500,
+    "deposit": "20000-30000 MAD",
+    "img": "images/mercedes-c.png"
+  },
+  {
+    "name": "Range Rover Sport or similar",
+    "category": "luxury",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 3500,
+    "deposit": "20000-30000 MAD",
+    "img": "images/moteur.ma-land-rover-rangeroversport-246291_.jpg"
+  },
+  {
+    "name": "Range Rover Velar or similar",
+    "category": "luxury",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 1500,
+    "deposit": "20000-30000 MAD",
+    "img": "range-rover-velar.jpeg"
+  },
+  {
+    "name": "Range Rover Evoque or similar",
+    "category": "luxury",
+    "gear": "Automatic",
+    "engine": "Diesel",
+    "price": 1200,
+    "deposit": "20000-30000 MAD",
+    "img": "images/hq720.jpg"
+  }
+]
