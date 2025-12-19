@@ -9,15 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
 </head>    
 <body>
     <!-- Navigation -->
@@ -25,25 +16,24 @@
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
-                    <a href="index.html"><img src="Rafal_car_logo.png" alt="Rafal Car" style="height: 60px; width: auto;"></a>
+                    <h1>RAFAL CAR</h1>
+                    <span class="logo-tagline">Premium Rentals</span>
                 </div>
                 
                 <div class="nav-menu" id="navMenu">
-                    <a href="#home" class="nav-link active">Home</a>
-                    <a href="#vehicles" class="nav-link">Vehicles</a>
-                    <a href="#how-it-works" class="nav-link">How it Works</a>
-                    <a href="#why-choose-us" class="nav-link">Why Choose Us</a>
-                    <a href="#testimonials" class="nav-link">Reviews</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="#home" class="nav-link active" data-i18n="nav_home">Home</a>
+                    <a href="#vehicles" class="nav-link" data-i18n="nav_vehicles">Vehicles</a>
+                    <a href="#how-it-works" class="nav-link" data-i18n="nav_how">How it Works</a>
+                    <a href="#why-choose-us" class="nav-link" data-i18n="nav_why">Why Choose Us</a>
+                    <a href="#testimonials" class="nav-link" data-i18n="nav_reviews">Reviews</a>
+                    <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
                 </div>
 
                 <div class="nav-actions">
-                    <div class="language-switcher">
-                        <button class="lang-btn active">EN</button>
-                        <button onclick="window.location.href='fr/index.html'" class="lang-btn">FR</button>
-                        <button onclick="window.location.href='ar/index.html'" class="lang-btn">AR</button>
-                    </div>
-                    <button class="btn-primary" onclick="window.location.href='#vehicles'">Get Started</button>
+                    <button class="btn-secondary" id="langBtn">
+                        <span class="badge">En</span> 🌐
+                    </button>
+                    <button class="btn-primary" data-i18n="btn_book" onclick="window.location.href='#vehicles'">Get Started</button>
                     <button class="mobile-menu-toggle" id="menuToggle">
                         <span></span>
                         <span></span>
@@ -59,14 +49,15 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <span class="hero-badge">🚗 Available 24/7 Across Morocco</span>
-                    <h1 class="hero-title">Find Your Perfect<br><span class="gradient-text">Rental Car</span></h1>
-                    <p class="hero-description">Experience the freedom of the road with our premium 2024 fleet. From economy to luxury, we have the perfect car for every journey across Morocco.</p>
+                    <span class="hero-badge" data-i18n="hero_badge">🚗 Available 24/7 Across Morocco</span>
+                    <h1 class="hero-title"><span data-i18n="hero_title">Find Your Perfect</span><br><span class="gradient-text" data-i18n="hero_title_gradient">Rental Car</span></h1>
+                    <p class="hero-description" data-i18n="hero_description">Experience the freedom of the road with our premium 2024 fleet. From economy to luxury, we have the perfect car for every journey across Morocco.</p>
                     
+                    <!-- Search Box -->
                     <div class="search-box">
                         <div class="search-field">
-                            <label>📍 Pickup Location</label>
-                            <select id="pickupLocation">
+                            <label data-i18n="search_pickup">📍 Pickup Location</label>
+                            <select>
                                 <option>Casablanca</option>
                                 <option>Marrakech</option>
                                 <option>Rabat</option>
@@ -76,28 +67,28 @@
                             </select>
                         </div>
                         <div class="search-field">
-                            <label>📅 Pickup Date</label>
+                            <label data-i18n="search_pickup_date">📅 Pickup Date</label>
                             <input type="date" id="pickupDate">
                         </div>
                         <div class="search-field">
-                            <label>📅 Return Date</label>
+                            <label data-i18n="search_return_date">📅 Return Date</label>
                             <input type="date" id="returnDate">
                         </div>
-                        <button class="btn-search" onclick="searchCars()">Search Cars</button>
+                        <button class="btn-search" data-i18n="search_button" onclick="window.location.href='#vehicles'">Search Cars</button>
                     </div>
 
                     <div class="hero-stats">
                         <div class="stat">
-                            <h3>200+</h3>
-                            <p>Happy Clients</p>
+                            <h3 data-i18n="stat1_number">200+</h3>
+                            <p data-i18n="stat1_label">Happy Clients</p>
                         </div>
                         <div class="stat">
-                            <h3 id="totalCarsCount">16</h3>
-                            <p>2024 Cars</p>
+                            <h3 data-i18n="stat2_number">16</h3>
+                            <p data-i18n="stat2_label">2024 Cars</p>
                         </div>
                         <div class="stat">
-                            <h3>6000+</h3>
-                            <p>Completed Trips</p>
+                            <h3 data-i18n="stat3_number">6000+</h3>
+                            <p data-i18n="stat3_label">Completed Trips</p>
                         </div>
                     </div>
                 </div>
@@ -122,23 +113,23 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
-                    <h3>100% Secure</h3>
-                    <p>Your data is protected with industry-standard encryption</p>
+                    <h3 data-i18n="feature1_title">100% Secure</h3>
+                    <p data-i18n="feature1_desc">Your data is protected with industry-standard encryption</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💰</div>
-                    <h3>Best Price</h3>
-                    <p>Guaranteed lowest prices with no hidden fees</p>
+                    <h3 data-i18n="feature2_title">Best Price</h3>
+                    <p data-i18n="feature2_desc">Guaranteed lowest prices with no hidden fees</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🚗</div>
-                    <h3>2024 Fleet</h3>
-                    <p>Choose from brand new 2024 vehicles</p>
+                    <h3 data-i18n="feature3_title">2024 Fleet</h3>
+                    <p data-i18n="feature3_desc">Choose from 16 brand new 2024 vehicles</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📞</div>
-                    <h3>24/7 Support</h3>
-                    <p>Our team is always here to help you</p>
+                    <h3 data-i18n="feature4_title">24/7 Support</h3>
+                    <p data-i18n="feature4_desc">Our team is always here to help you</p>
                 </div>
             </div>
         </div>
@@ -153,6 +144,7 @@
                 <p class="section-description">All vehicles are 2024 models - brand new and fully equipped</p>
             </div>
 
+            <!-- Filter Tabs -->
             <div class="filter-tabs">
                 <button class="tab-btn active" data-filter="all">All Cars</button>
                 <button class="tab-btn" data-filter="economy">Economy</button>
@@ -160,7 +152,9 @@
                 <button class="tab-btn" data-filter="luxury">Luxury</button>
             </div>
 
-            <div class="vehicles-grid" id="vehiclesGrid"></div>
+            <div class="vehicles-grid" id="vehiclesGrid">
+                <!-- Cars will be loaded here by JavaScript -->
+            </div>
 
             <div class="section-footer">
                 <a href="economy-cars.html" class="btn-secondary-large">View Economy Cars →</a>
@@ -185,14 +179,18 @@
                     <h3>Choose Location</h3>
                     <p>Select your pickup and drop-off locations from our network across Morocco</p>
                 </div>
+
                 <div class="step-arrow">→</div>
+
                 <div class="step-card">
                     <div class="step-number">02</div>
                     <div class="step-icon">🚗</div>
                     <h3>Pick Your Car</h3>
                     <p>Browse our 2024 fleet and select the perfect vehicle for your journey</p>
                 </div>
+
                 <div class="step-arrow">→</div>
+
                 <div class="step-card">
                     <div class="step-number">03</div>
                     <div class="step-icon">✅</div>
@@ -285,6 +283,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="testimonial-card">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p class="testimonial-text">"Great prices and fantastic customer service. I've rented from them multiple times for my business trips. Always brand new cars and professional service."</p>
@@ -296,6 +295,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="testimonial-card">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p class="testimonial-text">"The booking process was so easy and the staff was incredibly helpful. The 2024 Hyundai Tucson was clean, comfortable, and perfect for our family vacation."</p>
@@ -345,7 +345,7 @@
                             <div class="contact-icon">✉️</div>
                             <div>
                                 <h4>Email</h4>
-                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="53213235323f7d3032213e36376613343e323a3f7d303c3e">[email&#160;protected]</a></p>
+                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9be9fafdfaf7b5f8fae9f6feffaedbfcf6faf2f7b5f8f4f6">[email&#160;protected]</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -424,129 +424,46 @@
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
     <script>
-        // DEFAULT CAR DATA (fallback if localStorage empty)
-        const defaultCarsData = [
-            {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800",link:"car-hyundai-tucson.html"},
-            {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800",link:"car-dacia-logan.html"},
-            {name:"Peugeot 208 or similar",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800",link:"car-peugeot-208.html"},
-            {name:"Opel Corsa or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800",link:"car-opel-corsa.html"},
-            {name:"Renault Express or similar",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800",link:"car-renault-express.html"},
-            {name:"Skoda Karoq or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800",link:"car-skoda-karoq.html"},
-            {name:"Volkswagen Touareg or similar",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"car-volkswagen-touareg.html"},
-            {name:"Cupra Formentor or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"car-cupra-formentor.html"},
-            {name:"Renault Clio or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800",link:"car-renault-clio.html"},
-            {name:"Hyundai Accent or similar",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800",link:"car-hyundai-accent.html"},
-            {name:"Mercedes S-Class or similar",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"car-mercedes-s-class.html"},
-            {name:"Mercedes CLA or similar",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800",link:"car-mercedes-cla.html"},
-            {name:"Mercedes C-Class or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800",link:"car-mercedes-c-class.html"},
-            {name:"Range Rover Sport or similar",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"car-range-rover-sport.html"},
-            {name:"Range Rover Velar or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"car-range-rover-velar.html"},
-            {name:"Range Rover Evoque or similar",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800",link:"car-range-rover-evoque.html"}
-        ];
-
-        // GET CARS DATA - READ FROM ADMIN OR USE DEFAULT
-        function getCarsData() {
-            const adminCars = localStorage.getItem('rafalcar_cars');
-            if (adminCars) {
-                return JSON.parse(adminCars);
-            }
-            return defaultCarsData;
-        }
-
-        // Load cars - READS FROM ADMIN CHANGES!
-        function loadCars(filter='all'){
-            const carsData = getCarsData(); // Get current cars from admin
-            const grid = document.getElementById('vehiclesGrid');
-            const filtered = filter === 'all' ? carsData : carsData.filter(c => c.category === filter);
-            
-            // Update total cars count
-            document.getElementById('totalCarsCount').textContent = carsData.length;
-            
-            grid.innerHTML = filtered.map(car => `
-                <div class="vehicle-card">
-                    <img src="${car.img}" alt="${car.name}">
-                    <div class="vehicle-info">
-                        <h3>${car.name}</h3>
-                        <p>${car.gear} • ${car.engine} • 5 Seats</p>
-                        <div class="vehicle-price">
-                            <span class="price">${car.price} MAD</span>
-                            <span class="per-day">/day</span>
-                        </div>
-                        <p style="font-size:13px;color:#666;margin:10px 0">Deposit: ${car.deposit}</p>
-                        <a href="${car.link || 'booking.html'}" onclick="saveSearchData()" class="btn-primary" style="width:100%;text-align:center;display:block;text-decoration:none">Book Now</a>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Save search data
-        function saveSearchData() {
-            const pickup = document.getElementById('pickupDate').value;
-            const returnDate = document.getElementById('returnDate').value;
-            const location = document.getElementById('pickupLocation').value;
-            
-            if(pickup && returnDate) {
-                localStorage.setItem('rafalcar_search', JSON.stringify({pickup, returnDate, location}));
-            }
-        }
-
-        // Search cars
-        function searchCars() {
-            saveSearchData();
-            window.location.href = '#vehicles';
-        }
-
-        // Filter tabs
-        document.querySelectorAll('.tab-btn').forEach(btn=>{
-            btn.addEventListener('click',function(){
-                document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-                this.classList.add('active');
-                loadCars(this.dataset.filter);
-            });
-        });
-
-        // Contact form
-        document.getElementById('contactForm').addEventListener('submit',async function(e){
+        // CONTACT FORM - WORKING CODE
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const formData=new FormData(this);
-            const contactData={
-                date:new Date().toLocaleString(),
-                name:formData.get('name'),
-                email:formData.get('email'),
-                phone:formData.get('phone'),
-                message:formData.get('message')
+            
+            const formData = new FormData(this);
+            
+            // Save to admin panel
+            const contactData = {
+                date: new Date().toLocaleString(),
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message')
             };
-            const contacts=JSON.parse(localStorage.getItem('rafalcar_contacts')||'[]');
+            
+            const contacts = JSON.parse(localStorage.getItem('rafalcar_contacts') || '[]');
             contacts.push(contactData);
-            localStorage.setItem('rafalcar_contacts',JSON.stringify(contacts));
-            formData.append('_subject','Contact Form - '+formData.get('name'));
-            formData.append('_template','table');
-            try{
-                await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com',{method:'POST',body:formData});
-                alert('✅ Message sent!');
+            localStorage.setItem('rafalcar_contacts', JSON.stringify(contacts));
+            
+            // Send to email
+            formData.append('_subject', 'Contact Form - ' + formData.get('name'));
+            formData.append('_template', 'table');
+            
+            try {
+                await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com', {
+                    method: 'POST',
+                    body: formData
+                });
+                alert('✅ Message sent! We will reply soon.');
                 this.reset();
-            }catch(error){
-                alert('✅ Message saved!');
+            } catch (error) {
+                alert('✅ Message saved! We will contact you soon.');
                 this.reset();
             }
         });
 
-        // Set minimum dates
-        const today=new Date().toISOString().split('T')[0];
-        document.getElementById('pickupDate').min=today;
-        document.getElementById('returnDate').min=today;
-
-        // Mobile menu
-        document.getElementById('menuToggle')?.addEventListener('click',function(){
-            document.getElementById('navMenu').classList.toggle('active');
-        });
-
-        // Initialize - LOAD CARS FROM ADMIN!
-        loadCars();
-    </script>
-    
-    <style>
-    .language-switcher{display:flex;gap:5px;margin-right:15px}
-    .lang-btn{padding:8px 15px;b
+        // Set minimum dates for search
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('pickupDate').min = today;
+        document.getElementById('returnDate').min = today;
