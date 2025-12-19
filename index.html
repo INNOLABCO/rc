@@ -807,20 +807,23 @@
         ];
 
         // Get cars data (checks admin updates first, then uses default)
-        function getCarsData() {
-            try {
-                const adminCars = localStorage.getItem('rafalcar_cars');
-                if (adminCars) {
-                    return JSON.parse(adminCars);
-                }
-            } catch(e) {
-                console.log('Using default cars');
-            }
-            return defaultCarsData;
+        async function getCarsData() {
+    try {
+        const response = await fetch('cars-data.json');
+        if (response.ok) {
+            return await response.json();
         }
+    } catch(e) {
+        console.log('Using default cars');
+    }
+    return defaultCarsData;
+}
 
         // Display cars
-        function displayCars() {
+        function async function init() {
+    await displayCars();
+}
+init(); {
             const carsData = getCarsData();
             const grid = document.getElementById('carsGrid');
             
