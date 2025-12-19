@@ -256,26 +256,6 @@
             background: #fafafa;
         }
         
-        .status-badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .status-pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-        .status-paid {
-            background: #d4edda;
-            color: #155724;
-        }
-        .status-denied {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        
         .action-btn {
             padding: 8px 16px;
             border: none;
@@ -305,6 +285,12 @@
         .btn-primary {
             background: #667eea;
             color: white;
+        }
+        .btn-download {
+            background: #28a745;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
         }
         
         .car-grid {
@@ -347,20 +333,6 @@
             color: #667eea;
             font-weight: 700;
             margin-bottom: 15px;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .empty-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-            opacity: 0.3;
-        }
-        .empty-text {
-            color: #666;
-            font-size: 18px;
         }
         
         .modal {
@@ -412,29 +384,6 @@
             margin-top: 15px;
         }
         
-        .booking-details {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #e1e8ed;
-        }
-        .detail-row:last-child {
-            border-bottom: none;
-        }
-        .detail-label {
-            font-weight: 600;
-            color: #333;
-        }
-        .detail-value {
-            color: #666;
-        }
-        
         .success-msg {
             background: #d4edda;
             color: #155724;
@@ -458,6 +407,31 @@
         .warning-box p {
             color: #856404;
             margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .warning-box ol {
+            color: #856404;
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        .download-section {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .download-section h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .download-section p {
+            color: #2e7d32;
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
         
         @media (max-width: 768px) {
@@ -517,21 +491,13 @@
                     <span class="sidebar-icon">📊</span>
                     <span>Dashboard</span>
                 </div>
-                <div class="sidebar-item" onclick="showSection('bookings')">
-                    <span class="sidebar-icon">📅</span>
-                    <span>Bookings</span>
-                </div>
-                <div class="sidebar-item" onclick="showSection('contacts')">
-                    <span class="sidebar-icon">💬</span>
-                    <span>Contacts</span>
-                </div>
                 <div class="sidebar-item" onclick="showSection('cars')">
                     <span class="sidebar-icon">🚗</span>
                     <span>Manage Cars</span>
                 </div>
-                <div class="sidebar-item" onclick="showSection('settings')">
-                    <span class="sidebar-icon">⚙️</span>
-                    <span>Settings</span>
+                <div class="sidebar-item" onclick="showSection('bookings')">
+                    <span class="sidebar-icon">📅</span>
+                    <span>Bookings</span>
                 </div>
             </div>
 
@@ -541,53 +507,36 @@
                     
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-icon blue">📅</div>
+                            <div class="stat-icon blue">🚗</div>
+                            <div class="stat-number" id="totalCars">16</div>
+                            <div class="stat-label">Total Cars</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">📅</div>
                             <div class="stat-number" id="totalBookings">0</div>
-                            <div class="stat-label">Total Bookings</div>
+                            <div class="stat-label">Bookings</div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-icon green">✅</div>
-                            <div class="stat-number" id="paidBookings">0</div>
-                            <div class="stat-label">Paid</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon orange">⏳</div>
-                            <div class="stat-number" id="pendingBookings">0</div>
-                            <div class="stat-label">Pending</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon purple">💬</div>
-                            <div class="stat-number" id="totalContacts">0</div>
-                            <div class="stat-label">Contacts</div>
-                        </div>
-                    </div>
-
-                    <div class="data-table">
-                        <div class="table-header">
-                            <h3>Recent Bookings</h3>
-                        </div>
-                        <div class="table-content" id="recentBookingsTable"></div>
-                    </div>
-                </div>
-
-                <div class="content-section" id="bookings">
-                    <h2 style="margin-bottom:30px;">All Bookings</h2>
-                    <div class="data-table">
-                        <div class="table-content" id="allBookingsTable"></div>
-                    </div>
-                </div>
-
-                <div class="content-section" id="contacts">
-                    <h2 style="margin-bottom:30px;">Contact Forms</h2>
-                    <div class="data-table">
-                        <div class="table-content" id="contactsTable"></div>
                     </div>
                 </div>
 
                 <div class="content-section" id="cars">
                     <div class="warning-box">
-                        <h4>⚠️ Image Upload</h4>
-                        <p>Use image URLs only (imgur.com, etc.). Don't upload from computer!</p>
+                        <h4>⚠️ IMPORTANT: How to Update Cars</h4>
+                        <p><strong>After editing cars, follow these steps:</strong></p>
+                        <ol>
+                            <li>Click "Download cars-data.json" button below</li>
+                            <li>Go to your GitHub repository</li>
+                            <li>Upload the cars-data.json file</li>
+                            <li>Your website will show the updated cars for everyone!</li>
+                        </ol>
+                        <p style="margin-top:15px;"><strong>Note:</strong> Use image URLs from your GitHub images folder:<br>
+                        <code>https://raw.githubusercontent.com/INNOLABCO/rc/main/images/your-image.jpg</code></p>
+                    </div>
+                    
+                    <div class="download-section">
+                        <h3>💾 Export Car Data</h3>
+                        <p>After editing cars, download this file and upload it to your GitHub repository</p>
+                        <button class="action-btn btn-download" onclick="downloadJSON()">📥 Download cars-data.json</button>
                     </div>
                     
                     <div class="success-msg" id="successMsg">✅ Saved!</div>
@@ -598,32 +547,13 @@
                     <div class="car-grid" id="carsGrid"></div>
                 </div>
 
-                <div class="content-section" id="settings">
-                    <h2 style="margin-bottom:30px;">Settings</h2>
+                <div class="content-section" id="bookings">
+                    <h2 style="margin-bottom:30px;">Bookings</h2>
                     <div class="data-table">
-                        <div style="padding:40px;">
-                            <h3>Account</h3>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" value="rafal.carmed5@gmail.com" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="tel" value="+212 662 186 949">
-                            </div>
-                            <button class="action-btn btn-success">Save</button>
-                        </div>
+                        <div class="table-content" id="bookingsTable"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="modal" id="bookingModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('bookingModal')">&times;</span>
-            <h3 class="modal-header">Booking Details</h3>
-            <div id="bookingDetailsContent"></div>
         </div>
     </div>
 
@@ -648,12 +578,12 @@
             
             <div class="form-group">
                 <label>Transmission</label>
-                <input type="text" id="editCarGear">
+                <input type="text" id="editCarGear" placeholder="e.g., Automatic">
             </div>
             
             <div class="form-group">
                 <label>Engine</label>
-                <input type="text" id="editCarEngine">
+                <input type="text" id="editCarEngine" placeholder="e.g., Diesel">
             </div>
             
             <div class="form-group">
@@ -663,12 +593,12 @@
             
             <div class="form-group">
                 <label>Deposit</label>
-                <input type="text" id="editCarDeposit">
+                <input type="text" id="editCarDeposit" placeholder="e.g., 5000 MAD">
             </div>
             
             <div class="form-group">
-                <label>Image URL</label>
-                <input type="text" id="editCarImage">
+                <label>Image URL (from GitHub images folder)</label>
+                <input type="text" id="editCarImage" placeholder="https://raw.githubusercontent.com/INNOLABCO/rc/main/images/car.jpg">
                 <img id="carImagePreview" class="image-preview" style="display:none;">
             </div>
             
@@ -679,22 +609,22 @@
 
     <script>
         const defaultCarsData = [
-            {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800"},
-            {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800"},
-            {name:"Peugeot 208 or similar",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800"},
-            {name:"Opel Corsa or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800"},
-            {name:"Renault Express or similar",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800"},
-            {name:"Skoda Karoq or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800"},
-            {name:"Volkswagen Touareg or similar",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
-            {name:"Cupra Formentor or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
-            {name:"Renault Clio or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800"},
-            {name:"Hyundai Accent or similar",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800"},
-            {name:"Mercedes S-Class or similar",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
-            {name:"Mercedes CLA or similar",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
-            {name:"Mercedes C-Class or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
-            {name:"Range Rover Sport or similar",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
-            {name:"Range Rover Velar or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
-            {name:"Range Rover Evoque or similar",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"}
+            {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-tucson.jpg"},
+            {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/dacia-logan.jpg"},
+            {name:"Peugeot 208 or similar",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/peugeot-208.jpg"},
+            {name:"Opel Corsa or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/opel-corsa.jpg"},
+            {name:"Renault Express or similar",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-express.jpg"},
+            {name:"Skoda Karoq or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/skoda-karoq.jpg"},
+            {name:"Volkswagen Touareg or similar",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/vw-touareg.jpg"},
+            {name:"Cupra Formentor or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/cupra-formentor.jpg"},
+            {name:"Renault Clio or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-clio.jpg"},
+            {name:"Hyundai Accent or similar",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-accent.jpg"},
+            {name:"Mercedes S-Class or similar",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-s-class.jpg"},
+            {name:"Mercedes CLA or similar",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-cla.jpg"},
+            {name:"Mercedes C-Class or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-c-class.jpg"},
+            {name:"Range Rover Sport or similar",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-sport.jpg"},
+            {name:"Range Rover Velar or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-velar.jpg"},
+            {name:"Range Rover Evoque or similar",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-evoque.jpg"}
         ];
 
         let carsData = [];
@@ -706,22 +636,30 @@
                     carsData = JSON.parse(stored);
                 } catch(e) {
                     carsData = [...defaultCarsData];
-                    saveCarsData();
                 }
             } else {
                 carsData = [...defaultCarsData];
-                saveCarsData();
             }
+            saveCarsData();
         }
 
         function saveCarsData() {
-            try {
-                localStorage.setItem('rafalcar_cars', JSON.stringify(carsData));
-                return true;
-            } catch(e) {
-                alert('Storage error! Use image URLs only.');
-                return false;
-            }
+            localStorage.setItem('rafalcar_cars', JSON.stringify(carsData));
+        }
+
+        function downloadJSON() {
+            const dataStr = JSON.stringify(carsData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'cars-data.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            alert('✅ Downloaded! Now upload this file to your GitHub repository.');
         }
 
         const ADMIN_EMAIL = 'rafal.carmed5@gmail.com';
@@ -734,12 +672,12 @@
             
             if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
                 localStorage.setItem('rafalcar_admin_logged_in', 'true');
-                localStorage.setItem('rafalcar_admin_email', email);
                 document.getElementById('loginPage').style.display = 'none';
                 document.getElementById('adminDashboard').style.display = 'block';
                 document.getElementById('adminUsername').textContent = email;
                 initializeCars();
-                loadDashboard();
+                loadCars();
+                loadBookings();
             } else {
                 document.getElementById('errorMsg').style.display = 'block';
                 setTimeout(() => {
@@ -750,18 +688,16 @@
 
         function logout() {
             localStorage.removeItem('rafalcar_admin_logged_in');
-            localStorage.removeItem('rafalcar_admin_email');
             location.reload();
         }
 
         window.addEventListener('load', function() {
             if (localStorage.getItem('rafalcar_admin_logged_in') === 'true') {
-                const email = localStorage.getItem('rafalcar_admin_email');
                 document.getElementById('loginPage').style.display = 'none';
                 document.getElementById('adminDashboard').style.display = 'block';
-                document.getElementById('adminUsername').textContent = email;
                 initializeCars();
-                loadDashboard();
+                loadCars();
+                loadBookings();
             }
         });
 
@@ -771,76 +707,37 @@
             document.getElementById(section).classList.add('active');
             event.target.closest('.sidebar-item').classList.add('active');
             
-            if (section === 'dashboard') loadDashboard();
-            if (section === 'bookings') loadAllBookings();
-            if (section === 'contacts') loadContacts();
             if (section === 'cars') loadCars();
-        }
-
-        function loadDashboard() {
-            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
-            const contacts = JSON.parse(localStorage.getItem('rafalcar_contacts') || '[]');
-            
-            const paid = bookings.filter(b => b.status === 'paid').length;
-            const pending = bookings.filter(b => !b.status || b.status === 'pending').length;
-            
-            document.getElementById('totalBookings').textContent = bookings.length;
-            document.getElementById('paidBookings').textContent = paid;
-            document.getElementById('pendingBookings').textContent = pending;
-            document.getElementById('totalContacts').textContent = contacts.length;
-            
-            const recent = bookings.slice(-5).reverse();
-            const table = document.getElementById('recentBookingsTable');
-            
-            if (recent.length === 0) {
-                table.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">No bookings yet</div></div>';
-            } else {
-                table.innerHTML = `<table><thead><tr><th>Date</th><th>Customer</th><th>Car</th><th>Status</th><th>Actions</th></tr></thead><tbody>${recent.map((b, i) => `<tr><td>${b.bookingDate || new Date().toLocaleDateString()}</td><td>${b.fullName}</td><td>${b.carModel}</td><td><span class="status-badge status-${b.status || 'pending'}">${(b.status || 'pending').toUpperCase()}</span></td><td><button class="action-btn btn-info" onclick="viewBooking(${bookings.length - 1 - i})">View</button><button class="action-btn btn-success" onclick="markAsPaid(${bookings.length - 1 - i})">Paid</button></td></tr>`).join('')}</tbody></table>`;
-            }
-        }
-
-        function loadAllBookings() {
-            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
-            const table = document.getElementById('allBookingsTable');
-            
-            if (bookings.length === 0) {
-                table.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">No bookings yet</div></div>';
-            } else {
-                table.innerHTML = `<table><thead><tr><th>Date</th><th>Customer</th><th>Car</th><th>Pickup</th><th>Status</th><th>Actions</th></tr></thead><tbody>${bookings.map((b, i) => `<tr><td>${b.bookingDate || new Date().toLocaleDateString()}</td><td>${b.fullName}</td><td>${b.carModel}</td><td>${b.pickupDate}</td><td><span class="status-badge status-${b.status || 'pending'}">${(b.status || 'pending').toUpperCase()}</span></td><td><button class="action-btn btn-info" onclick="viewBooking(${i})">View</button></td></tr>`).join('')}</tbody></table>`;
-            }
-        }
-
-        function viewBooking(index) {
-            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
-            const booking = bookings[index];
-            
-            document.getElementById('bookingDetailsContent').innerHTML = `<div class="booking-details">${Object.entries(booking).map(([key, val]) => `<div class="detail-row"><span class="detail-label">${key}:</span><span class="detail-value">${val}</span></div>`).join('')}</div><div style="margin-top:25px;"><button class="action-btn btn-success" onclick="markAsPaid(${index}); closeModal('bookingModal');" style="width:100%;padding:14px;">Mark as Paid</button></div>`;
-            document.getElementById('bookingModal').classList.add('active');
-        }
-
-        function loadContacts() {
-            const contacts = JSON.parse(localStorage.getItem('rafalcar_contacts') || '[]');
-            const table = document.getElementById('contactsTable');
-            
-            if (contacts.length === 0) {
-                table.innerHTML = '<div class="empty-state"><div class="empty-icon">💬</div><div class="empty-text">No contacts yet</div></div>';
-            } else {
-                table.innerHTML = `<table><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Phone</th><th>Message</th></tr></thead><tbody>${contacts.map(c => `<tr><td>${c.date}</td><td>${c.name}</td><td>${c.email}</td><td>${c.phone}</td><td>${c.message}</td></tr>`).join('')}</tbody></table>`;
-            }
+            if (section === 'bookings') loadBookings();
         }
 
         function loadCars() {
+            document.getElementById('totalCars').textContent = carsData.length;
             document.getElementById('totalCarsCount').textContent = carsData.length;
-            document.getElementById('carsGrid').innerHTML = carsData.map((car, i) => `<div class="car-card"><img src="${car.img}" class="car-image" onerror="this.src='https://via.placeholder.com/400x200'"><div class="car-info"><div class="car-name">${car.name}</div><div class="car-details">${car.gear} • ${car.engine}</div><div class="car-details">Deposit: ${car.deposit}</div><div class="car-price">${car.price} MAD/day</div><button class="action-btn btn-edit" onclick="editCar(${i})" style="width:100%">Edit</button></div></div>`).join('');
+            document.getElementById('carsGrid').innerHTML = carsData.map((car, i) => `
+                <div class="car-card">
+                    <img src="${car.img}" class="car-image" onerror="this.src='https://via.placeholder.com/400x200'">
+                    <div class="car-info">
+                        <div class="car-name">${car.name}</div>
+                        <div class="car-details">${car.gear} • ${car.engine}</div>
+                        <div class="car-details">Deposit: ${car.deposit}</div>
+                        <div class="car-price">${car.price} MAD/day</div>
+                        <button class="action-btn btn-edit" onclick="editCar(${i})" style="width:100%">Edit</button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function markAsPaid(index) {
+        function loadBookings() {
             const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
-            bookings[index].status = 'paid';
-            localStorage.setItem('rafalcar_bookings', JSON.stringify(bookings));
-            loadDashboard();
-            loadAllBookings();
-            alert('✅ Marked as paid');
+            document.getElementById('totalBookings').textContent = bookings.length;
+            const table = document.getElementById('bookingsTable');
+            
+            if (bookings.length === 0) {
+                table.innerHTML = '<div style="padding:40px;text-align:center;color:#999;">No bookings yet</div>';
+            } else {
+                table.innerHTML = `<table><thead><tr><th>Customer</th><th>Car</th><th>Pickup Date</th><th>Phone</th></tr></thead><tbody>${bookings.map(b => `<tr><td>${b.fullName}</td><td>${b.carModel}</td><td>${b.pickupDate}</td><td>${b.phone}</td></tr>`).join('')}</tbody></table>`;
+            }
         }
 
         let currentCarIndex = -1;
@@ -890,7 +787,7 @@
             };
             
             if (!carData.name || !carData.price) {
-                alert('Fill all fields');
+                alert('Fill all required fields');
                 return;
             }
             
@@ -900,26 +797,24 @@
                 carsData[currentCarIndex] = carData;
             }
             
-            if (saveCarsData()) {
-                document.getElementById('successMsg').style.display = 'block';
-                setTimeout(() => {
-                    document.getElementById('successMsg').style.display = 'none';
-                }, 3000);
-                
-                closeModal('editCarModal');
-                loadCars();
-                alert('✅ Saved!');
-            }
+            saveCarsData();
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('successMsg').style.display = 'none';
+            }, 3000);
+            
+            closeModal('editCarModal');
+            loadCars();
+            alert('✅ Saved! Remember to download cars-data.json and upload to GitHub!');
         }
         
         function deleteCar() {
             if (confirm('Delete this car?')) {
                 carsData.splice(currentCarIndex, 1);
-                if (saveCarsData()) {
-                    closeModal('editCarModal');
-                    loadCars();
-                    alert('✅ Deleted');
-                }
+                saveCarsData();
+                closeModal('editCarModal');
+                loadCars();
+                alert('✅ Deleted! Remember to download cars-data.json and upload to GitHub!');
             }
         }
 
