@@ -6,8 +6,9 @@
     <title>Rafal Car - Admin Dashboard</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f7fa; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f7fa; }
         
+        /* LOGIN PAGE */
         .login-container {
             min-height: 100vh;
             display: flex;
@@ -88,7 +89,24 @@
             font-size: 14px;
             display: none;
         }
+        .login-info {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .login-info h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        .login-info p {
+            color: #2e7d32;
+            font-size: 13px;
+            margin: 5px 0;
+        }
         
+        /* ADMIN DASHBOARD */
         .admin-container {
             display: none;
         }
@@ -516,7 +534,7 @@
             <form id="loginForm" onsubmit="login(event)">
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="admin@rafalcar.com" required>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
                 </div>
                 
                 <div class="form-group">
@@ -527,9 +545,12 @@
                 <button type="submit" class="login-btn">Sign In</button>
             </form>
             
-            <p style="text-align:center;margin-top:20px;color:#666;font-size:13px;">
-                Default: admin@rafalcar.com / RafalCar2024
-            </p>
+            <div class="login-info">
+                <h4>📧 Admin Login Credentials:</h4>
+                <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="daa8bbbcbbb6f4b9bba8b7bfbeef9abdb7bbb3b6f4b9b5b7">[email&#160;protected]</a></p>
+                <p><strong>Password:</strong> RafalCar2024</p>
+                <p style="margin-top:10px;font-size:12px;">💡 Use these credentials to access the admin panel</p>
+            </div>
         </div>
     </div>
 
@@ -647,13 +668,17 @@
                     <h2 style="margin-bottom:30px;color:#333;font-size:28px;">Settings</h2>
                     <div class="data-table">
                         <div style="padding:40px;">
-                            <h3 style="margin-bottom:20px;">Account Settings</h3>
+                            <h3 style="margin-bottom:20px;">Admin Account</h3>
                             <div class="form-group">
                                 <label>Admin Email</label>
-                                <input type="email" value="rafal.carmed5@gmail.com" style="max-width:400px;">
+                                <input type="email" value="rafal.carmed5@gmail.com" style="max-width:400px;" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
+                                <input type="tel" value="+212 662 186 949" style="max-width:400px;">
+                            </div>
+                            <div class="form-group">
+                                <label>WhatsApp</label>
                                 <input type="tel" value="+212 662 186 949" style="max-width:400px;">
                             </div>
                             <button class="action-btn btn-success" style="margin-top:20px;">Save Changes</button>
@@ -733,10 +758,7 @@
         </div>
     </div>
 
-    <script src="admin-script.js"></script>
-</body>
-</html>
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // DEFAULT CAR DATA (16 cars)
         const defaultCarsData = [
             {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800"},
@@ -777,7 +799,6 @@
 
         function saveCarsData() {
             try {
-                // Only store URLs, not base64
                 const cleanData = carsData.map(car => ({
                     ...car,
                     img: car.img.startsWith('data:') ? 'https://via.placeholder.com/400x200?text=Upload+to+Imgur' : car.img
@@ -787,13 +808,14 @@
                 return true;
             } catch(e) {
                 console.error('❌ Storage error:', e);
-                alert('⚠️ Storage Error!\n\nYou may have uploaded images from computer.\n\nPlease use IMAGE URLS instead:\n1. Upload to imgur.com\n2. Copy URL\n3. Paste in "Image URL" field');
+                alert('⚠️ Storage Error!\n\nPlease use IMAGE URLS instead of uploading from computer.');
                 return false;
             }
         }
 
+        // UPDATED CREDENTIALS
         const ADMIN_CREDENTIALS = {
-            email: 'admin@rafalcar.com',
+            email: 'rafal.carmed5@gmail.com',
             password: 'RafalCar2024'
         };
 
@@ -1007,20 +1029,12 @@
         }
         
         function clearAllData() {
-            if (confirm('⚠️ This will delete ALL data!\n\nBookings, contacts, and car edits will be lost.\n\nContinue?')) {
+            if (confirm('⚠️ This will delete ALL data!\n\nContinue?')) {
                 localStorage.clear();
-                alert('✅ All data cleared! Page will reload.');
+                alert('✅ All data cleared!');
                 location.reload();
             }
         }
         
-        // Preview image URL
         document.getElementById('editCarImage')?.addEventListener('input', function() {
-            if (this.value) {
-                document.getElementById('carImagePreview').src = this.value;
-                document.getElementById('carImagePreview').style.display = 'block';
-            }
-        });
-    </script>
-</body>
-</html>
+            i
