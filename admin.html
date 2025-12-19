@@ -201,8 +201,6 @@
         }
         .stat-icon.blue { background: #e3f2fd; }
         .stat-icon.green { background: #e8f5e9; }
-        .stat-icon.orange { background: #fff3e0; }
-        .stat-icon.purple { background: #f3e5f5; }
         .stat-number {
             font-size: 32px;
             font-weight: 700;
@@ -212,48 +210,6 @@
         .stat-label {
             color: #666;
             font-size: 14px;
-        }
-        
-        .data-table {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-        .table-header {
-            padding: 25px 30px;
-            border-bottom: 1px solid #e1e8ed;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .table-header h3 {
-            font-size: 20px;
-            color: #333;
-        }
-        .table-content {
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th {
-            background: #f9f9f9;
-            padding: 18px 30px;
-            text-align: left;
-            font-weight: 600;
-            color: #333;
-            font-size: 13px;
-            text-transform: uppercase;
-        }
-        td {
-            padding: 20px 30px;
-            border-bottom: 1px solid #f0f0f0;
-            color: #666;
-        }
-        tr:hover {
-            background: #fafafa;
         }
         
         .action-btn {
@@ -272,10 +228,6 @@
         }
         .btn-danger {
             background: #dc3545;
-            color: white;
-        }
-        .btn-info {
-            background: #17a2b8;
             color: white;
         }
         .btn-edit {
@@ -454,7 +406,7 @@
             
             <div class="error-msg" id="errorMsg">Invalid credentials!</div>
             
-            <form id="loginForm">
+            <form id="loginForm" onsubmit="return handleLogin(event)">
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" id="loginEmail" placeholder="Enter email" required>
@@ -470,7 +422,7 @@
             
             <div class="credentials-box">
                 <h4>📧 Login Credentials:</h4>
-                <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d5a7b4b3b4b9fbb6b4a7b8b0b1e095b2b8b4bcb9fbb6bab8">[email&#160;protected]</a></p>
+                <p><strong>Email:</strong> rafal.carmed5@gmail.com</p>
                 <p><strong>Password:</strong> RafalCar2024</p>
             </div>
         </div>
@@ -495,10 +447,6 @@
                     <span class="sidebar-icon">🚗</span>
                     <span>Manage Cars</span>
                 </div>
-                <div class="sidebar-item" onclick="showSection('bookings')">
-                    <span class="sidebar-icon">📅</span>
-                    <span>Bookings</span>
-                </div>
             </div>
 
             <div class="admin-content">
@@ -512,9 +460,9 @@
                             <div class="stat-label">Total Cars</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon green">📅</div>
-                            <div class="stat-number" id="totalBookings">0</div>
-                            <div class="stat-label">Bookings</div>
+                            <div class="stat-icon green">✅</div>
+                            <div class="stat-number">Online</div>
+                            <div class="stat-label">System Status</div>
                         </div>
                     </div>
                 </div>
@@ -540,18 +488,11 @@
                     </div>
                     
                     <div class="success-msg" id="successMsg">✅ Saved!</div>
-                    <div class="table-header">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;">
                         <h2>Cars (<span id="totalCarsCount">16</span>)</h2>
                         <button class="action-btn btn-primary" onclick="addNewCar()">+ Add Car</button>
                     </div>
                     <div class="car-grid" id="carsGrid"></div>
-                </div>
-
-                <div class="content-section" id="bookings">
-                    <h2 style="margin-bottom:30px;">Bookings</h2>
-                    <div class="data-table">
-                        <div class="table-content" id="bookingsTable"></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -598,7 +539,7 @@
             
             <div class="form-group">
                 <label>Image URL (from GitHub images folder)</label>
-                <input type="text" id="editCarImage" placeholder="https://raw.githubusercontent.com/INNOLABCO/rc/main/images/car.jpg">
+                <input type="text" id="editCarImage" placeholder="https://raw.githubusercontent.com/INNOLABCO/rc/main/images/car.jpg" oninput="previewImage()">
                 <img id="carImagePreview" class="image-preview" style="display:none;">
             </div>
             
@@ -607,7 +548,12 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Credentials
+        const ADMIN_EMAIL = 'rafal.carmed5@gmail.com';
+        const ADMIN_PASSWORD = 'RafalCar2024';
+
+        // Default cars
         const defaultCarsData = [
             {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-tucson.jpg"},
             {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/dacia-logan.jpg"},
@@ -628,6 +574,7 @@
         ];
 
         let carsData = [];
+        let currentCarIndex = -1;
         
         function initializeCars() {
             const stored = localStorage.getItem('rafalcar_cars');
@@ -662,42 +609,51 @@
             alert('✅ Downloaded! Now upload this file to your GitHub repository.');
         }
 
-        const ADMIN_EMAIL = 'rafal.carmed5@gmail.com';
-        const ADMIN_PASSWORD = 'RafalCar2024';
-
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        function handleLogin(event) {
+            event.preventDefault();
+            
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
             
+            console.log('Attempting login...', email);
+            
             if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-                localStorage.setItem('rafalcar_admin_logged_in', 'true');
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('adminDashboard').style.display = 'block';
-                document.getElementById('adminUsername').textContent = email;
+                console.log('Login successful!');
+                sessionStorage.setItem('rafalcar_admin_logged_in', 'true');
+                sessionStorage.setItem('rafalcar_admin_email', email);
+                showDashboard();
                 initializeCars();
                 loadCars();
-                loadBookings();
+                return false;
             } else {
-                document.getElementById('errorMsg').style.display = 'block';
+                console.log('Login failed');
+                const errorMsg = document.getElementById('errorMsg');
+                errorMsg.style.display = 'block';
                 setTimeout(() => {
-                    document.getElementById('errorMsg').style.display = 'none';
+                    errorMsg.style.display = 'none';
                 }, 3000);
+                return false;
             }
-        });
+        }
+
+        function showDashboard() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminDashboard').style.display = 'block';
+            const email = sessionStorage.getItem('rafalcar_admin_email') || 'Admin';
+            document.getElementById('adminUsername').textContent = email;
+        }
 
         function logout() {
-            localStorage.removeItem('rafalcar_admin_logged_in');
+            sessionStorage.removeItem('rafalcar_admin_logged_in');
+            sessionStorage.removeItem('rafalcar_admin_email');
             location.reload();
         }
 
         window.addEventListener('load', function() {
-            if (localStorage.getItem('rafalcar_admin_logged_in') === 'true') {
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('adminDashboard').style.display = 'block';
+            if (sessionStorage.getItem('rafalcar_admin_logged_in') === 'true') {
+                showDashboard();
                 initializeCars();
                 loadCars();
-                loadBookings();
             }
         });
 
@@ -708,7 +664,6 @@
             event.target.closest('.sidebar-item').classList.add('active');
             
             if (section === 'cars') loadCars();
-            if (section === 'bookings') loadBookings();
         }
 
         function loadCars() {
@@ -716,7 +671,7 @@
             document.getElementById('totalCarsCount').textContent = carsData.length;
             document.getElementById('carsGrid').innerHTML = carsData.map((car, i) => `
                 <div class="car-card">
-                    <img src="${car.img}" class="car-image" onerror="this.src='https://via.placeholder.com/400x200'">
+                    <img src="${car.img}" class="car-image" onerror="this.src='https://via.placeholder.com/400x200?text=Car'">
                     <div class="car-info">
                         <div class="car-name">${car.name}</div>
                         <div class="car-details">${car.gear} • ${car.engine}</div>
@@ -727,20 +682,6 @@
                 </div>
             `).join('');
         }
-
-        function loadBookings() {
-            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
-            document.getElementById('totalBookings').textContent = bookings.length;
-            const table = document.getElementById('bookingsTable');
-            
-            if (bookings.length === 0) {
-                table.innerHTML = '<div style="padding:40px;text-align:center;color:#999;">No bookings yet</div>';
-            } else {
-                table.innerHTML = `<table><thead><tr><th>Customer</th><th>Car</th><th>Pickup Date</th><th>Phone</th></tr></thead><tbody>${bookings.map(b => `<tr><td>${b.fullName}</td><td>${b.carModel}</td><td>${b.pickupDate}</td><td>${b.phone}</td></tr>`).join('')}</tbody></table>`;
-            }
-        }
-
-        let currentCarIndex = -1;
         
         function addNewCar() {
             currentCarIndex = -1;
@@ -787,7 +728,7 @@
             };
             
             if (!carData.name || !carData.price) {
-                alert('Fill all required fields');
+                alert('Please fill all required fields');
                 return;
             }
             
@@ -822,5 +763,13 @@
             document.getElementById(modalId).classList.remove('active');
         }
         
-        document.getElementById('editCarImage')?.addEventListener('input', function() {
-            i
+        function previewImage() {
+            const url = document.getElementById('editCarImage').value;
+            if (url) {
+                document.getElementById('carImagePreview').src = url;
+                document.getElementById('carImagePreview').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
