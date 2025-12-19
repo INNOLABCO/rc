@@ -791,7 +791,7 @@
                     <h3>Contact Us</h3>
                     <p>📞 Phone: +212 662 186 949</p>
                     <p>💬 WhatsApp: +212 662 186 949</p>
-                    <p>✉️ Email: rafal.carmed5@gmail.com</p>
+                    <p>✉️ Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b697a7d7a7735787a69767e7f2e5b7c767a727735787476">[email&#160;protected]</a></p>
                     <p>📍 Locations: Casablanca, Marrakech, Rabat, Fes, Tangier, Agadir</p>
                 </div>
                 
@@ -817,7 +817,7 @@
         💬
     </a>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Default cars data (fallback)
         const defaultCarsData = [
             {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-tucson.jpg"},
@@ -908,12 +908,4 @@
         }
 
         // Set min dates
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('pickupDate').min = today;
-        document.getElementById('returnDate').min = today;
-
-        // Load cars on page load
-        displayCars();
-    </script>
-</body>
-</html>
+        const today = new Date().t
