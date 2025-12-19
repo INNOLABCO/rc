@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafal Car - Premium Car Rental in Morocco | 2024 Fleet</title>
-    <meta name="description" content="Rent premium 2024 cars across Morocco. Best prices, 24/7 service, unlimited mileage. 16 vehicles from economy to luxury. Book today!">
+    <meta name="description" content="Rent premium 2024 cars across Morocco. Best prices, 24/7 service, unlimited mileage. Book today!">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
@@ -118,14 +118,28 @@
             50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8); }
         }
         
-        /* Hero Section */
+        /* Hero Section with Background Image */
         .hero {
             margin-top: 80px;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1920&q=80') center/cover;
             color: white;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
+            z-index: 1;
         }
         .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
@@ -133,16 +147,19 @@
         .hero-badge {
             display: inline-block;
             background: rgba(255,255,255,0.2);
-            padding: 10px 20px;
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
             border-radius: 50px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
         .hero h1 {
             font-size: 56px;
             margin-bottom: 20px;
             line-height: 1.2;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
         }
         .hero p {
             font-size: 20px;
@@ -151,6 +168,7 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.1);
         }
         .search-box {
             background: white;
@@ -158,7 +176,7 @@
             border-radius: 15px;
             max-width: 900px;
             margin: 0 auto 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
@@ -199,6 +217,11 @@
         }
         .stat {
             text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
         .stat h3 {
             font-size: 36px;
@@ -486,6 +509,13 @@
             color: rgba(255,255,255,0.6);
         }
         
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
@@ -502,7 +532,7 @@
             }
             .hero-stats {
                 flex-direction: column;
-                gap: 30px;
+                gap: 20px;
             }
             .whatsapp-float {
                 bottom: 20px;
@@ -703,7 +733,9 @@
         <div class="container">
             <h2 class="section-title">Our Premium Fleet</h2>
             <p class="section-subtitle">Choose from 16 brand new 2024 vehicles</p>
-            <div class="cars-grid" id="carsGrid"></div>
+            <div class="cars-grid" id="carsGrid">
+                <div class="loading">Loading cars...</div>
+            </div>
         </div>
     </section>
 
@@ -759,8 +791,8 @@
                     <h3>Contact Us</h3>
                     <p>📞 Phone: +212 662 186 949</p>
                     <p>💬 WhatsApp: +212 662 186 949</p>
-                    <p>✉️ Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="85f7e4e3e4e9abe6e4f7e8e0e1b0c5e2e8e4ece9abe6eae8">[email&#160;protected]</a></p>
-                    <p>📍 Locations: Nouacer,Casablanca, Marrakech, Rabat, Fes, Tangier, Agadir</p>
+                    <p>✉️ Email: rafal.carmed5@gmail.com</p>
+                    <p>📍 Locations: Casablanca, Marrakech, Rabat, Fes, Tangier, Agadir</p>
                 </div>
                 
                 <div class="footer-col">
@@ -785,51 +817,50 @@
         💬
     </a>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Default cars data (16 cars)
+    <script>
+        // Default cars data (fallback)
         const defaultCarsData = [
-            {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800"},
-            {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583267746897-0d436574f152?w=800"},
-            {name:"Peugeot 208 or similar",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800"},
-            {name:"Opel Corsa or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800"},
-            {name:"Renault Express or similar",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800"},
-            {name:"Skoda Karoq or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800"},
-            {name:"Volkswagen Touareg or similar",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
-            {name:"Cupra Formentor or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
-            {name:"Renault Clio or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800"},
-            {name:"Hyundai Accent or similar",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800"},
-            {name:"Mercedes S-Class or similar",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
-            {name:"Mercedes CLA or similar",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800"},
-            {name:"Mercedes C-Class or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"},
-            {name:"Range Rover Sport or similar",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
-            {name:"Range Rover Velar or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"},
-            {name:"Range Rover Evoque or similar",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800"}
+            {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-tucson.jpg"},
+            {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/dacia-logan.jpg"},
+            {name:"Peugeot 208 or similar",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/peugeot-208.jpg"},
+            {name:"Opel Corsa or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/opel-corsa.jpg"},
+            {name:"Renault Express or similar",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-express.jpg"},
+            {name:"Skoda Karoq or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/skoda-karoq.jpg"},
+            {name:"Volkswagen Touareg or similar",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/vw-touareg.jpg"},
+            {name:"Cupra Formentor or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/cupra-formentor.jpg"},
+            {name:"Renault Clio or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-clio.jpg"},
+            {name:"Hyundai Accent or similar",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-accent.jpg"},
+            {name:"Mercedes S-Class or similar",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-s-class.jpg"},
+            {name:"Mercedes CLA or similar",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-cla.jpg"},
+            {name:"Mercedes C-Class or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-c-class.jpg"},
+            {name:"Range Rover Sport or similar",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-sport.jpg"},
+            {name:"Range Rover Velar or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-velar.jpg"},
+            {name:"Range Rover Evoque or similar",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-evoque.jpg"}
         ];
 
-        // Get cars data (checks admin updates first, then uses default)
+        let carsData = [];
+
+        // Get cars data from JSON file
         async function getCarsData() {
-    try {
-        const response = await fetch('cars-data.json');
-        if (response.ok) {
-            return await response.json();
+            try {
+                const response = await fetch('cars-data.json');
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch(e) {
+                console.log('Using default cars:', e);
+            }
+            return defaultCarsData;
         }
-    } catch(e) {
-        console.log('Using default cars');
-    }
-    return defaultCarsData;
-}
 
         // Display cars
-        function async function init() {
-    await displayCars();
-}
-init(); {
-            const carsData = getCarsData();
+        async function displayCars() {
+            carsData = await getCarsData();
             const grid = document.getElementById('carsGrid');
             
             grid.innerHTML = carsData.map(car => `
                 <div class="car-card">
-                    <img src="${car.img}" alt="${car.name}" class="car-image" onerror="this.src='https://via.placeholder.com/400x200'">
+                    <img src="${car.img}" alt="${car.name}" class="car-image" onerror="this.src='https://via.placeholder.com/400x200?text=Car+Image'">
                     <div class="car-info">
                         <div class="car-name">${car.name}</div>
                         <div class="car-details">
@@ -879,4 +910,10 @@ init(); {
         // Set min dates
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('pickupDate').min = today;
-        document.getElementB
+        document.getElementById('returnDate').min = today;
+
+        // Load cars on page load
+        displayCars();
+    </script>
+</body>
+</html>
