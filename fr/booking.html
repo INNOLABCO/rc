@@ -1,54 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Your Car - Rafal Car</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <title>Réservez Votre Voiture - Rafal Car</title>
+    <meta name="google-site-verification" content="CtvATymjpR4wrImCYYTfsXWnt2UiUE3_acRMHJgIueg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* WhatsApp Floating Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            z-index: 999;
-            transition: all 0.3s;
-            text-decoration: none;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8f9fa;
+            padding: 20px;
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
-        }
-        
-        .booking-container {
-            max-width: 800px;
-            margin: 100px auto 50px;
-            padding: 40px;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
             background: white;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
-        .booking-header {
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
             text-align: center;
-            margin-bottom: 40px;
         }
-        .booking-header h1 {
+        .header h1 {
             font-size: 32px;
-            color: #333;
             margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px;
         }
         .car-summary {
             background: #f9f9f9;
@@ -74,6 +62,11 @@
             color: #666;
             margin-bottom: 5px;
         }
+        .price-highlight {
+            font-size: 28px;
+            color: #667eea;
+            font-weight: 700;
+        }
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -98,7 +91,6 @@
             border-radius: 8px;
             font-size: 15px;
             font-family: inherit;
-            transition: border-color 0.3s;
         }
         .form-group input:focus,
         .form-group select:focus,
@@ -106,34 +98,37 @@
             outline: none;
             border-color: #667eea;
         }
-        .file-upload-box {
-            border: 2px dashed #e1e8ed;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
+        .price-summary {
+            background: #f0f4ff;
+            border: 2px solid #667eea;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
         }
-        .file-upload-box:hover {
-            border-color: #667eea;
-            background: #f9f9ff;
+        .price-summary h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
         }
-        .file-upload-box input {
-            display: none;
-        }
-        .checkbox-group {
+        .price-row {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 20px 0;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #666;
         }
-        .checkbox-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #667eea;
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
         }
-        .submit-btn {
+        .btn-submit {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -143,8 +138,34 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
-        .submit-btn:hover {
+        .btn-submit:hover {
             transform: translateY(-2px);
+        }
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .success-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .success-message h3 {
+            margin-bottom: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            text-decoration: underline;
         }
         @media (max-width: 768px) {
             .form-row {
@@ -154,306 +175,253 @@
                 flex-direction: column;
                 text-align: center;
             }
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
+            .content {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <div class="logo">
-                    <a href="index.html"><img src="Rafal_car_logo.png" alt="Rafal Car" style="height: 60px;"></a>
-                </div>
-                
-                <div class="nav-menu">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="index.html#vehicles" class="nav-link">Vehicles</a>
-                    <a href="index.html#contact" class="nav-link">Contact</a>
-                </div>
+    <div class="container">
+        <div class="header">
+            <h1>🚗 Réservez Votre Voiture</h1>
+            <p>Remplissez le formulaire ci-dessous pour confirmer votre réservation</p>
+        </div>
 
-                <div class="nav-actions">
-                    <div class="language-switcher">
-                        <button class="lang-btn active">EN</button>
-                        <button onclick="window.location.href='fr/booking.html'" class="lang-btn">FR</button>
-                        <button onclick="window.location.href='ar/booking.html'" class="lang-btn">AR</button>
+        <div class="content">
+            <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+            <div class="success-message" id="successMessage">
+                <h3>✅ Réservation Confirmée!</h3>
+                <p>Merci! Nous avons reçu votre demande de réservation.</p>
+                <p>Nous vous contacterons bientôt via WhatsApp au <strong id="confirmWhatsapp"></strong></p>
+                <p>ID de réservation: <strong id="confirmBookingId"></strong></p>
+            </div>
+
+            <div id="bookingForm">
+                <div class="car-summary" id="carSummary">
+                    <img src="" alt="Voiture" id="carImage">
+                    <div class="car-summary-info">
+                        <h3 id="carName">Veuillez sélectionner une voiture</h3>
+                        <p id="carDetails"></p>
+                        <div class="price-highlight" id="carPrice"></div>
                     </div>
                 </div>
+
+                <form id="bookingFormElement" onsubmit="submitBooking(event)">
+                    <h3 style="margin-bottom: 20px;">Informations Personnelles</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nom Complet *</label>
+                            <input type="text" id="fullName" required placeholder="Entrez votre nom complet">
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="email" required placeholder="votre@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Numéro de Téléphone *</label>
+                            <input type="tel" id="phone" required placeholder="+212 xxx xxx xxx">
+                        </div>
+                        <div class="form-group">
+                            <label>Numéro WhatsApp *</label>
+                            <input type="tel" id="whatsapp" required placeholder="+212 xxx xxx xxx">
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 30px 0 20px;">Détails de Location</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date de Prise en Charge *</label>
+                            <input type="date" id="pickupDate" required onchange="calculatePrice()">
+                        </div>
+                        <div class="form-group">
+                            <label>Date de Retour *</label>
+                            <input type="date" id="returnDate" required onchange="calculatePrice()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lieu de Prise en Charge *</label>
+                        <select id="location" required>
+                            <option value="">Sélectionnez un lieu</option>
+                            <option value="Casablanca">Casablanca</option>
+                            <option value="Marrakech">Marrakech</option>
+                            <option value="Rabat">Rabat</option>
+                            <option value="Fes">Fès</option>
+                            <option value="Tangier">Tanger</option>
+                            <option value="Agadir">Agadir</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notes Supplémentaires</label>
+                        <textarea id="notes" rows="4" placeholder="Des demandes ou exigences particulières?"></textarea>
+                    </div>
+
+                    <div class="price-summary">
+                        <h3>💰 Résumé des Prix</h3>
+                        <div class="price-row">
+                            <span>Tarif Journalier:</span>
+                            <span id="dailyRate">0 MAD</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Nombre de Jours:</span>
+                            <span id="numDays">0</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Dépôt:</span>
+                            <span id="depositAmount">0 MAD</span>
+                        </div>
+                        <div class="price-total">
+                            <span>Prix Total:</span>
+                            <span id="totalPrice">0 MAD</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        📅 Confirmer la Réservation
+                    </button>
+                </form>
             </div>
         </div>
-    </nav>
-
-    <!-- Booking Form -->
-    <div class="booking-container">
-        <div class="booking-header">
-            <h1>Complete Your Booking</h1>
-            <p style="color:#666;">Fill in the details below to reserve your car</p>
-        </div>
-
-        <div class="car-summary" id="carSummary">
-            <img src="" alt="Car" id="carImage">
-            <div class="car-summary-info">
-                <h3 id="carName">Loading...</h3>
-                <p id="carDetails"></p>
-                <p style="color:#667eea;font-weight:600;font-size:20px;" id="carPrice"></p>
-            </div>
-        </div>
-
-        <form id="bookingForm">
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Full Name *</label>
-                    <input type="text" name="fullName" required>
-                </div>
-                <div class="form-group">
-                    <label>Email *</label>
-                    <input type="email" name="email" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Phone Number *</label>
-                    <input type="tel" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label>WhatsApp Number</label>
-                    <input type="tel" name="whatsapp">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Pickup Date *</label>
-                    <input type="date" name="pickupDate" id="pickupDate" required>
-                </div>
-                <div class="form-group">
-                    <label>Return Date *</label>
-                    <input type="date" name="returnDate" id="returnDate" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Pickup Location *</label>
-                    <select name="pickupLocation" required>
-                        <option value="">Select Location</option>
-                        <option>Casablanca</option>
-                        <option>Marrakech</option>
-                        <option>Rabat</option>
-                        <option>Fes</option>
-                        <option>Tangier</option>
-                        <option>Agadir</option>
-                        <option>Airport</option>
-                        <option>Hotel</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Return Location *</label>
-                    <select name="returnLocation" required>
-                        <option value="">Select Location</option>
-                        <option>Casablanca</option>
-                        <option>Marrakech</option>
-                        <option>Rabat</option>
-                        <option>Fes</option>
-                        <option>Tangier</option>
-                        <option>Agadir</option>
-                        <option>Airport</option>
-                        <option>Hotel</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>ID Card / Passport *</label>
-                <div class="file-upload-box" onclick="document.getElementById('idCard').click()">
-                    <input type="file" id="idCard" name="idCard" accept="image/*,.pdf" required>
-                    <p>📄 Click to upload ID Card or Passport</p>
-                    <p style="font-size:12px;color:#999;margin-top:5px;">JPG, PNG, or PDF (Max 5MB)</p>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Driving License *</label>
-                <div class="file-upload-box" onclick="document.getElementById('drivingLicense').click()">
-                    <input type="file" id="drivingLicense" name="drivingLicense" accept="image/*,.pdf" required>
-                    <p>🚗 Click to upload Driving License</p>
-                    <p style="font-size:12px;color:#999;margin-top:5px;">JPG, PNG, or PDF (Max 5MB)</p>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Additional Notes</label>
-                <textarea name="notes" rows="4" placeholder="Any special requests or comments..."></textarea>
-            </div>
-
-            <div class="checkbox-group">
-                <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a> and <a href="rental-agreement.html" target="_blank">Rental Agreement</a></label>
-            </div>
-
-            <button type="submit" class="submit-btn">Complete Booking</button>
-        </form>
     </div>
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/212662186949" class="whatsapp-float" target="_blank" title="Contact us on WhatsApp">
-        💬
-    </a>
+    <script>
+        let selectedCar = null;
+        let searchData = null;
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>RAFAL CAR</h3>
-                    <p>Your trusted partner for car rentals across Morocco. Experience premium service with our brand new 2024 fleet.</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="index.html#vehicles">Vehicles</a>
-                    <a href="index.html#contact">Contact</a>
-                    <a href="terms.html">Terms</a>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <p>📞 +212 662 186 949</p>
-                    <p>✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="02706364636e2c6163706f67663742656f636b6e2c616d6f">[email&#160;protected]</a></p>
-                    <p>📍 Casablanca, Morocco</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="https://web.facebook.com/Rafalcarrent" target="_blank" aria-label="Facebook">📘</a>
-                        <a href="https://www.instagram.com/rafalcarrent/" target="_blank" aria-label="Instagram">📷</a>
-                        <a href="https://wa.me/212662186949" target="_blank" aria-label="WhatsApp">💬</a>
-                    </div>
-                </div>
-            </div>
+        window.addEventListener('load', function() {
+            const carData = localStorage.getItem('rafalcar_selected_car');
+            const search = localStorage.getItem('rafalcar_search');
             
-            <div class="footer-bottom">
-                <p>&copy; 2025 Rafal Car. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+            if (carData) {
+                selectedCar = JSON.parse(carData);
+                displayCarSummary();
+            } else {
+                alert('Aucune voiture sélectionnée. Redirection vers l\'accueil...');
+                window.location.href = 'index.html';
+            }
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Load car data
-        const selectedCar = JSON.parse(localStorage.getItem('rafalcar_selected_car') || '{}');
-        const searchData = JSON.parse(localStorage.getItem('rafalcar_search') || '{}');
+            if (search) {
+                searchData = JSON.parse(search);
+                if (searchData.pickup) document.getElementById('pickupDate').value = searchData.pickup;
+                if (searchData.returnDate) document.getElementById('returnDate').value = searchData.returnDate;
+                if (searchData.location) document.getElementById('location').value = searchData.location;
+                calculatePrice();
+            }
 
-        if (selectedCar.name) {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('pickupDate').min = today;
+            document.getElementById('returnDate').min = today;
+        });
+
+        function displayCarSummary() {
+            if (!selectedCar) return;
+            
+            document.getElementById('carImage').src = selectedCar.img || '';
             document.getElementById('carName').textContent = selectedCar.name;
-            document.getElementById('carDetails').textContent = `${selectedCar.gear} • ${selectedCar.engine} • 5 Seats`;
-            document.getElementById('carPrice').textContent = `${selectedCar.price} MAD/day`;
-            document.getElementById('carImage').src = selectedCar.img;
+            document.getElementById('carPrice').textContent = selectedCar.price + ' MAD/jour';
+            document.getElementById('dailyRate').textContent = selectedCar.price + ' MAD';
+            
+            calculatePrice();
         }
 
-        // Pre-fill dates
-        if (searchData.pickup) {
-            document.getElementById('pickupDate').value = searchData.pickup;
-        }
-        if (searchData.returnDate) {
-            document.getElementById('returnDate').value = searchData.returnDate;
+        function calculatePrice() {
+            if (!selectedCar) return;
+
+            const pickup = document.getElementById('pickupDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+
+            if (pickup && returnDate) {
+                const pickupDate = new Date(pickup);
+                const returnDateObj = new Date(returnDate);
+                const diffTime = Math.abs(returnDateObj - pickupDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays > 0) {
+                    const total = selectedCar.price * diffDays;
+                    document.getElementById('numDays').textContent = diffDays;
+                    document.getElementById('totalPrice').textContent = total + ' MAD';
+                } else {
+                    document.getElementById('numDays').textContent = '0';
+                    document.getElementById('totalPrice').textContent = '0 MAD';
+                }
+            }
         }
 
-        // Set min dates
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('pickupDate').min = today;
-        document.getElementById('returnDate').min = today;
+        function submitBooking(event) {
+            event.preventDefault();
 
-        // Form submission
-        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            
-            // Convert files to base64
-            const idCard = await fileToBase64(formData.get('idCard'));
-            const drivingLicense = await fileToBase64(formData.get('drivingLicense'));
-            
+            const pickup = document.getElementById('pickupDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+            const pickupDateObj = new Date(pickup);
+            const returnDateObj = new Date(returnDate);
+            const diffTime = Math.abs(returnDateObj - pickupDateObj);
+            const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const totalPrice = selectedCar.price * days;
+
+            const bookingId = 'RC' + Date.now();
+            const whatsapp = document.getElementById('whatsapp').value;
+
             const bookingData = {
-                bookingDate: new Date().toLocaleString(),
-                fullName: formData.get('fullName'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                whatsapp: formData.get('whatsapp'),
-                pickupDate: formData.get('pickupDate'),
-                returnDate: formData.get('returnDate'),
-                pickupLocation: formData.get('pickupLocation'),
-                returnLocation: formData.get('returnLocation'),
+                id: bookingId,
+                bookingDate: new Date().toISOString(),
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                whatsapp: whatsapp,
                 carModel: selectedCar.name,
-                carPrice: selectedCar.price,
-                notes: formData.get('notes'),
-                idCard: idCard,
-                drivingLicense: drivingLicense,
+                pricePerDay: selectedCar.price,
+                pickupDate: pickup,
+                returnDate: returnDate,
+                days: days,
+                totalPrice: totalPrice,
+                location: document.getElementById('location').value,
+                notes: document.getElementById('notes').value,
                 status: 'pending'
             };
-            
-            // Save to localStorage
-            const bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
-            bookings.push(bookingData);
+
+            let bookings = JSON.parse(localStorage.getItem('rafalcar_bookings') || '[]');
+            bookings.unshift(bookingData);
             localStorage.setItem('rafalcar_bookings', JSON.stringify(bookings));
-            
-            // Send email
-            formData.append('_subject', 'New Booking - ' + selectedCar.name);
-            formData.append('_template', 'table');
-            formData.append('Car', selectedCar.name);
-            formData.append('Price', selectedCar.price + ' MAD/day');
-            
-            try {
-                await fetch('https://formsubmit.co/ajax/rafal.carmed5@gmail.com', {
-                    method: 'POST',
-                    body: formData
-                });
-            } catch(error) {
-                console.log('Email failed, but booking saved');
-            }
-            
-            // Redirect to thank you page
-            window.location.href = 'thank-you.html';
-        });
 
-        function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                if (!file || !file.name) {
-                    resolve('');
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
-            });
+            document.getElementById('confirmWhatsapp').textContent = whatsapp;
+            document.getElementById('confirmBookingId').textContent = bookingId;
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('bookingForm').style.display = 'none';
+
+            const message = `🚗 *Nouvelle Demande de Réservation*
+            
+*ID Réservation:* ${bookingId}
+*Nom:* ${bookingData.fullName}
+*Téléphone:* ${bookingData.phone}
+*Email:* ${bookingData.email}
+
+*Voiture:* ${bookingData.carModel}
+*Prise en charge:* ${bookingData.pickupDate}
+*Retour:* ${bookingData.returnDate}
+*Lieu:* ${bookingData.location}
+*Jours:* ${days}
+*Prix Total:* ${totalPrice} MAD
+
+${bookingData.notes ? '*Notes:* ' + bookingData.notes : ''}`;
+
+            const whatsappUrl = `https://wa.me/212662186949?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+
+            localStorage.removeItem('rafalcar_selected_car');
+            localStorage.removeItem('rafalcar_search');
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 5000);
         }
-
-        // Update file upload labels
-        document.getElementById('idCard').addEventListener('change', function() {
-            if (this.files[0]) {
-                this.parentElement.querySelector('p').textContent = '✅ ' + this.files[0].name;
-            }
-        });
-        
-        document.getElementById('drivingLicense').addEventListener('change', function() {
-            if (this.files[0]) {
-                this.parentElement.querySelector('p').textContent = '✅ ' + this.files[0].name;
-            }
-        });
     </script>
-    
-    <style>
-    .language-switcher{display:flex;gap:5px;margin-right:15px}
-    .lang-btn{padding:8px 15px;background:#f0f0f0;border:none;border-radius:6px;cursor:pointer;font-weight:600;transition:all 0.3s}
-    .lang-btn:hover{background:#667eea;color:white}
-    .lang-
+</body>
+</html>
