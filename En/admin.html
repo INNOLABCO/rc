@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafal Car - Admin Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f7fa; }
+        
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .login-box {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 450px;
+            width: 100%;
+        }
+        .login-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-logo h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .login-logo p {
+            color: #666;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+        .error-msg {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        .credentials-box {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .credentials-box h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        .credentials-box p {
+            color: #2e7d32;
+            font-size: 13px;
+            margin: 5px 0;
+        }
+        
+        .admin-container {
+            display: none;
+        }
+        .admin-header {
+            background: white;
+            border-bottom: 1px solid #e1e8ed;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .admin-user span {
+            font-weight: 600;
+            color: #333;
+        }
+        .logout-btn {
+            padding: 10px 20px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .admin-layout {
+            display: flex;
+            min-height: calc(100vh - 91px);
+        }
+        .admin-sidebar {
+            width: 260px;
+            background: white;
+            border-right: 1px solid #e1e8ed;
+            padding: 30px 0;
+        }
+        .sidebar-item {
+            padding: 15px 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #666;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        .sidebar-item:hover {
+            background: #f9f9f9;
+            color: #667eea;
+        }
+        .sidebar-item.active {
+            background: #f0f4ff;
+            color: #667eea;
+            border-left-color: #667eea;
+        }
+        .sidebar-icon {
+            font-size: 20px;
+        }
+        
+        .admin-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .stat-icon.blue { background: #e3f2fd; }
+        .stat-icon.green { background: #e8f5e9; }
+        .stat-icon.orange { background: #fff3e0; }
+        .stat-icon.purple { background: #f3e5f5; }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .data-table {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .table-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #e1e8ed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .table-header h3 {
+            font-size: 20px;
+            color: #333;
+        }
+        .table-content {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #f9f9f9;
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+        }
+        tr:hover {
+            background: #fafafa;
+        }
+        
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            margin: 0 4px;
+            transition: all 0.2s;
+        }
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+        .btn-edit {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-download {
+            background: #28a745;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+        
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .car-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+        .car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .car-info {
+            padding: 20px;
+        }
+        .car-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .car-details {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .car-price {
+            font-size: 24px;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        .modal-close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+        }
+        .modal-close:hover {
+            color: #333;
+        }
+        
+        .booking-detail {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .booking-detail strong {
+            color: #333;
+            display: inline-block;
+            min-width: 120px;
+        }
+        
+        .image-preview {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .success-msg {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .warning-box p {
+            color: #856404;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .warning-box ol {
+            color: #856404;
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        .download-section {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .download-section h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .download-section p {
+            color: #2e7d32;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        .empty-state-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                display: none;
+            }
+            .admin-content {
+                padding: 20px;
+            }
+            table {
+                font-size: 13px;
+            }
+            th, td {
+                padding: 12px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="login-logo">
+                <h2>🚗 Rafal Car</h2>
+                <p>Admin Dashboard</p>
+            </div>
+            
+            <div class="error-msg" id="errorMsg">Invalid credentials!</div>
+            
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+            
+            <div class="credentials-box">
+                <h4>📧 Login Credentials:</h4>
+                <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c4b6a5a2a5a8eaa7a5b6a9a1a0f184a3a9a5ada8eaa7aba9">[email&#160;protected]</a></p>
+                <p><strong>Password:</strong> RafalCar2024</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-container" id="adminDashboard">
+        <div class="admin-header">
+            <h2>Rafal Car Admin</h2>
+            <div class="admin-user">
+                <span id="adminUsername">Admin</span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="admin-layout">
+            <div class="admin-sidebar">
+                <div class="sidebar-item active" onclick="showSection('dashboard')">
+                    <span class="sidebar-icon">📊</span>
+                    <span>Dashboard</span>
+                </div>
+                <div class="sidebar-item" onclick="showSection('bookings')">
+                    <span class="sidebar-icon">📅</span>
+                    <span>Bookings</span>
+                </div>
+                <div class="sidebar-item" onclick="showSection('cars')">
+                    <span class="sidebar-icon">🚗</span>
+                    <span>Manage Cars</span>
+                </div>
+            </div>
+
+            <div class="admin-content">
+                <!-- Dashboard -->
+                <div class="content-section active" id="dashboard">
+                    <h2 style="margin-bottom:30px;">Dashboard</h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon blue">🚗</div>
+                            <div class="stat-number" id="totalCars">16</div>
+                            <div class="stat-label">Total Cars</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">📅</div>
+                            <div class="stat-number" id="totalBookings">0</div>
+                            <div class="stat-label">Total Bookings</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange">⏳</div>
+                            <div class="stat-number" id="pendingBookings">0</div>
+                            <div class="stat-label">Pending</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple">✅</div>
+                            <div class="stat-number" id="confirmedBookings">0</div>
+                            <div class="stat-label">Confirmed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-table">
+                        <div class="table-header">
+                            <h3>Recent Bookings</h3>
+                        </div>
+                        <div class="table-content" id="recentBookingsTable"></div>
+                    </div>
+                </div>
+
+                <!-- Bookings -->
+                <div class="content-section" id="bookings">
+                    <h2 style="margin-bottom:30px;">All Bookings (<span id="bookingsCount">0</span>)</h2>
+                    
+                    <div class="data-table">
+                        <div class="table-content" id="allBookingsTable"></div>
+                    </div>
+                </div>
+
+                <!-- Cars -->
+                <div class="content-section" id="cars">
+                    <div class="warning-box">
+                        <h4>⚠️ IMPORTANT: How to Update Cars</h4>
+                        <p><strong>After editing cars, follow these steps:</strong></p>
+                        <ol>
+                            <li>Click "Download cars-data.json" button below</li>
+                            <li>Go to your GitHub repository</li>
+                            <li>Upload the cars-data.json file</li>
+                            <li>Your website will show the updated cars for everyone!</li>
+                        </ol>
+                        <p style="margin-top:15px;"><strong>Note:</strong> Use image URLs from your GitHub images folder:<br>
+                        <code>https://raw.githubusercontent.com/INNOLABCO/rc/main/images/your-image.jpg</code></p>
+                    </div>
+                    
+                    <div class="download-section">
+                        <h3>💾 Export Car Data</h3>
+                        <p>After editing cars, download this file and upload it to your GitHub repository</p>
+                        <button class="action-btn btn-download" onclick="downloadJSON()">📥 Download cars-data.json</button>
+                    </div>
+                    
+                    <div class="success-msg" id="successMsg">✅ Saved!</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;">
+                        <h2>Cars (<span id="totalCarsCount">16</span>)</h2>
+                        <button class="action-btn btn-primary" onclick="addNewCar()">+ Add Car</button>
+                    </div>
+                    <div class="car-grid" id="carsGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Booking Modal -->
+    <div class="modal" id="viewBookingModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('viewBookingModal')">&times;</span>
+            <h3 class="modal-header">Booking Details</h3>
+            
+            <div id="bookingDetailsContent"></div>
+            
+            <div style="margin-top:30px;display:flex;gap:10px;">
+                <button class="action-btn btn-success" onclick="updateBookingStatus('confirmed')" style="flex:1;">✅ Confirm</button>
+                <button class="action-btn btn-danger" onclick="updateBookingStatus('cancelled')" style="flex:1;">❌ Cancel</button>
+                <button class="action-btn btn-danger" onclick="deleteBooking()" style="flex:1;">🗑️ Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Car Modal -->
+    <div class="modal" id="editCarModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('editCarModal')">&times;</span>
+            <h3 class="modal-header" id="carModalTitle">Edit Car</h3>
+            
+            <div class="form-group">
+                <label>Car Name</label>
+                <input type="text" id="editCarName">
+            </div>
+            
+            <div class="form-group">
+                <label>Category</label>
+                <select id="editCarCategory">
+                    <option value="economy">Economy</option>
+                    <option value="suv">SUV</option>
+                    <option value="luxury">Luxury</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Transmission</label>
+                <input type="text" id="editCarGear" placeholder="e.g., Automatic">
+            </div>
+            
+            <div class="form-group">
+                <label>Engine</label>
+                <input type="text" id="editCarEngine" placeholder="e.g., Diesel">
+            </div>
+            
+            <div class="form-group">
+                <label>Price (MAD/day)</label>
+                <input type="number" id="editCarPrice">
+            </div>
+            
+            <div class="form-group">
+                <label>Deposit</label>
+                <input type="text" id="editCarDeposit" placeholder="e.g., 5000 MAD">
+            </div>
+            
+            <div class="form-group">
+                <label>Image URL (from GitHub images folder)</label>
+                <input type="text" id="editCarImage" placeholder="https://raw.githubusercontent.com/INNOLABCO/rc/main/images/car.jpg" oninput="previewImage()">
+                <img id="carImagePreview" class="image-preview" style="display:none;">
+            </div>
+            
+            <button class="action-btn btn-success" onclick="saveCarEdit()" style="width:100%;padding:14px;margin-top:10px;">Save</button>
+            <button class="action-btn btn-danger" onclick="deleteCar()" id="deleteCarBtn" style="width:100%;padding:14px;margin-top:10px;display:none;">Delete</button>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Credentials
+        const ADMIN_EMAIL = 'rafal.carmed5@gmail.com';
+        const ADMIN_PASSWORD = 'RafalCar2024';
+
+        // Default cars
+        const defaultCarsData = [
+            {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-tucson.jpg"},
+            {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/dacia-logan.jpg"},
+            {name:"Peugeot 208 or similar",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/peugeot-208.jpg"},
+            {name:"Opel Corsa or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/opel-corsa.jpg"},
+            {name:"Renault Express or similar",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-express.jpg"},
+            {name:"Skoda Karoq or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/skoda-karoq.jpg"},
+            {name:"Volkswagen Touareg or similar",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/vw-touareg.jpg"},
+            {name:"Cupra Formentor or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/cupra-formentor.jpg"},
+            {name:"Renault Clio or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-clio.jpg"},
+            {name:"Hyundai Accent or similar",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-accent.jpg"},
+            {name:"Mercedes S-Class or similar",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-s-class.jpg"},
+            {name:"Mercedes CLA or similar",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-cla.jpg"},
+            {name:"Mercedes C-Class or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-c-class.jpg"},
+            {name:"Range Rover Sport or similar",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-sport.jpg"},
+            {name:"Range Rover Velar or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-velar.jpg"},
+            {name:"Range Rover Evoque or similar",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-evoque.jpg"}
+        ];
+
+        let carsData = [];
+        let bookingsData = [];
+        let currentCarIndex = -1;
+        let currentBookingIndex = -1;
+        
+        function initializeCars() {
+            const stored = localStorage.getItem('rafalcar_cars');
+            if (stored) {
+                try {
+                    carsData = JSON.parse(stored);
+                } catch(e) {
+                    carsData = [...defaultCarsData];
+                }
+            } else {
+                carsData = [...defaultCarsData];
+            }
+            saveCarsData();
+        }
+
+        function saveCarsData() {
+            localStorage.setItem('rafalcar_cars', JSON.stringify(carsData));
+        }
+
+        function loadBookings() {
+            const stored = localStorage.getItem('rafalcar_bookings');
+            if (stored) {
+                try {
+                    bookingsData = JSON.parse(stored);
+                } catch(e) {
+                    bookingsData = [];
+                }
+            } else {
+                bookingsData = [];
+            }
+            updateBookingStats();
+            displayBookings();
+        }
+
+        function saveBookings() {
+            localStorage.setItem('rafalcar_bookings', JSON.stringify(bookingsData));
+            updateBookingStats();
+            displayBookings();
+        }
+
+        function updateBookingStats() {
+            const total = bookingsData.length;
+            const pending = bookingsData.filter(b => b.status === 'pending').length;
+            const confirmed = bookingsData.filter(b => b.status === 'confirmed').length;
+            
+            document.getElementById('totalBookings').textContent = total;
+            document.getElementById('pendingBookings').textContent = pending;
+            document.getElementById('confirmedBookings').textContent = confirmed;
+            document.getElementById('bookingsCount').textContent = total;
+        }
+
+        function displayBookings() {
+            const recentTable = document.getElementById('recentBookingsTable');
+            const allTable = document.getElementById('allBookingsTable');
+            
+            if (bookingsData.length === 0) {
+                const emptyHtml = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📅</div>
+                        <h3>No bookings yet</h3>
+                        <p>Bookings will appear here when customers book cars</p>
+                    </div>
+                `;
+                recentTable.innerHTML = emptyHtml;
+                allTable.innerHTML = emptyHtml;
+                return;
+            }
+
+            const tableHtml = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Car</th>
+                            <th>Phone</th>
+                            <th>Pickup</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${bookingsData.map((booking, i) => `
+                            <tr>
+                                <td>${new Date(booking.bookingDate).toLocaleDateString()}</td>
+                                <td><strong>${booking.fullName}</strong></td>
+                                <td>${booking.carModel}</td>
+                                <td>${booking.phone}</td>
+                                <td>${booking.pickupDate}</td>
+                                <td><span class="status-badge status-${booking.status || 'pending'}">${(booking.status || 'pending').toUpperCase()}</span></td>
+                                <td>
+                                    <button class="action-btn btn-info" onclick="viewBooking(${i})">View</button>
+                                    <button class="action-btn btn-success" onclick="quickConfirm(${i})">✓</button>
+                                    <button class="action-btn btn-danger" onclick="quickDelete(${i})">✕</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            
+            allTable.innerHTML = tableHtml;
+            
+            // Show only recent 5 in dashboard
+            const recent = bookingsData.slice(0, 5);
+            if (recent.length > 0) {
+                recentTable.innerHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Car</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${recent.map(booking => `
+                                <tr>
+                                    <td><strong>${booking.fullName}</strong></td>
+                                    <td>${booking.carModel}</td>
+                                    <td>${booking.phone}</td>
+                                    <td><span class="status-badge status-${booking.status || 'pending'}">${(booking.status || 'pending').toUpperCase()}</span></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+        }
+
+        function viewBooking(index) {
+            currentBookingIndex = index;
+            const booking = bookingsData[index];
+            
+            document.getElementById('bookingDetailsContent').innerHTML = `
+                <div class="booking-detail">
+                    <strong>Booking ID:</strong> ${booking.id || 'N/A'}
+                </div>
+                <div class="booking-detail">
+                    <strong>Date:</strong> ${new Date(booking.bookingDate).toLocaleString()}
+                </div>
+                <div class="booking-detail">
+                    <strong>Customer:</strong> ${booking.fullName}
+                </div>
+                <div class="booking-detail">
+                    <strong>Email:</strong> ${booking.email}
+                </div>
+                <div class="booking-detail">
+                    <strong>Phone:</strong> ${booking.phone}
+                </div>
+                <div class="booking-detail">
+                    <strong>WhatsApp:</strong> ${booking.whatsapp || booking.phone}
+                </div>
+                <div class="booking-detail">
+                    <strong>Car Model:</strong> ${booking.carModel}
+                </div>
+                <div class="booking-detail">
+                    <strong>Price:</strong> ${booking.totalPrice} MAD (${booking.days} days × ${booking.pricePerDay} MAD)
+                </div>
+                <div class="booking-detail">
+                    <strong>Pickup Date:</strong> ${booking.pickupDate}
+                </div>
+                <div class="booking-detail">
+                    <strong>Return Date:</strong> ${booking.returnDate}
+                </div>
+                <div class="booking-detail">
+                    <strong>Pickup Location:</strong> ${booking.location}
+                </div>
+                <div class="booking-detail">
+                    <strong>Status:</strong> <span class="status-badge status-${booking.status || 'pending'}">${(booking.status || 'pending').toUpperCase()}</span>
+                </div>
+                ${booking.notes ? `<div class="booking-detail"><strong>Notes:</strong> ${booking.notes}</div>` : ''}
+            `;
+            
+            document.getElementById('viewBookingModal').classList.add('active');
+        }
+
+        function updateBookingStatus(status) {
+            if (currentBookingIndex === -1) return;
+            
+            bookingsData[currentBookingIndex].status = status;
+            saveBookings();
+            closeModal('viewBookingModal');
+            alert(`✅ Booking ${status}!`);
+        }
+
+        function deleteBooking() {
+            if (currentBookingIndex === -1) return;
+            
+            if (confirm('Delete this booking permanently?')) {
+                bookingsData.splice(currentBookingIndex, 1);
+                saveBookings();
+                closeModal('viewBookingModal');
+                alert('✅ Booking deleted!');
+            }
+        }
+
+        function quickConfirm(index) {
+            bookingsData[index].status = 'confirmed';
+            saveBookings();
+            alert('✅ Booking confirmed!');
+        }
+
+        function quickDelete(index) {
+            if (confirm('Delete this booking?')) {
+                bookingsData.splice(index, 1);
+                saveBookings();
+                alert('✅ Booking deleted!');
+            }
+        }
+
+        function downloadJSON() {
+            const dataStr = JSON.stringify(carsData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'cars-data.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            alert('✅ Downloaded! Now upload this file to your GitHub repository.');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+                sessionStorage.setItem('rafalcar_admin_logged_in', 'true');
+                sessionStorage.setItem('rafalcar_admin_email', email);
+                showDashboard();
+                initializeCars();
+                loadCars();
+                loadBookings();
+                return false;
+            } else {
+                const errorMsg = document.getElementById('errorMsg');
+                errorMsg.style.display = 'block';
+                setTimeout(() => {
+                    errorMsg.style.display = 'none';
+                }, 3000);
+                return false;
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminDashboard').style.display = 'block';
+            const email = sessionStorage.getItem('rafalcar_admin_email') || 'Admin';
+            document.getElementById('adminUsername').textContent = email;
+        }
+
+        function logout() {
+            sessionStorage.removeItem('rafalcar_admin_logged_in');
+            sessionStorage.removeItem('rafalcar_admin_email');
+            location.reload();
+        }
+
+        window.addEventListener('load', function() {
+            if (sessionStorage.getItem('rafalcar_admin_logged_in') === 'true') {
+                showDashboard();
+                initializeCars();
+                loadCars();
+                loadBookings();
+            }
+        });
+
+        function showSection(section) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+            event.target.closest('.sidebar-item').classList.add('active');
+            
+            if (section === 'cars') loadCars();
+            if (section === 'bookings') loadBookings();
+        }
+
+        function loadCars() {
+            document.getElementById('totalCars').textContent = carsData.length;
+            document.getElementById('totalCarsCount').textContent = carsData.length;
+            document.getElementById('carsGrid').innerHTML = carsData.map((car, i) => `
+                <div class="car-card">
+                    <img src="${car.img}" class="car-image" onerror="this.src='https://via.placeholder.com/400x200?text=Car'">
+                    <div class="car-info">
+                        <div class="car-name">${car.name}</div>
+                        <div class="car-details">${car.gear} • ${car.engine}</div>
+                        <div class="car-details">Deposit: ${car.deposit}</div>
+                        <div class="car-price">${car.price} MAD/day</div>
+                        <button class="action-btn btn-edit" onclick="editCar(${i})" style="width:100%">Edit</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function addNewCar() {
+            currentCarIndex = -1;
+            document.getElementById('carModalTitle').textContent = 'Add New Car';
+            document.getElementById('editCarName').value = '';
+            document.getElementById('editCarCategory').value = 'economy';
+            document.getElementById('editCarGear').value = '';
+            document.getElementById('editCarEngine').value = '';
+            document.getElementById('editCarPrice').value = '';
+            document.getElementById('editCarDeposit').value = '';
+            document.getElementById('editCarImage').value = '';
+            document.getElementById('carImagePreview').style.display = 'none';
+            document.getElementById('deleteCarBtn').style.display = 'none';
+            document.getElementById('editCarModal').classList.add('active');
+        }
+        
+        function editCar(index) {
+            currentCarIndex = index;
+            const car = carsData[index];
+            
+            document.getElementById('carModalTitle').textContent = 'Edit Car';
+            document.getElementById('editCarName').value = car.name;
+            document.getElementById('editCarCategory').value = car.category;
+            document.getElementById('editCarGear').value = car.gear;
+            document.getElementById('editCarEngine').value = car.engine;
+            document.getElementById('editCarPrice').value = car.price;
+            document.getElementById('editCarDeposit').value = car.deposit;
+            document.getElementById('editCarImage').value = car.img;
+            document.getElementById('carImagePreview').src = car.img;
+            document.getElementById('carImagePreview').style.display = 'block';
+            document.getElementById('deleteCarBtn').style.display = 'block';
+            document.getElementById('editCarModal').classList.add('active');
+        }
+
+        function saveCarEdit() {
+            const carData = {
+                name: document.getElementById('editCarName').value,
+                category: document.getElementById('editCarCategory').value,
+                gear: document.getElementById('editCarGear').value,
+                engine: document.getElementById('editCarEngine').value,
+                price: parseInt(document.getElementById('editCarPrice').value),
+                deposit: document.getElementById('editCarDeposit').value,
+                img: document.getElementById('editCarImage').value
+            };
+            
+            if (!carData.name || !carData.price) {
+                alert('Please fill all required fields');
+                return;
+            }
+            
+            if (currentCarIndex === -1) {
+                carsData.push(carData);
+            } else {
+                carsData[currentCarIndex] = carData;
+            }
+            
+            saveCarsData();
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('successMsg').style.display = 'none';
+            }, 3000);
+            
+            closeModal('editCarModal');
+            loadCars();
+            alert('✅ Saved! Remember to download cars-data.json and upload to GitHub!');
+        }
+        
+        function deleteCar() {
+            if (confirm('Delete this car?')) {
+                carsData.splice(currentCarIndex, 1);
+                saveCarsData();
+                closeModal('editCarModal');
+                loadCars();
+                alert('✅ Deleted! Remember to download cars-data.json and upload to GitHub!');
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+        
+        function previewImage() {
+            const url = document.getElementById('editCarImage').valu
