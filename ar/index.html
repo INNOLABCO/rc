@@ -908,4 +908,12 @@
         }
 
         // Set min dates
-        const today = new Date().t
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('pickupDate').min = today;
+        document.getElementById('returnDate').min = today;
+
+        // تحميل السيارات عند تحميل الصفحة
+        displayCars();
+    </script>
+</body>
+</html>
