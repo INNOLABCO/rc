@@ -843,7 +843,7 @@
         // Get cars data from JSON file
         async function getCarsData() {
             try {
-                const response = await fetch('cars-data.json');
+                const response = await fetch('../cars-data.json');
                 if (response.ok) {
                     return await response.json();
                 }
@@ -891,7 +891,7 @@
                 location: pickupLocation
             }));
             
-            window.location.href = 'booking.html';
+            window.location.href = '../booking.html';
         }
 
         // Search cars
