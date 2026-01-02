@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P8T6EFLTGS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P8T6EFLTGS');
+</script>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WD7M52Q9');</script>
+<!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafal Car - Premium Car Rental in Morocco | 2024 Fleet</title>
@@ -545,6 +561,12 @@
     </style>
 </head>
 <body>
+    
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD7M52Q9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -791,7 +813,7 @@
                     <h3>Contact Us</h3>
                     <p>📞 Phone: +212 662 186 949</p>
                     <p>💬 WhatsApp: +212 662 186 949</p>
-                    <p>✉️ Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="43312225222f6d2022312e26277603242e222a2f6d202c2e">[email&#160;protected]</a></p>
+                    <p>✉️ Email: rafal.carmed5@gmail.com</p>
                     <p>📍 Locations: Casablanca, Marrakech, Rabat, Fes, Tangier, Agadir</p>
                 </div>
                 
@@ -817,7 +839,7 @@
         💬
     </a>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Default cars data (fallback)
         const defaultCarsData = [
             {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-tucson.jpg"},
@@ -908,4 +930,12 @@
         }
 
         // Set min dates
-        const today = new Date().t
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('pickupDate').min = today;
+        document.getElementById('returnDate').min = today;
+
+        // Load cars on page load
+        displayCars();
+    </script>
+</body>
+</html>
