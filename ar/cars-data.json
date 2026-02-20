@@ -1,146 +1,137 @@
 [
   {
     "name": "Hyundai Tucson or similar",
+    "category": "suv",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 500,
     "deposit": "10000 MAD",
-    "category": "suv",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-tucson.jpg"
+    "img": "images/Gemini_Generated_Image_q7t6lfq7t6lfq7t6.png"
   },
   {
     "name": "Dacia Logan or similar",
+    "category": "economy",
     "gear": "Manual",
     "engine": "Diesel",
     "price": 270,
     "deposit": "5000 MAD",
-    "category": "economy",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/dacia-logan.jpg"
+    "img": "images/dacia-logan.jpg"
   },
   {
     "name": "Peugeot 208 or similar",
+    "category": "economy",
     "gear": "Automatic/Manual",
     "engine": "Diesel/Hybrid",
     "price": 300,
     "deposit": "5000 MAD",
-    "category": "economy",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/peugeot-208.jpg"
-  },
-  {
-    "name": "Opel Corsa or similar",
-    "gear": "Manual",
-    "engine": "Diesel",
-    "price": 300,
-    "deposit": "5000 MAD",
-    "category": "economy",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/opel-corsa.jpg"
+    "img": "images/Gemini_Generated_Image_9zdtrm9zdtrm9zdt.png"
   },
   {
     "name": "Renault Express or similar",
+    "category": "economy",
     "gear": "Manual",
     "engine": "Diesel",
     "price": 340,
     "deposit": "5000 MAD",
-    "category": "economy",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-express.jpg"
+    "img": "images/renault-express.jpg"
   },
   {
     "name": "Skoda Karoq or similar",
+    "category": "suv",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 500,
     "deposit": "5000 MAD",
-    "category": "suv",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/skoda-karoq.jpg"
+    "img": "images/skoda-karoq.jpg"
   },
   {
     "name": "Volkswagen Touareg or similar",
+    "category": "suv",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 900,
     "deposit": "5000 MAD",
-    "category": "suv",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/vw-touareg.jpg"
+    "img": "images/Gemini_Generated_Image_uumfoxuumfoxuumf.png"
   },
   {
     "name": "Cupra Formentor or similar",
+    "category": "suv",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 500,
     "deposit": "5000 MAD",
-    "category": "suv",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/cupra-formentor.jpg"
+    "img": "images/cupra-formentor.jpg"
   },
   {
     "name": "Renault Clio or similar",
+    "category": "economy",
     "gear": "Manual",
     "engine": "Diesel",
     "price": 300,
     "deposit": "5000 MAD",
-    "category": "economy",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-clio.jpg"
+    "img": "images/Gemini_Generated_Image_4qyw1s4qyw1s4qyw.png"
   },
   {
     "name": "Hyundai Accent or similar",
+    "category": "economy",
     "gear": "Automatic",
     "engine": "Diesel/Benzin",
     "price": 300,
     "deposit": "5000 MAD",
-    "category": "economy",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-accent.jpg"
+    "img": "images/Gemini_Generated_Image_fucavzfucavzfuca.png"
   },
   {
     "name": "Mercedes S-Class or similar",
+    "category": "luxury",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 4000,
     "deposit": "20000-30000 MAD",
-    "category": "luxury",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-s-class.jpg"
+    "img": "images/s cless.avif"
   },
   {
     "name": "Mercedes CLA or similar",
+    "category": "luxury",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 1400,
     "deposit": "20000-30000 MAD",
-    "category": "luxury",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-cla.jpg"
+    "img": "images/Gemini_Generated_Image_5za9d95za9d95za9.png"
   },
   {
     "name": "Mercedes C-Class or similar",
+    "category": "luxury",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 1500,
     "deposit": "20000-30000 MAD",
-    "category": "luxury",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-c-class.jpg"
+    "img": "images/Mercedes-Benz-Classe-C.jpg"
   },
   {
     "name": "Range Rover Sport or similar",
+    "category": "luxury",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 3500,
     "deposit": "20000-30000 MAD",
-    "category": "luxury",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-sport.jpg"
+    "img": "images/Gemini_Generated_Image_du30uodu30uodu30.png"
   },
   {
     "name": "Range Rover Velar or similar",
+    "category": "luxury",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 1500,
     "deposit": "20000-30000 MAD",
-    "category": "luxury",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-velar.jpg"
+    "img": "images/Gemini_Generated_Image_ou6u3uou6u3uou6u.png"
   },
   {
     "name": "Range Rover Evoque or similar",
+    "category": "luxury",
     "gear": "Automatic",
     "engine": "Diesel",
     "price": 1200,
     "deposit": "20000-30000 MAD",
-    "category": "luxury",
-    "img": "https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-evoque.jpg"
+    "img": "images/Gemini_Generated_Image_tn4d3dtn4d3dtn4d.png"
   }
 ]
