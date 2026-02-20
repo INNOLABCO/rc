@@ -120,6 +120,25 @@ function gtag_report_conversion(url) {
             opacity: 0.7;
         }
 
+        .lang-pills { display: flex; gap: 6px; }
+
+        .lang-pill {
+            font-family: 'Sora', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 20px;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .lang-pill:hover { border-color: var(--accent); color: var(--accent); }
+        .lang-pill.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
         /* ── Page title ── */
         .page-title {
             font-family: 'Sora', sans-serif;
@@ -486,6 +505,35 @@ function gtag_report_conversion(url) {
             margin-top: 24px;
         }
 
+        /* ── Car tags ── */
+        .car-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .car-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: capitalize;
+            padding: 3px 9px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .car-tag.category {
+            color: var(--accent);
+            border-color: rgba(232,184,109,0.3);
+            background: var(--accent-dim);
+        }
+
         /* ── Animations ── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(16px); }
@@ -524,7 +572,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </svg>
             Back to cars
         </a>
-        <span class="brand-badge">Rafal Car</span>
+        <div style="display:flex; align-items:center; gap:14px;">
+            <div class="lang-pills">
+                <a href="book.html" class="lang-pill active">EN</a>
+                <a href="book-fr.html" class="lang-pill">FR</a>
+                <a href="book-ar.html" class="lang-pill">AR</a>
+            </div>
+            <span class="brand-badge">Rafal Car</span>
+        </div>
     </div>
 
     <!-- Success state -->
@@ -563,8 +618,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="car-info">
                 <div class="car-name" id="carName">Loading…</div>
-                <div class="car-meta" id="carDetails">Select a vehicle</div>
-                <div class="car-rate">
+                <div class="car-meta" id="carDetails"></div>
+                <div class="car-tags" id="carTags"></div>
+                <div class="car-rate" style="margin-top:10px;">
                     <span class="amount" id="carPriceDisplay">—</span>
                     <span class="unit">MAD / day</span>
                 </div>
@@ -644,6 +700,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="label">Number of Days</span>
                         <span class="value" id="numDays">—</span>
                     </div>
+                    <div class="price-row">
+                        <span class="label">Security Deposit</span>
+                        <span class="value" id="depositAmount">— MAD</span>
+                    </div>
                     <div class="price-divider"></div>
                     <div class="price-total-row">
                         <span class="label">Total</span>
@@ -701,9 +761,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const img = document.getElementById('carImage');
         img.src = selectedCar.img || '';
         img.alt = selectedCar.name || 'Car';
+        // Fallback: if image fails to load, show a placeholder background
+        img.onerror = function() {
+            this.style.display = 'none';
+            this.parentElement.style.background = 'linear-gradient(135deg, #1a1a28, #252535)';
+        };
         document.getElementById('carName').textContent = selectedCar.name || 'Unknown Vehicle';
         document.getElementById('carPriceDisplay').textContent = selectedCar.price;
         document.getElementById('dailyRate').textContent = selectedCar.price + ' MAD';
+        // Deposit
+        if (selectedCar.deposit) {
+            document.getElementById('depositAmount').textContent = selectedCar.deposit;
+        }
+        // Tags: category, gear, engine
+        const tagsEl = document.getElementById('carTags');
+        tagsEl.innerHTML = '';
+        if (selectedCar.category) {
+            const t = document.createElement('span');
+            t.className = 'car-tag category';
+            t.textContent = selectedCar.category;
+            tagsEl.appendChild(t);
+        }
+        if (selectedCar.gear) {
+            const t = document.createElement('span');
+            t.className = 'car-tag';
+            t.textContent = '⚙ ' + selectedCar.gear;
+            tagsEl.appendChild(t);
+        }
+        if (selectedCar.engine) {
+            const t = document.createElement('span');
+            t.className = 'car-tag';
+            t.textContent = '⛽ ' + selectedCar.engine;
+            tagsEl.appendChild(t);
+        }
         calculatePrice();
     }
 
