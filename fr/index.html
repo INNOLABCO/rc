@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WD7M52Q9');</script>
-<!-- End Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8T6EFLTGS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-P8T6EFLTGS');
+    </script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WD7M52Q9');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafal Car - Location de Voitures Premium au Maroc | Flotte 2024</title>
-    <meta name="description" content="Louez des voitures premium 2024 à travers le Maroc. Best prices, 24/7 service, unlimited mileage. Book today!">
+    <meta name="description" content="Louez des voitures premium 2024 partout au Maroc. Meilleurs prix, service 24h/7j, kilométrage illimité. Réservez aujourd'hui !">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
@@ -22,911 +27,556 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: #333;
             line-height: 1.6;
         }
-        
-        /* Navigation */
         .navbar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: transparent;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 100;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .navbar.scrolled {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .nav-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 18px 0;
         }
         .logo img {
             height: 50px;
+            filter: brightness(0) invert(1) drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+            transition: filter 0.4s;
         }
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-        }
+        .navbar.scrolled .logo img { filter: none; }
+        .nav-menu { display: flex; gap: 30px; }
         .nav-link {
             text-decoration: none;
-            color: #333;
+            color: rgba(255,255,255,0.92);
             font-weight: 500;
+            font-size: 15px;
             transition: color 0.3s;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
-        .nav-link:hover {
-            color: #667eea;
-        }
-        .nav-actions {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
+        .nav-link:hover { color: #fff; }
+        .navbar.scrolled .nav-link { color: #333; text-shadow: none; }
+        .navbar.scrolled .nav-link:hover { color: #667eea; }
+        .nav-actions { display: flex; gap: 12px; align-items: center; }
         .lang-btn {
-            padding: 8px 15px;
-            background: #f0f0f0;
-            border: none;
+            padding: 7px 14px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.4);
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 13px;
+            color: white;
             transition: all 0.3s;
         }
-        .lang-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-        .lang-btn.active {
-            background: #667eea;
-            color: white;
-        }
+        .lang-btn:hover { background: rgba(255,255,255,0.28); }
+        .lang-btn.active { background: white; color: #333; border-color: white; }
+        .navbar.scrolled .lang-btn { background: #f0f0f0; border-color: #ddd; color: #333; }
+        .navbar.scrolled .lang-btn:hover { background: #667eea; color: white; border-color: #667eea; }
+        .navbar.scrolled .lang-btn.active { background: #667eea; color: white; border-color: #667eea; }
         .btn-primary {
-            padding: 12px 24px;
+            padding: 11px 22px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             border-radius: 8px;
             font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,126,234,0.45); }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 20px 100px;
+            overflow: hidden;
+            color: white;
         }
-        
-        /* WhatsApp Floating Button */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&q=85');
+            background-size: cover;
+            background-position: center 45%;
+            background-repeat: no-repeat;
+            animation: heroZoom 9s ease-out forwards;
+            z-index: 0;
+        }
+        @keyframes heroZoom {
+            from { transform: scale(1.07); }
+            to   { transform: scale(1.00); }
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(170deg, rgba(8,10,28,0.75) 0%, rgba(12,14,35,0.60) 55%, rgba(8,10,28,0.40) 100%);
+            z-index: 1;
+        }
+        .hero-fade {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 130px;
+            background: linear-gradient(to bottom, transparent, #f8f9fa);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.13);
+            backdrop-filter: blur(12px);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 26px;
+            border: 1px solid rgba(255,255,255,0.28);
+            letter-spacing: 0.02em;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 5.5vw, 62px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            text-shadow: 0 2px 30px rgba(0,0,0,0.35);
+        }
+        .hero h1 span { color: #f5c842; }
+        .hero-desc {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.88;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.65;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+        }
+        .search-box {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(20px);
+            padding: 26px 28px;
+            border-radius: 16px;
+            max-width: 860px;
+            margin: 0 auto 46px;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.35), 0 4px 16px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 15px;
+            align-items: end;
+        }
+        .search-field { text-align: left; }
+        .search-field label {
+            display: block;
+            color: #555;
+            font-size: 11px;
+            margin-bottom: 7px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .search-field input,
+        .search-field select {
+            width: 100%;
+            padding: 11px 13px;
+            border: 2px solid #e8edf2;
+            border-radius: 9px;
+            font-size: 14px;
+            color: #333;
+            background: white;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        .search-field input:focus,
+        .search-field select:focus { outline: none; border-color: #667eea; }
+        .btn-search {
+            padding: 13px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            grid-column: span 2;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+        }
+        .btn-search:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(102,126,234,0.5); }
+        .hero-stats { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(14px);
+            padding: 18px 30px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.2);
+            min-width: 130px;
+        }
+        .stat h3 { font-size: 34px; font-weight: 800; color: #f5c842; margin-bottom: 4px; }
+        .stat p { font-size: 12px; opacity: 0.85; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* WHATSAPP */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
+            width: 62px;
+            height: 62px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 20px rgba(37,211,102,0.45);
             cursor: pointer;
             z-index: 999;
             transition: all 0.3s;
             text-decoration: none;
-            animation: pulse 2s infinite;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
-        }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8); }
-        }
-        
-        /* Hero Section with Background Image */
-        .hero {
-            margin-top: 80px;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%),
-                        url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1920&q=80') center/cover;
-            color: white;
-            position: relative;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        .hero h1 {
-            font-size: 56px;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
-        }
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 0 1px 10px rgba(0,0,0,0.1);
-        }
-        .search-box {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 900px;
-            margin: 0 auto 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .search-field {
-            text-align: left;
-        }
-        .search-field label {
-            display: block;
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .search-field input,
-        .search-field select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            font-size: 15px;
-        }
-        .btn-search {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            grid-column: span 2;
-        }
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 50px;
-        }
-        .stat {
-            text-align: center;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 20px 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .stat h3 {
-            font-size: 36px;
-            margin-bottom: 5px;
-        }
-        .stat p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        /* Features Section */
-        .features-section {
-            padding: 80px 20px;
-            background: white;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 42px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .section-subtitle {
-            text-align: center;
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 60px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .feature-card {
-            text-align: center;
-            padding: 30px;
-            border-radius: 15px;
-            background: #f8f9fa;
-            transition: transform 0.3s;
-        }
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        .feature-icon {
-            font-size: 50px;
-            margin-bottom: 20px;
-        }
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .feature-card p {
-            color: #666;
-            line-height: 1.7;
-        }
-        
-        /* Comment Ça Marche Section */
-        .how-it-works {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .step-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0 auto 25px;
-        }
-        .step-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .step-card p {
-            color: #666;
-            line-height: 1.7;
-        }
-        
-        /* Why Choose Us */
-        .why-choose {
-            padding: 80px 20px;
-            background: white;
-        }
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .benefit-card {
-            padding: 30px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-        }
-        .benefit-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .benefit-card p {
-            color: #666;
-            line-height: 1.7;
-        }
-        
-        /* Cars Section */
-        .cars-section {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
-        .cars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .car-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .car-card:hover {
-            transform: translateY(-10px);
-        }
-        .car-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-        .car-info {
-            padding: 25px;
-        }
-        .car-name {
-            font-size: 20px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 12px;
-        }
-        .car-details {
-            color: #666;
-            margin-bottom: 15px;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        .car-price {
-            font-size: 32px;
-            color: #667eea;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        .car-price span {
-            font-size: 14px;
-            color: #999;
-        }
-        .btn-book {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 80px 20px;
-            background: white;
-        }
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .testimonial-card {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            position: relative;
-        }
-        .testimonial-quote {
-            font-size: 50px;
-            color: #667eea;
-            opacity: 0.3;
-            line-height: 1;
-            margin-bottom: 15px;
-        }
-        .testimonial-text {
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-        .testimonial-author {
-            font-weight: 600;
-            color: #333;
-        }
-        .testimonial-rating {
-            color: #ffc107;
-            font-size: 18px;
-        }
-        
-        /* Footer */
-        .footer {
-            background: #2d3748;
-            color: white;
-            padding: 60px 20px 30px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto 40px;
-        }
-        .footer-col h3 {
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-        .footer-col p,
-        .footer-col a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-        .footer-col a:hover {
-            color: white;
-        }
-        .social-links {
-            display: flex;
-            gap: 15px;
-            font-size: 28px;
-            margin-top: 15px;
-        }
-        .social-links a {
-            color: white;
-            transition: transform 0.2s;
-            display: inline-block;
-        }
-        .social-links a:hover {
-            transform: scale(1.2);
-        }
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.6);
-        }
-        
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-        
-        /* Responsive */
+            animation: waPulse 2.2s infinite;
+        }
+        .whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 6px 32px rgba(37,211,102,0.65); }
+        @keyframes waPulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45); }
+            50%       { box-shadow: 0 4px 36px rgba(37,211,102,0.8); }
+        }
+
+        /* SECTIONS */
+        .features-section { padding: 80px 20px; background: white; }
+        .section-title { text-align: center; font-size: 40px; font-weight: 800; margin-bottom: 16px; color: #222; }
+        .section-subtitle { text-align: center; font-size: 17px; color: #666; margin-bottom: 56px; max-width: 680px; margin-left: auto; margin-right: auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 36px; max-width: 1200px; margin: 0 auto; }
+        .feature-card { text-align: center; padding: 30px; border-radius: 16px; background: #f8f9fa; transition: transform 0.3s, box-shadow 0.3s; }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+        .feature-icon { font-size: 48px; margin-bottom: 18px; }
+        .feature-card h3 { font-size: 21px; margin-bottom: 12px; color: #222; }
+        .feature-card p { color: #666; line-height: 1.7; font-size: 15px; }
+        .how-it-works { padding: 80px 20px; background: #f8f9fa; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 36px; max-width: 1200px; margin: 0 auto; }
+        .step-card { background: white; padding: 40px 28px; border-radius: 16px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .step-number { width: 58px; height: 58px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700; margin: 0 auto 22px; }
+        .step-card h3 { font-size: 21px; margin-bottom: 12px; color: #222; }
+        .step-card p { color: #666; line-height: 1.7; font-size: 15px; }
+        .why-choose { padding: 80px 20px; background: white; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; max-width: 1200px; margin: 0 auto; }
+        .benefit-card { padding: 28px; background: #f8f9fa; border-radius: 16px; border-left: 4px solid #667eea; }
+        .benefit-card h3 { font-size: 19px; margin-bottom: 10px; color: #222; display: flex; align-items: center; gap: 10px; }
+        .benefit-card p { color: #666; line-height: 1.7; font-size: 15px; }
+        .cars-section { padding: 80px 20px; background: #f8f9fa; }
+        .cars-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 28px; max-width: 1200px; margin: 0 auto; }
+        .car-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.09); transition: transform 0.3s, box-shadow 0.3s; }
+        .car-card:hover { transform: translateY(-8px); box-shadow: 0 12px 36px rgba(0,0,0,0.14); }
+        .car-image { width: 100%; height: 215px; object-fit: cover; }
+        .car-info { padding: 24px; }
+        .car-name { font-size: 19px; font-weight: 700; color: #222; margin-bottom: 12px; }
+        .car-details { color: #666; margin-bottom: 14px; font-size: 14px; line-height: 1.65; }
+        .car-price { font-size: 30px; color: #667eea; font-weight: 800; margin-bottom: 14px; }
+        .car-price span { font-size: 13px; color: #999; font-weight: 400; }
+        .btn-book { width: 100%; padding: 13px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 9px; font-weight: 700; cursor: pointer; font-size: 15px; font-family: inherit; transition: opacity 0.2s; }
+        .btn-book:hover { opacity: 0.9; }
+        .testimonials { padding: 80px 20px; background: white; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; max-width: 1200px; margin: 0 auto; }
+        .testimonial-card { background: #f8f9fa; padding: 30px; border-radius: 16px; }
+        .testimonial-quote { font-size: 48px; color: #667eea; opacity: 0.25; line-height: 1; margin-bottom: 14px; }
+        .testimonial-text { color: #555; line-height: 1.75; margin-bottom: 18px; font-size: 15px; }
+        .testimonial-author { font-weight: 700; color: #222; }
+        .testimonial-rating { color: #ffc107; font-size: 17px; margin-top: 6px; }
+        .footer { background: #1a202c; color: white; padding: 60px 20px 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; }
+        .footer-col h3 { margin-bottom: 18px; font-size: 18px; font-weight: 700; }
+        .footer-col p, .footer-col a { color: rgba(255,255,255,0.72); text-decoration: none; display: block; margin-bottom: 10px; line-height: 1.6; font-size: 14px; }
+        .footer-col a:hover { color: white; }
+        .social-links { display: flex; gap: 14px; margin-top: 16px; align-items: center; }
+        .social-link { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 10px; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+        .social-link:hover { transform: scale(1.12); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+        .social-link.facebook { background: #1877F2; }
+        .social-link.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .social-link.whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.45); font-size: 13px; }
+        .loading { text-align: center; padding: 60px 20px; color: #666; }
+
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 36px;
-            }
-            .search-box {
-                grid-template-columns: 1fr;
-            }
-            .btn-search {
-                grid-column: span 1;
-            }
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
+            .nav-menu { display: none; }
+            .hero h1 { font-size: 34px; }
+            .search-box { grid-template-columns: 1fr; }
+            .btn-search { grid-column: span 1; }
+            .hero-stats { gap: 14px; }
+            .whatsapp-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
         }
     </style>
 </head>
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD7M52Q9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD7M52Q9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <div class="logo">
-                    <img src="Rafal_car_logo.png" alt="Rafal Car">
+<!-- NAVIGATION -->
+<nav class="navbar" id="mainNav">
+    <div class="container">
+        <div class="nav-wrapper">
+            <div class="logo"><img src="../Rafal_car_logo.png" alt="Rafal Car"></div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Accueil</a>
+                <a href="#vehicles" class="nav-link">Véhicules</a>
+                <a href="#how-it-works" class="nav-link">Comment ça marche</a>
+                <a href="#why-choose-us" class="nav-link">Pourquoi nous</a>
+                <a href="#testimonials" class="nav-link">Avis</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <div class="language-switcher">
+                    <button onclick="window.location.href='../index.html'" class="lang-btn">EN</button>
+                    <button class="lang-btn active">FR</button>
+                    <button onclick="window.location.href='../ar/index.html'" class="lang-btn">AR</button>
                 </div>
-                
-                <div class="nav-menu">
-                    <a href="#home" class="nav-link">Accueil</a>
-                    <a href="#vehicles" class="nav-link">Véhicules</a>
-                    <a href="#how-it-works" class="nav-link">Comment ça marche</a>
-                    <a href="#why-choose-us" class="nav-link">Pourquoi nous choisir</a>
-                    <a href="#testimonials" class="nav-link">Avis</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
+                <button class="btn-primary" onclick="window.location.href='#vehicles'">Commencer</button>
+            </div>
+        </div>
+    </div>
+</nav>
 
-                <div class="nav-actions">
-                    <div class="language-switcher">
-                        <button class="lang-btn">EN</button>
-                        <button onclick="window.location.href='../index.html'" class="lang-btn active">FR</button>
-                        <button onclick="window.location.href='../ar/index.html'" class="lang-btn">AR</button>
-                    </div>
-                    <button class="btn-primary" onclick="window.location.href='#vehicles'">Commencer</button>
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-fade"></div>
+    <div class="hero-content">
+        <span class="hero-badge">🚗 Disponible 24h/7j dans tout le Maroc</span>
+        <h1>Trouvez Votre <span>Voiture</span><br>Idéale</h1>
+        <p class="hero-desc">Vivez la liberté de la route avec notre flotte premium 2024. De l'économique au luxe, nous avons la voiture parfaite pour chaque voyage au Maroc.</p>
+        <div class="search-box">
+            <div class="search-field">
+                <label>📍 Lieu de prise en charge</label>
+                <select id="pickupLocation">
+                    <option>Casablanca</option>
+                    <option>Marrakech</option>
+                    <option>Rabat</option>
+                    <option>Fès</option>
+                    <option>Tanger</option>
+                    <option>Agadir</option>
+                </select>
+            </div>
+            <div class="search-field">
+                <label>📅 Date de prise en charge</label>
+                <input type="date" id="pickupDate">
+            </div>
+            <div class="search-field">
+                <label>📅 Date de retour</label>
+                <input type="date" id="returnDate">
+            </div>
+            <button class="btn-search" onclick="searchCars()">🔍 Rechercher des voitures</button>
+        </div>
+        <div class="hero-stats">
+            <div class="stat"><h3>200+</h3><p>Clients satisfaits</p></div>
+            <div class="stat"><h3>16</h3><p>Voitures 2024</p></div>
+            <div class="stat"><h3>6000+</h3><p>Trajets effectués</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+    <div class="container">
+        <h2 class="section-title">Pourquoi louer avec nous ?</h2>
+        <p class="section-subtitle">Nous proposons des services de location de voitures premium avec des avantages exceptionnels</p>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon">🚗</div><h3>Flotte 2024</h3><p>Tous nos véhicules sont des modèles 2024 flambant neufs, garantissant confort, sécurité et fiabilité.</p></div>
+            <div class="feature-card"><div class="feature-icon">💰</div><h3>Meilleurs prix</h3><p>Tarifs compétitifs avec une tarification transparente. Aucun frais caché. Le meilleur rapport qualité-prix.</p></div>
+            <div class="feature-card"><div class="feature-icon">🕒</div><h3>Support 24h/7j</h3><p>Service client et assistance routière disponibles à toute heure. Nous sommes toujours là pour vous.</p></div>
+            <div class="feature-card"><div class="feature-icon">📍</div><h3>Multiples agences</h3><p>Prise en charge et retour dans les grandes villes du Maroc : Casablanca, Marrakech, Rabat et plus encore.</p></div>
+            <div class="feature-card"><div class="feature-icon">✅</div><h3>Réservation facile</h3><p>Processus de réservation en ligne simple. Réservez votre voiture en quelques minutes avec confirmation instantanée.</p></div>
+            <div class="feature-card"><div class="feature-icon">🛡️</div><h3>Assurance complète</h3><p>Couverture d'assurance complète incluse avec chaque location pour votre tranquillité d'esprit.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <h2 class="section-title">Comment ça marche ?</h2>
+        <p class="section-subtitle">Louez une voiture en 4 étapes simples</p>
+        <div class="steps-grid">
+            <div class="step-card"><div class="step-number">1</div><h3>Choisissez votre voiture</h3><p>Parcourez notre flotte de 16 véhicules premium et sélectionnez la voiture parfaite pour vos besoins.</p></div>
+            <div class="step-card"><div class="step-number">2</div><h3>Réservez en ligne</h3><p>Remplissez vos coordonnées et les dates de location. Obtenez une confirmation instantanée par e-mail et WhatsApp.</p></div>
+            <div class="step-card"><div class="step-number">3</div><h3>Prenez en charge</h3><p>Récupérez votre voiture à l'endroit choisi avec tous les documents prêts. Rapide et sans tracas.</p></div>
+            <div class="step-card"><div class="step-number">4</div><h3>Profitez du voyage</h3><p>Prenez la route et explorez le Maroc avec kilométrage illimité et support 24h/7j.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-choose" id="why-choose-us">
+    <div class="container">
+        <h2 class="section-title">Pourquoi choisir Rafal Car ?</h2>
+        <p class="section-subtitle">Découvrez la différence avec notre service premium</p>
+        <div class="benefits-grid">
+            <div class="benefit-card"><h3>🎯 Aucun frais caché</h3><p>Tarification transparente avec tous les coûts affichés dès le départ. Ce que vous voyez est ce que vous payez.</p></div>
+            <div class="benefit-card"><h3>🚀 Kilométrage illimité</h3><p>Roulez autant que vous voulez ! Aucune restriction de kilomètres ni de frais supplémentaires.</p></div>
+            <div class="benefit-card"><h3>🔧 Entretien gratuit</h3><p>Tous les véhicules sont entièrement entretenus. Tout problème pendant la location est pris en charge.</p></div>
+            <div class="benefit-card"><h3>📱 Communication facile</h3><p>Contactez-nous via WhatsApp, téléphone ou e-mail. Réponses rapides en français, arabe et anglais.</p></div>
+            <div class="benefit-card"><h3>💳 Paiement flexible</h3><p>Plusieurs options de paiement : espèces, carte ou virement bancaire. Choisissez ce qui vous convient.</p></div>
+            <div class="benefit-card"><h3>⭐ Service 5 étoiles</h3><p>Très bien noté par plus de 200 clients satisfaits. Consultez nos avis et témoignages.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- CARS -->
+<section class="cars-section" id="vehicles">
+    <div class="container">
+        <h2 class="section-title">Notre flotte premium</h2>
+        <p class="section-subtitle">Choisissez parmi 16 véhicules flambant neufs 2024</p>
+        <div class="cars-grid" id="carsGrid"><div class="loading">Chargement des voitures...</div></div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <h2 class="section-title">Ce que disent nos clients</h2>
+        <p class="section-subtitle">Vrais avis de clients satisfaits</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">Excellent service ! La voiture était flambant neuve et propre. L'équipe était très professionnelle et serviable. Je louerai à nouveau chez Rafal Car !</p>
+                <p class="testimonial-author">Ahmed M.</p>
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">Meilleure expérience de location de voiture au Maroc. Réservation facile, super prix, et la Mercedes était incroyable ! Fortement recommandé.</p>
+                <p class="testimonial-author">Sarah L.</p>
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">Service très fiable avec support 24h/7j. Superbe road trip de Casablanca à Marrakech. La voiture était parfaite !</p>
+                <p class="testimonial-author">Karim B.</p>
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>À propos de Rafal Car</h3>
+                <p>Votre partenaire de confiance pour la location de voitures premium au Maroc. Service exceptionnel avec notre flotte 2024 flambant neuve. Disponible 24h/7j dans toutes les grandes villes.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Liens rapides</h3>
+                <a href="#home">Accueil</a>
+                <a href="#vehicles">Notre flotte</a>
+                <a href="#how-it-works">Comment ça marche</a>
+                <a href="#why-choose-us">Pourquoi nous</a>
+                <a href="../terms.html">Conditions générales</a>
+                <a href="../privacy.html">Politique de confidentialité</a>
+            </div>
+            <div class="footer-col">
+                <h3>Nous contacter</h3>
+                <p>📞 Téléphone : +212 662 186 949</p>
+                <p>💬 WhatsApp : +212 662 186 949</p>
+                <p>✉️ Email : rafal.carmed5@gmail.com</p>
+                <p>📍 Casablanca, Marrakech, Rabat, Fès, Tanger, Agadir</p>
+            </div>
+            <div class="footer-col">
+                <h3>Suivez-nous</h3>
+                <p>Restez connectés sur les réseaux sociaux</p>
+                <div class="social-links">
+                    <a href="https://web.facebook.com/Rafalcarrent" target="_blank" class="social-link facebook" title="Facebook">
+                        <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.532-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/rafalcarrent/" target="_blank" class="social-link instagram" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://wa.me/212662186949" target="_blank" class="social-link whatsapp" title="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <span class="hero-badge">🚗 Disponible 24/7 à travers le Maroc</span>
-            <h1>Trouvez Votre<br>Voiture de Location</h1>
-            <p>Découvrez la liberté de la route avec notre flotte premium 2024. De l'économie au luxe, nous avons la voiture parfaite pour chaque voyage au Maroc.</p>
-            
-            <div class="search-box">
-                <div class="search-field">
-                    <label>📍 Lieu de prise en charge</label>
-                    <select id="pickupLocation">
-                        <option>Casablanca</option>
-                        <option>Marrakech</option>
-                        <option>Rabat</option>
-                        <option>Fes</option>
-                        <option>Tangier</option>
-                        <option>Agadir</option>
-                    </select>
-                </div>
-                <div class="search-field">
-                    <label>📅 Date de prise en charge</label>
-                    <input type="date" id="pickupDate">
-                </div>
-                <div class="search-field">
-                    <label>📅 Date de retour</label>
-                    <input type="date" id="returnDate">
-                </div>
-                <button class="btn-search" onclick="searchCars()">Rechercher des voitures</button>
-            </div>
-
-            <div class="hero-stats">
-                <div class="stat">
-                    <h3>200+</h3>
-                    <p>Clients Satisfaits</p>
-                </div>
-                <div class="stat">
-                    <h3>16</h3>
-                    <p>Voitures 2024</p>
-                </div>
-                <div class="stat">
-                    <h3>6000+</h3>
-                    <p>Voyages Effectués</p>
-                </div>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rafal Car. Tous droits réservés. | Services de location de voitures premium au Maroc</p>
         </div>
-    </section>
+    </div>
+</footer>
 
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="container">
-            <h2 class="section-title">Pourquoi Louer Avec Nous?</h2>
-            <p class="section-subtitle">Nous offrons des services de location premium avec des avantages exceptionnels</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚗</div>
-                    <h3>Flotte 2024</h3>
-                    <p>Tous nos véhicules sont des modèles 2024 neufs, garantissant confort, sécurité et fiabilité.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Meilleurs Prix</h3>
-                    <p>Tarifs compétitifs avec prix transparents. Pas de frais cachés. Meilleur rapport qualité-prix.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🕒</div>
-                    <h3>Support 24/7</h3>
-                    <p>Service client 24h/24 et assistance routière. Nous sommes toujours là pour vous.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <h3>Plusieurs Emplacements</h3>
-                    <p>Prise en charge et dépôt dans les grandes villes du Maroc: Casablanca, Marrakech, Rabat et plus.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <h3>Réservation Facile</h3>
-                    <p>Processus de réservation en ligne simple. Réservez en quelques minutes avec confirmation instantanée.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Assurance Complète</h3>
-                    <p>Couverture d'assurance complète incluse pour votre tranquillité d'esprit.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<a href="https://wa.me/212662186949" class="whatsapp-float" target="_blank" title="Discutez avec nous sur WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white" width="34" height="34"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-    <!-- Comment Ça Marche -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <h2 class="section-title">Comment Ça Marche</h2>
-            <p class="section-subtitle">Louez une voiture en 4 étapes simples</p>
-            
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Choisissez Votre Voiture</h3>
-                    <p>Parcourez notre flotte de 16 véhicules premium et choisissez la voiture parfaite.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Réservez en Ligne</h3>
-                    <p>Remplissez vos informations et dates. Confirmation instantanée par email et WhatsApp.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Récupération</h3>
-                    <p>Récupérez votre voiture avec tous les documents prêts. Rapide et sans tracas.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3>Profitez de Votre Voyage</h3>
-                    <p>Prenez la route et explorez le Maroc avec kilométrage illimité et support 24/7.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); });
 
-    <!-- Why Choose Us -->
-    <section class="why-choose" id="why-choose-us">
-        <div class="container">
-            <h2 class="section-title">Pourquoi Choisir Rafal Car?</h2>
-            <p class="section-subtitle">Découvrez la différence avec notre service premium</p>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h3>🎯 Pas de Frais Cachés</h3>
-                    <p>Prix transparent avec tous les coûts affichés. Ce que vous voyez est ce que vous payez.</p>
-                </div>
-                <div class="benefit-card">
-                    <h3>🚀 Kilométrage Illimité</h3>
-                    <p>Conduisez autant que vous voulez! Pas de restrictions ni de frais supplémentaires.</p>
-                </div>
-                <div class="benefit-card">
-                    <h3>🔧 Entretien Gratuit</h3>
-                    <p>Tous les véhicules sont entretenus. Tout problème pendant la location est couvert.</p>
-                </div>
-                <div class="benefit-card">
-                    <h3>📱 Communication Facile</h3>
-                    <p>Contactez-nous par WhatsApp, téléphone ou email. Réponses rapides en anglais, français et arabe.</p>
-                </div>
-                <div class="benefit-card">
-                    <h3>💳 Paiement Flexible</h3>
-                    <p>Options de paiement multiples: espèces, carte, virement. Choisissez ce qui vous convient.</p>
-                </div>
-                <div class="benefit-card">
-                    <h3>⭐ Service 5 Étoiles</h3>
-                    <p>Noté très bien par plus de 200 clients satisfaits. Consultez nos avis.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    const defaultCarsData = [
+        {name:"Hyundai Tucson ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"10 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-tucson.jpg"},
+        {name:"Dacia Logan ou similaire",gear:"Manuelle",engine:"Diesel",price:270,deposit:"5 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/dacia-logan.jpg"},
+        {name:"Peugeot 208 ou similaire",gear:"Automatique/Manuelle",engine:"Diesel/Hybride",price:300,deposit:"5 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/peugeot-208.jpg"},
+        {name:"Opel Corsa ou similaire",gear:"Manuelle",engine:"Diesel",price:300,deposit:"5 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/opel-corsa.jpg"},
+        {name:"Renault Express ou similaire",gear:"Manuelle",engine:"Diesel",price:340,deposit:"5 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-express.jpg"},
+        {name:"Skoda Karoq ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"5 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/skoda-karoq.jpg"},
+        {name:"Volkswagen Touareg ou similaire",gear:"Automatique",engine:"Diesel",price:900,deposit:"5 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/vw-touareg.jpg"},
+        {name:"Cupra Formentor ou similaire",gear:"Automatique",engine:"Diesel",price:500,deposit:"5 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/cupra-formentor.jpg"},
+        {name:"Renault Clio ou similaire",gear:"Manuelle",engine:"Diesel",price:300,deposit:"5 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-clio.jpg"},
+        {name:"Hyundai Accent ou similaire",gear:"Automatique",engine:"Diesel/Essence",price:300,deposit:"5 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-accent.jpg"},
+        {name:"Mercedes Classe S ou similaire",gear:"Automatique",engine:"Diesel",price:4000,deposit:"20 000–30 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-s-class.jpg"},
+        {name:"Mercedes CLA ou similaire",gear:"Automatique",engine:"Diesel",price:1400,deposit:"20 000–30 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-cla.jpg"},
+        {name:"Mercedes Classe C ou similaire",gear:"Automatique",engine:"Diesel",price:1500,deposit:"20 000–30 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-c-class.jpg"},
+        {name:"Range Rover Sport ou similaire",gear:"Automatique",engine:"Diesel",price:3500,deposit:"20 000–30 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-sport.jpg"},
+        {name:"Range Rover Velar ou similaire",gear:"Automatique",engine:"Diesel",price:1500,deposit:"20 000–30 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-velar.jpg"},
+        {name:"Range Rover Evoque ou similaire",gear:"Automatique",engine:"Diesel",price:1200,deposit:"20 000–30 000 MAD",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-evoque.jpg"}
+    ];
 
-    <!-- Cars Section -->
-    <section class="cars-section" id="vehicles">
-        <div class="container">
-            <h2 class="section-title">Notre Flotte Premium</h2>
-            <p class="section-subtitle">Choisissez parmi 16 véhicules neufs 2024</p>
-            <div class="cars-grid" id="carsGrid">
-                <div class="loading">Chargement des voitures...</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <h2 class="section-title">Ce Que Disent Nos Clients</h2>
-            <p class="section-subtitle">Vrais avis de clients satisfaits</p>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">Service excellent! La voiture était neuve et propre. L'équipe était très professionnelle. Je louerai certainement à nouveau chez Rafal Car!</p>
-                    <p class="testimonial-author">Ahmed M.</p>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+    async function getCarsData() {
+        try { const r = await fetch('../cars-data.json'); if (r.ok) return await r.json(); } catch(e) {}
+        return defaultCarsData;
+    }
+    async function displayCars() {
+        const cars = await getCarsData();
+        document.getElementById('carsGrid').innerHTML = cars.map(car => `
+            <div class="car-card">
+                <img src="${car.img}" alt="${car.name}" class="car-image" onerror="this.src='https://via.placeholder.com/400x215?text=Image+voiture'">
+                <div class="car-info">
+                    <div class="car-name">${car.name}</div>
+                    <div class="car-details">🔧 ${car.gear}<br>⛽ ${car.engine}<br>👥 5 places &bull; ❄️ Climatisation<br>💰 Caution : ${car.deposit}</div>
+                    <div class="car-price">${car.price} MAD<span>/jour</span></div>
+                    <button class="btn-book" onclick="bookCar('${car.name}', ${car.price})">Réserver maintenant</button>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">Meilleure expérience de location au Maroc. Réservation facile, prix excellents, et la Mercedes était incroyable! Très recommandé.</p>
-                    <p class="testimonial-author">Sarah L.</p>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">Service très fiable avec support 24/7. Super road trip de Casablanca à Marrakech. La voiture était parfaite!</p>
-                    <p class="testimonial-author">Karim B.</p>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>À Propos de Rafal Car</h3>
-                    <p>Votre partenaire de confiance pour la location de voitures premium au Maroc. Service exceptionnel avec notre flotte 2024. Disponible 24/7 dans toutes les grandes villes.</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Liens Rapides</h3>
-                    <a href="#home">Accueil</a>
-                    <a href="#vehicles">Notre Flotte</a>
-                    <a href="#how-it-works">Comment Ça Marche</a>
-                    <a href="#why-choose-us">Pourquoi Nous</a>
-                    <a href="terms.html">Conditions Générales</a>
-                    <a href="privacy.html">Politique de Confidentialité</a>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contactez-Nous</h3>
-                    <p>📞 Téléphone: +212 662 186 949</p>
-                    <p>💬 WhatsApp: +212 662 186 949</p>
-                    <p>✉️ Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b697a7d7a7735787a69767e7f2e5b7c767a727735787476">[email&#160;protected]</a></p>
-                    <p>📍 Emplacements: Casablanca, Marrakech, Rabat, Fes, Tangier, Agadir</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Suivez-Nous</h3>
-                    <p>Restez connecté sur les réseaux sociaux</p>
-                    <div class="social-links">
-                        <a href="https://web.facebook.com/Rafalcarrent" target="_blank" title="Facebook">📘</a>
-                        <a href="https://www.instagram.com/rafalcarrent/" target="_blank" title="Instagram">📷</a>
-                        <a href="https://wa.me/212662186949" target="_blank" title="WhatsApp">💬</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Rafal Car. Tous droits réservés. | Services de Location Premium au Maroc</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/212662186949" class="whatsapp-float" target="_blank" title="Contactez-nous sur WhatsApp">
-        💬
-    </a>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Default cars data (fallback)
-        const defaultCarsData = [
-            {name:"Hyundai Tucson or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"10000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-tucson.jpg"},
-            {name:"Dacia Logan or similar",gear:"Manual",engine:"Diesel",price:270,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/dacia-logan.jpg"},
-            {name:"Peugeot 208 or similar",gear:"Automatic/Manual",engine:"Diesel/Hybrid",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/peugeot-208.jpg"},
-            {name:"Opel Corsa or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/opel-corsa.jpg"},
-            {name:"Renault Express or similar",gear:"Manual",engine:"Diesel",price:340,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-express.jpg"},
-            {name:"Skoda Karoq or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/skoda-karoq.jpg"},
-            {name:"Volkswagen Touareg or similar",gear:"Automatic",engine:"Diesel",price:900,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/vw-touareg.jpg"},
-            {name:"Cupra Formentor or similar",gear:"Automatic",engine:"Diesel",price:500,deposit:"5000 MAD",category:"suv",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/cupra-formentor.jpg"},
-            {name:"Renault Clio or similar",gear:"Manual",engine:"Diesel",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/renault-clio.jpg"},
-            {name:"Hyundai Accent or similar",gear:"Automatic",engine:"Diesel/Benzin",price:300,deposit:"5000 MAD",category:"economy",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/hyundai-accent.jpg"},
-            {name:"Mercedes S-Class or similar",gear:"Automatic",engine:"Diesel",price:4000,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-s-class.jpg"},
-            {name:"Mercedes CLA or similar",gear:"Automatic",engine:"Diesel",price:1400,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-cla.jpg"},
-            {name:"Mercedes C-Class or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/mercedes-c-class.jpg"},
-            {name:"Range Rover Sport or similar",gear:"Automatic",engine:"Diesel",price:3500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-sport.jpg"},
-            {name:"Range Rover Velar or similar",gear:"Automatic",engine:"Diesel",price:1500,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-velar.jpg"},
-            {name:"Range Rover Evoque or similar",gear:"Automatic",engine:"Diesel",price:1200,deposit:"20000-30000 MAD",category:"luxury",img:"https://raw.githubusercontent.com/INNOLABCO/rc/main/images/range-rover-evoque.jpg"}
-        ];
-
-        let carsData = [];
-
-        // Get cars data from JSON file
-        async function getCarsData() {
-            try {
-                const response = await fetch('../cars-data.json');
-                if (response.ok) {
-                    return await response.json();
-                }
-            } catch(e) {
-                console.log('Using default cars:', e);
-            }
-            return defaultCarsData;
-        }
-
-        // Display cars
-        async function displayCars() {
-            carsData = await getCarsData();
-            const grid = document.getElementById('carsGrid');
-            
-            grid.innerHTML = carsData.map(car => `
-                <div class="car-card">
-                    <img src="${car.img}" alt="${car.name}" class="car-image" onerror="this.src='https://via.placeholder.com/400x200?text=Car+Image'">
-                    <div class="car-info">
-                        <div class="car-name">${car.name}</div>
-                        <div class="car-details">
-                            🔧 ${car.gear}<br>
-                            ⛽ ${car.engine}<br>
-                            👥 5 Seats • ❄️ AC<br>
-                            💰 Deposit: ${car.deposit}
-                        </div>
-                        <div class="car-price">
-                            ${car.price} MAD<span>/jour</span>
-                        </div>
-                        <button class="btn-book" onclick="bookCar('${car.name}', ${car.price})">Réserver Maintenant</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Book car
-        function bookCar(name, price) {
-            const pickupDate = document.getElementById('pickupDate').value;
-            const returnDate = document.getElementById('returnDate').value;
-            const pickupLocation = document.getElementById('pickupLocation').value;
-            
-            localStorage.setItem('rafalcar_selected_car', JSON.stringify({name, price}));
-            localStorage.setItem('rafalcar_search', JSON.stringify({
-                pickup: pickupDate,
-                returnDate: returnDate,
-                location: pickupLocation
-            }));
-            
-            window.location.href = '../booking.html';
-        }
-
-        // Search cars
-        function searchCars() {
-            const pickupDate = document.getElementById('pickupDate').value;
-            const returnDate = document.getElementById('returnDate').value;
-            
-            if (!pickupDate || !returnDate) {
-                alert('Please select pickup and return dates');
-                return;
-            }
-            
-            document.getElementById('vehicles').scrollIntoView({behavior: 'smooth'});
-        }
-
-        // Set min dates
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('pickupDate').min = today;
-        document.getElementById('returnDate').min = today;
-
-        // Charger les voitures au chargement de la page
-        displayCars();
-    </script>
+            </div>`).join('');
+    }
+    function bookCar(name, price) {
+        localStorage.setItem('rafalcar_selected_car', JSON.stringify({name, price}));
+        localStorage.setItem('rafalcar_search', JSON.stringify({pickup: document.getElementById('pickupDate').value, returnDate: document.getElementById('returnDate').value, location: document.getElementById('pickupLocation').value}));
+        window.location.href = '../booking.html';
+    }
+    function searchCars() {
+        if (!document.getElementById('pickupDate').value || !document.getElementById('returnDate').value) { alert('Veuillez sélectionner les dates de prise en charge et de retour'); return; }
+        document.getElementById('vehicles').scrollIntoView({behavior: 'smooth'});
+    }
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('pickupDate').min = today;
+    document.getElementById('returnDate').min = today;
+    displayCars();
+</script>
 </body>
 </html>
