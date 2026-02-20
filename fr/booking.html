@@ -450,6 +450,35 @@ function gtag_report_conversion(url) {
 
         .redirect-note { font-size: 12px; color: var(--text-dim); margin-top: 24px; }
 
+        /* ── Car tags ── */
+        .car-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .car-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: capitalize;
+            padding: 3px 9px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .car-tag.category {
+            color: var(--accent);
+            border-color: rgba(232,184,109,0.3);
+            background: var(--accent-dim);
+        }
+
         /* Lang switcher */
         .lang-pills {
             display: flex;
@@ -553,8 +582,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="car-info">
                 <div class="car-name" id="carName">Chargement…</div>
-                <div class="car-meta" id="carDetails">Sélectionnez un véhicule</div>
-                <div class="car-rate">
+                <div class="car-meta" id="carDetails"></div>
+                <div class="car-tags" id="carTags"></div>
+                <div class="car-rate" style="margin-top:10px;">
                     <span class="amount" id="carPriceDisplay">—</span>
                     <span class="unit">MAD / jour</span>
                 </div>
@@ -634,6 +664,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="label">Nombre de jours</span>
                         <span class="value" id="numDays">—</span>
                     </div>
+                    <div class="price-row">
+                        <span class="label">Caution</span>
+                        <span class="value" id="depositAmount">— MAD</span>
+                    </div>
                     <div class="price-divider"></div>
                     <div class="price-total-row">
                         <span class="label">Total</span>
@@ -691,9 +725,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const img = document.getElementById('carImage');
         img.src = selectedCar.img || '';
         img.alt = selectedCar.name || 'Véhicule';
+        img.onerror = function() {
+            this.style.display = 'none';
+            this.parentElement.style.background = 'linear-gradient(135deg, #1a1a28, #252535)';
+        };
         document.getElementById('carName').textContent = selectedCar.name || 'Véhicule inconnu';
         document.getElementById('carPriceDisplay').textContent = selectedCar.price;
         document.getElementById('dailyRate').textContent = selectedCar.price + ' MAD';
+        if (selectedCar.deposit) {
+            document.getElementById('depositAmount').textContent = selectedCar.deposit;
+        }
+        const tagsEl = document.getElementById('carTags');
+        tagsEl.innerHTML = '';
+        if (selectedCar.category) {
+            const t = document.createElement('span');
+            t.className = 'car-tag category';
+            t.textContent = selectedCar.category;
+            tagsEl.appendChild(t);
+        }
+        if (selectedCar.gear) {
+            const t = document.createElement('span');
+            t.className = 'car-tag';
+            t.textContent = '⚙ ' + selectedCar.gear;
+            tagsEl.appendChild(t);
+        }
+        if (selectedCar.engine) {
+            const t = document.createElement('span');
+            t.className = 'car-tag';
+            t.textContent = '⛽ ' + selectedCar.engine;
+            tagsEl.appendChild(t);
+        }
         calculatePrice();
     }
 
