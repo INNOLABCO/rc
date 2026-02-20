@@ -6,7 +6,7 @@
     "engine": "Diesel",
     "price": 500,
     "deposit": "10000 MAD",
-    "img": "images/hyundai-tucson.avif"
+    "img": "images/Gemini_Generated_Image_q7t6lfq7t6lfq7t6.png"
   },
   {
     "name": "Dacia Logan or similar",
@@ -24,16 +24,7 @@
     "engine": "Diesel/Hybrid",
     "price": 300,
     "deposit": "5000 MAD",
-    "img": "images/peugeot-208.jpg"
-  },
-  {
-    "name": "Opel Corsa or similar",
-    "category": "economy",
-    "gear": "Manual",
-    "engine": "Diesel",
-    "price": 300,
-    "deposit": "5000 MAD",
-    "img": "images/opel-corsa.jpg"
+    "img": "images/Gemini_Generated_Image_9zdtrm9zdtrm9zdt.png"
   },
   {
     "name": "Renault Express or similar",
@@ -60,7 +51,7 @@
     "engine": "Diesel",
     "price": 900,
     "deposit": "5000 MAD",
-    "img": "images/volkswagen-touareg-elegance-front-three-quarter-static-1.avif"
+    "img": "images/Gemini_Generated_Image_uumfoxuumfoxuumf.png"
   },
   {
     "name": "Cupra Formentor or similar",
@@ -78,7 +69,7 @@
     "engine": "Diesel",
     "price": 300,
     "deposit": "5000 MAD",
-    "img": "images/clio-5.png"
+    "img": "images/Gemini_Generated_Image_4qyw1s4qyw1s4qyw.png"
   },
   {
     "name": "Hyundai Accent or similar",
@@ -87,7 +78,7 @@
     "engine": "Diesel/Benzin",
     "price": 300,
     "deposit": "5000 MAD",
-    "img": "images/2024_hyundai_accent_00.jpg"
+    "img": "images/Gemini_Generated_Image_fucavzfucavzfuca.png"
   },
   {
     "name": "Mercedes S-Class or similar",
@@ -105,7 +96,7 @@
     "engine": "Diesel",
     "price": 1400,
     "deposit": "20000-30000 MAD",
-    "img": "images/Mercedes-CLA-Coupe-2023-Neuve-Maroc-06.jpg"
+    "img": "images/Gemini_Generated_Image_5za9d95za9d95za9.png"
   },
   {
     "name": "Mercedes C-Class or similar",
@@ -114,7 +105,7 @@
     "engine": "Diesel",
     "price": 1500,
     "deposit": "20000-30000 MAD",
-    "img": "images/mercedes-c.png"
+    "img": "images/Mercedes-Benz-Classe-C.jpg"
   },
   {
     "name": "Range Rover Sport or similar",
@@ -123,7 +114,7 @@
     "engine": "Diesel",
     "price": 3500,
     "deposit": "20000-30000 MAD",
-    "img": "images/moteur.ma-land-rover-rangeroversport-246291_.jpg"
+    "img": "images/Gemini_Generated_Image_du30uodu30uodu30.png"
   },
   {
     "name": "Range Rover Velar or similar",
@@ -132,7 +123,7 @@
     "engine": "Diesel",
     "price": 1500,
     "deposit": "20000-30000 MAD",
-    "img": "range-rover-velar.jpeg"
+    "img": "images/Gemini_Generated_Image_ou6u3uou6u3uou6u.png"
   },
   {
     "name": "Range Rover Evoque or similar",
@@ -141,6 +132,6 @@
     "engine": "Diesel",
     "price": 1200,
     "deposit": "20000-30000 MAD",
-    "img": "images/hq720.jpg"
+    "img": "images/Gemini_Generated_Image_tn4d3dtn4d3dtn4d.png"
   }
 ]
